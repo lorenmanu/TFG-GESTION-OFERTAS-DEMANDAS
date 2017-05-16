@@ -1,0 +1,7 @@
+addArea:
+    path:     /areas/addArea/
+    defaults: { _controller:AreaBundle:Default:addArea }
+
+mostrarAreas:
+    path:     /areas/mostrarAreas/
+    defaults: { _controller:AreaBundle:Default:mostrarAreas }

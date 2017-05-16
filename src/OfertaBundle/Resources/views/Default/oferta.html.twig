@@ -1,0 +1,60 @@
+{% extends 'base.html.twig.php' %}
+
+{% block side %}
+<div id="pagina">
+  <h1 id="titulo_pagina"><span class="texto_titulo">Presentación</span></h1>
+  <div id="contenido" class="sec_interior">
+    <div class="content_doku">
+        <img width="200" alt="mapa_bbm3i" title="mapa_bbm3i" class="medialeft" src="{{ asset('uploads/brochures/oferta') }}/{{ oferta.getBrochure() }}" alt="Example" />
+          <div id="descripcionOferta">
+            <p id="nombre"> {{ oferta.getNombre() }} </li>
+            <p id="ruta"> {{ oferta.getFechaInicio()|date('Y-m-d') }} </p>
+            {% for comentario in oferta.getComentarios()  %}
+              <p id="nombre"> {{ comentario.getFecha()|date('Y-m-d') }} </p>
+              <p id="ruta"> {{ comentario.getDescripcion() }} </p>
+            {% endfor %}
+          </div>
+          <div class="DocumentList">
+            <ul>
+              {% for comentario in oferta.getComentarios()  %}
+
+                <p id="DocumentItem">{{ comentario.getDescripcion() }}
+                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
+                </p>
+                <p id="DocumentItem">{{ comentario.getDescripcion() }}
+                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
+                </p>
+                <p id="DocumentItem">{{ comentario.getDescripcion() }}
+                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
+                </p>
+                <p id="DocumentItem">{{ comentario.getDescripcion() }}
+                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
+                </p>
+                <p id="DocumentItem">{{ comentario.getDescripcion() }}
+                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
+                </p>
+                <p id="DocumentItem">{{ comentario.getDescripcion() }}
+                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
+                </p>
+                <p id="DocumentItem">{{ comentario.getDescripcion() }}
+                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
+                </p>
+
+              {% endfor %}
+          </div>
+          {% if form is defined %}
+            {% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+            {{ form_start(form, {method: 'POST'}) }}
+
+            {{ form_label(form.descripcion) }}
+
+            {{ form_widget(form) }}
+            {{ form_errors(form) }}
+          {% endif %}
+
+        </div>
+    </div>
+ </div>
+
+{% endblock %}

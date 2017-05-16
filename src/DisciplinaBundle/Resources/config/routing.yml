@@ -1,0 +1,7 @@
+addDisciplina:
+    path:     /disciplinas/addDisciplina/
+    defaults: { _controller: DisciplinaBundle:Default:addDisciplina }
+
+mostrarDisciplinas:
+    path:     /disciplinas/mostrarDisciplinas/
+    defaults: { _controller: DisciplinaBundle:Default:mostrarDisciplinas }

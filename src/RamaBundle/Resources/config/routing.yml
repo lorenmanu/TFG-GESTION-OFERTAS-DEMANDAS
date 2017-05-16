@@ -1,0 +1,7 @@
+addRama:
+    path:     /ramas/addRama/
+    defaults: { _controller: RamaBundle:Default:addRama }
+
+mostrarRamas:
+    path:     /ramas/mostrarRamas/
+    defaults: { _controller: RamaBundle:Default:mostrarRamas }

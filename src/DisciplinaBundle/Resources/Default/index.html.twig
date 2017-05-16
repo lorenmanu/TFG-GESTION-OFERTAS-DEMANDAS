@@ -1,0 +1,18 @@
+{% extends 'base.html.twig.php' %}
+
+{% block side %}
+<div id="pagina">
+  <h1 id="titulo_pagina"><span class="texto_titulo">Presentación</span></h1>
+  <div id="contenido" class="sec_interior">
+    <div class="content_doku">
+                {% for disciplina in rama.getDisciplinas()  %}
+                  dump(rama);
+                  exit;
+                  <p id="nombre"> {{ disciplina.getNombre() }} </p>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+ </div>
+
+{% endblock %}

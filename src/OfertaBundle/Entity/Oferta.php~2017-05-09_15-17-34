@@ -1,0 +1,363 @@
+<?php
+
+namespace OfertaBundle\Entity;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Oferta
+ *
+ * @ORM\Table(name="oferta")
+ * @ORM\Entity
+ */
+class Oferta
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
+     */
+    private $slug;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condiciones", type="text", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $condiciones;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_inicio", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $fechaInicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fecha_fin", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $fechaFin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contacto", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $contacto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="palabras_clave", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $palabrasClave;
+
+    /**
+     * Unmapped property to handle file uploads
+     */
+    private $brochure;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+              $this->comentarios = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Oferta
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     *
+     * @return Oferta
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     *
+     * @return Oferta
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set condiciones
+     *
+     * @param string $condiciones
+     *
+     * @return Oferta
+     */
+    public function setCondiciones($condiciones)
+    {
+        $this->condiciones = $condiciones;
+
+        return $this;
+    }
+
+    /**
+     * Get condiciones
+     *
+     * @return string
+     */
+    public function getCondiciones()
+    {
+        return $this->condiciones;
+    }
+
+    /**
+     * Set fechaInicio
+     *
+     * @param \DateTime $fechaInicio
+     *
+     * @return Oferta
+     */
+    public function setFechaInicio($fechaInicio)
+    {
+        $this->fechaInicio = $fechaInicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaInicio
+     *
+     * @return \DateTime
+     */
+    public function getFechaInicio()
+    {
+        return $this->fechaInicio;
+    }
+
+    /**
+     * Set fechaFin
+     *
+     * @param \DateTime $fechaFin
+     *
+     * @return Oferta
+     */
+    public function setFechaFin($fechaFin)
+    {
+        $this->fechaFin = $fechaFin;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaFin
+     *
+     * @return \DateTime
+     */
+    public function getFechaFin()
+    {
+        return $this->fechaFin;
+    }
+
+    /**
+     * Set contacto
+     *
+     * @param string $contacto
+     *
+     * @return Oferta
+     */
+    public function setContacto($contacto)
+    {
+        $this->contacto = $contacto;
+
+        return $this;
+    }
+
+    /**
+     * Get contacto
+     *
+     * @return string
+     */
+    public function getContacto()
+    {
+        return $this->contacto;
+    }
+
+    /**
+     * Set palabrasClave
+     *
+     * @param string $palabrasClave
+     *
+     * @return Oferta
+     */
+    public function setPalabrasClave($palabrasClave)
+    {
+        $this->palabrasClave = $palabrasClave;
+
+        return $this;
+    }
+
+    /**
+     * Get palabrasClave
+     *
+     * @return string
+     */
+    public function getPalabrasClave()
+    {
+        return $this->palabrasClave;
+    }
+
+    /**
+     * Sets brochure.
+     *
+     * @param UploadedFile $brochure
+     */
+    public function setBrochure(UploadedFile $brochure=null)
+    {
+        $this->brochure = $brochure;
+
+        return "uploads/brochures/oferta";
+    }
+
+    /**
+    * Get file.
+    *
+    * @return UploadedFile
+    */
+
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
+
+    /**
+     * Manages the copying of the Brochure to the relevant place on the server
+     */
+    public function upload()
+    {
+        // the Brochure property can be empty if the field is not required
+        if (null === $this->getBrochure()) {
+            return;
+        }
+
+        // we use the original Brochure name here but you should
+        // sanitize it at least to avoid any security issues
+
+        // move takes the target directory and target Brochurename as params
+        $this->getBrochure()->move(
+            self::SERVER_PATH_TO_IMAGE_FOLDER,
+            $this->getBrochure()->getClientOriginalName()
+        );
+
+        // set the path property to the Brochurename where you've saved the Brochure
+        $this->filename = $this->getBrochure()->getClientOriginalName();
+
+        // clean up the Brochure property as you won't need it anymore
+        $this->setBrochure(null);
+    }
+
+    /**
+     * Lifecycle callback to upload the Brochure to the server
+     */
+    public function lifecycleFileUpload()
+    {
+        $this->upload();
+    }
+
+    /**
+     * Updates the hash value to force the preUpdate and postUpdate events to fire
+     */
+    public function refreshUpdated()
+    {
+        //$this->setUpdated(new \DateTime());
+    }
+
+}

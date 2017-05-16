@@ -1,0 +1,3 @@
+comentario_homepage:
+    path:     /
+    defaults: { _controller: ComentarioBundle:Default:index }

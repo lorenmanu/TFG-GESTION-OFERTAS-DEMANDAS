@@ -1,0 +1,23 @@
+comentario:
+    resource: "@ComentarioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+disciplina:
+    resource: "@DisciplinaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+rama:
+    resource: "@RamaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+area:
+    resource: "@AreaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+demanda:
+    resource: "@DemandaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+oferta:
+    resource: "@OfertaBundle/Resources/config/routing.yml"
+    prefix:   /

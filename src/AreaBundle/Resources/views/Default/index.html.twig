@@ -1,0 +1,26 @@
+{% extends 'base.html.twig.php' %}
+
+{% block side %}
+<div id="pagina">
+  <h1 id="titulo_pagina"><span class="texto_titulo">Presentación</span></h1>
+  <div id="contenido" class="sec_interior">
+    <div class="content_doku">
+            {% for area in areas  %}
+            <p> ------------------  Area ----------------------------- </p>
+              <p id="nombre"> {{ area.getNombre() }} </p>
+              <p id="nombre"> {{ area.getId() }} </p>
+              <p> ------------------  Ramas ----------------------------- </p>
+                {% for rama in area.getRamas()  %}
+                  <p id="nombre"> {{ rama.getNombre() }} </p>
+                  <p> ------------------  Disciplinas ----------------------------- </p>
+                  {% for disciplina in rama.getDisciplinas()  %}
+                    <p id="nombre"> {{ disciplina.getNombre() }} </p>
+                  {% endfor %}
+                {% endfor %}
+              <p> ======================================================================== </p>
+            {% endfor %}
+        </div>
+    </div>
+ </div>
+
+{% endblock %}

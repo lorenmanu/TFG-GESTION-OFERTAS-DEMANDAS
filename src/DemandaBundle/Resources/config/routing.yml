@@ -1,0 +1,3 @@
+demanda_homepage:
+    path:     /
+    defaults: { _controller: DemandaBundle:Default:index }

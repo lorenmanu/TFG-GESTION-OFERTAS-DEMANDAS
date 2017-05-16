@@ -1,0 +1,131 @@
+<?php
+  /**
+   *  @brief diccionario de variables en castellano
+   */
+//#### MENU ########
+$lang["Inicio"] = "Inicio";
+$lang["Docencia"] = "Docencia";
+$lang["Asignaturas"] = "Asignaturas";
+$lang["Asignaturas a extinguir"] = "Asignaturas a extinguir";
+$lang["Profesores"] = "Profesores";
+$lang["Proyectos Fin de Carrera"] = "Proyectos Fin de Carrera";
+$lang["Trabajos Fin de Grado"] = "Trabajos Fin de Grado";
+$lang["Trabajos Fin de Máster"] = "Trabajos Fin de Máster";
+$lang["Cursos de Especialización"] = "Cursos de Especialización";
+$lang["Posgrado"] = "Posgrado";
+$lang["Investigación"] = "Investigación";
+$lang["Información General"] = "Información General";
+$lang["Información"] = "Información";
+$lang["Notas de Prensa"] = "Notas de Prensa";
+$lang["Historia"] = "Historia";
+$lang["Miembros"] = "Miembros";
+$lang["Miembro"] = "Miembro";
+$lang["Miembros DECSAI"] = "Miembros DECSAI";
+$lang["Ex-miembros"] = "Ex-miembros";
+$lang["Gobierno y Comisiones"] = "Gobierno y Comisiones";
+$lang["Órganos de Gobierno y Comisiones"] = "Órganos de Gobierno y Comisiones";
+$lang["Sedes y Locales"] = "Sedes y Locales";
+$lang["Política Ambiental de la UGR"] = "Política Ambiental de la UGR";
+$lang["Noticias"] = "Noticias";
+$lang["Acceso Identificado"] = "Acceso Identificado";
+$lang["Ir a Acceso Identificado"] = "Ir a Acceso Identificado";
+$lang["Ver más"] = "Ver más"; 
+$lang["Tesis"] = "Tesis"; 
+//###### DÍAS DE LA SEMANA 
+$lang["Lunes"] = "Lunes";
+$lang["Martes"] = "Martes";
+$lang["Miércoles"] = "Miércoles";
+$lang["Jueves"] = "Jueves";
+$lang["Viernes"] = "Viernes";
+$lang["de"] = "de"; //de hh:mm a hh:mm en Despacho X
+$lang["a"] = "a";
+$lang["en"] = "en"; 
+//##### PIE DE PAGINA #######
+$lang["Departamento de Ciencias de la Computación e Inteligencia Artificial"] = "Departamento de Ciencias de la Computación e Inteligencia Artificial";
+$lang["Universidad de Granada"] = "Universidad de Granada";
+$lang["Ver Mapa Web"] = "Ver Mapa Web";
+$lang["Mapa Web"] = "Mapa Web";
+$lang["Escuela Técnica Superior de Ingeniería Informática y de Telecomunicaciones"] = "Escuela Técnica Superior de Ingenierías Informática y de Telecomunicación";
+$lang["Dirección"] = "c/. Daniel Saucedo Aranda, s/n  18071 Granada España";
+$lang["Ver Localización"] = "Ver Localización";
+$lang["ver mapa"] = "ver mapa";
+$lang["Teléfono"] = "Teléfono";
+$lang["Fax"] = "Fax";
+$lang["Acerca de este sitio"] = "Acerca de este sitio";
+$lang["Webmaster"] = "Webmaster";
+$lang["Contacto"] = "Contacto y Localización";
+$lang["Envíe sus dudas, quejas, sugerencias, etc. a la siguiente dirección"] = "Envíe sus dudas, quejas, sugerencias, etc. a la siguiente dirección";
+$lang["Queja/reclamación"] = "Queja/reclamación";
+$lang["Buscar"] = "Buscar";
+$lang["busqueda..."] = "búsqueda...";
+$lang["Accesibilidad"] = "Accesibilidad";
+$lang["Política de Privacidad"] = "Política de Privacidad";
+$lang["XXV Aniversario"] = "XXV Aniversario";
+//######### MENSAJES DE ERROR ##########
+$lang["No hay resultados que mostrar"] = "No hay resultados que mostrar";
+//######  CONTENIDOS ###########
+$lang["Página Principal"] = "Página Principal";
+$lang["Enlaces Destacados"] = "Enlaces Destacados";
+$lang["Bienvenidos a la página web del departamento de Ciencias de la Computación e Inteligencia Artificial de la Universidad de Granada"] = "Bienvenidos a la página web del departamento de Ciencias de la Computación e Inteligencia Artificial de la Universidad de Granada";
+$lang["Listado Asignaturas"] = "Listado Asignaturas";
+$lang["Información Asignatura"] = "Información Asignatura";
+$lang["Criterios de Filtrado"] = "Criterios de Filtrado";
+$lang["Asignatura"] = "Asignatura";
+$lang["Seleccione Asignatura"] = "Seleccione Asignatura";
+$lang["Titulación"] = "Titulación";
+$lang["Seleccione Titulación"] = "Seleccione Titulación";
+$lang["Curso"] = "Curso";
+$lang["Cuatr."] = "Cuatr.";
+$lang["Cuatrimestre"] = "Cuatrimestre";
+$lang["Código"] = "Código";
+$lang["Créditos"] = "Créditos";
+$lang["Teóricos"] = "Teóricos";
+$lang["Teoría"] = "Teoría";
+$lang["Prácticos"] = "Prácticos";
+$lang["Prácticas"] = "Prácticas";
+$lang["Créditos de Teoría"] = "Créditos de Teoría";
+$lang["Créditos de Prácticas"] = "Créditos de Prácticas";
+$lang["Temario"] = "Temario";
+$lang["Guía Docente"] = "Guía Docente";
+$lang["Web"] = "Web";
+$lang["Profesor"] = "Profesor";
+$lang["Coordinador"] = "Coordinador";
+$lang["Grupo"] = "Grupo";
+$lang["Grupos"] = "Grupos";
+$lang["Tutorías"] = "Tutorías";
+$lang["Visualizar"] = "Visualizar";
+$lang["Descargar"] = "Descargar";
+$lang["PROGRAMA DE TEORÍA"] = "PROGRAMA DE TEORÍA";
+$lang["PROGRAMA DE PRÁCTICAS"] = "PROGRAMA DE PRÁCTICAS";
+$lang["BIBLIOGRAFÍA"] = "BIBLIOGRAFÍA";
+$lang["MÉTODO DE EVALUACIÓN"] = "MÉTODO DE EVALUACIÓN";
+$lang["RECOMENDACIONES AL ALUMNO"] = "RECOMENDACIONES AL ALUMNO";
+$lang["Listado Profesores"] = "Listado Profesores";
+$lang["Seleccione Profesor"] = "Seleccione Profesor";
+$lang["Información Profesor"] = "Información Profesor";
+$lang["Información Miembro"] = "Información Miembro";
+$lang["Correo"] = "Correo";
+$lang["Despacho"] = "Despacho";
+$lang["Centro"] = "Centro";
+$lang["Categoría"] = "Categoría";
+$lang["Grupos de Investigación"] = "Grupos de Investigación";
+$lang["Grupo"] = "Grupo";
+$lang["Responsable"] = "Responsable";
+$lang["Notas de Prensa"] = "Notas de Prensa";
+$lang["Historia"] = "Historia";
+$lang["Dirección del Departamento"] = "Dirección del Departamento";
+$lang["Director"] = "Director";
+$lang["Subdirector Docente"] = "Subdirector Docente";
+$lang["Secretario"] = "Secretario";
+$lang["Siglas"] = "Siglas";
+$lang["Nº miembros"] = "Nº Miembros";
+$lang["Distribución de los Miembros"] = "Distribución de los Miembros";
+$lang["Nombre"] = "Nombre";
+$lang["E-mail conocido"] = "E-mail conocido";
+$lang["Tutorías Primer Cuatrimestre"] = "Tutorías Primer Cuatrimestre";
+$lang["Tutorías Segundo Cuatrimestre"] = "Tutorías Segundo Cuatrimestre";
+$lang["Síguenos en Facebook"] = "Síguenos en Facebook";
+//Botones aplicación
+$lang["Volver"] = "Volver";
+
+?>

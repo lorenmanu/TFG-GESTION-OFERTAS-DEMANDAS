@@ -1,0 +1,31 @@
+portada:
+    path:     /demandas/
+    defaults: { _controller: OfertaBundle:Default:portada }
+
+addOferta:
+    path:     /addOferta/
+    defaults: { _controller: OfertaBundle:Default:subirOferta }
+
+mostrarOfertas:
+    path:     /mostrarOfertas/
+    defaults: { _controller: OfertaBundle:Default:mostrarOfertas }
+
+showOferta:
+    path:     /showOferta/
+    defaults: { _controller: OfertaBundle:Default:showOferta }
+
+deleteComment:
+    path:     /deleteComment/
+    defaults: { _controller: OfertaBundle:Default:deleteComment }
+
+select_ramas:
+    path:     /selectRamas/
+    defaults: { _controller: OfertaBundle:Default:selectRamas }
+
+select_disciplinas:
+    path:     /selectDisciplinas/
+    defaults: { _controller: OfertaBundle:Default:selectDisciplinas }
+
+oferta_lista:
+    path:     /area_lista/
+    defaults: { _controller: OfertaBundle:Default:searchArea }

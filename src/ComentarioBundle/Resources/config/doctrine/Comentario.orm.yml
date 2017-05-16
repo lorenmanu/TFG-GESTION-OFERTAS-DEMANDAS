@@ -1,0 +1,19 @@
+ComentarioBundle\Entity\Comentario:
+    type: entity
+    table: null
+    repositoryClass: ComentarioBundle\Repository\ComentarioRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        autor:
+            type: string
+            length: 255
+        fecha:
+            type: datetime
+        contenido:
+            type: text
+    lifecycleCallbacks: {  }
