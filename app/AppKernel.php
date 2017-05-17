@@ -25,7 +25,8 @@ class AppKernel extends Kernel
             new AreaBundle\AreaBundle(),
             new RamaBundle\RamaBundle(),
             new ComentarioBundle\ComentarioBundle(),
-            new FOS\ElasticaBundle\FOSElasticaBundle()
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
+            new IAkumaI\SphinxsearchBundle\SphinxsearchBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

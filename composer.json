@@ -29,7 +29,8 @@
         "jms/serializer-bundle": "^1.5",
         "friendsofsymfony/elastica-bundle": "^4.0",
         "symfony/intl": "^3.2",
-        "iakumai/sphinxsearch-bundle": "dev-master"
+        "iakumai/sphinxsearch-bundle": "dev-master",
+        "tetranz/select2entity-bundle": "2.*"
     },
 
     "require-dev": {

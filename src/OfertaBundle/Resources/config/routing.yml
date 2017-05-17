@@ -29,3 +29,7 @@ select_disciplinas:
 oferta_lista:
     path:     /area_lista/
     defaults: { _controller: OfertaBundle:Default:searchArea }
+
+oferta_search:
+    path:     /search_oferta/
+    defaults: { _controller: OfertaBundle:Default:searchOferta }

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "1ee07cc65b19856c85f2b1d311acfd45",
+    "content-hash": "e82d7489ff956be20d6fe7ccadc8b340",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -992,6 +992,55 @@
                 "form"
             ],
             "time": "2014-03-23T12:12:05+00:00"
+        },
+        {
+            "name": "iakumai/sphinxsearch-bundle",
+            "version": "dev-master",
+            "target-dir": "IAkumaI/SphinxsearchBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/IAkumaI/SphinxsearchBundle.git",
+                "reference": "cf622949f64a7d10b5e5abc9e4d95f280095e43d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/IAkumaI/SphinxsearchBundle/zipball/cf622949f64a7d10b5e5abc9e4d95f280095e43d",
+                "reference": "cf622949f64a7d10b5e5abc9e4d95f280095e43d",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "IAkumaI\\SphinxsearchBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Valery Ozarnichuk",
+                    "email": "meru.no.akuma@gmail.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Sphinx search bundle for Symfony 2",
+            "homepage": "https://github.com/IAkumaI/SphinxsearchBundle",
+            "keywords": [
+                "Symfony2",
+                "sphinx",
+                "sphinxsearch"
+            ],
+            "time": "2016-03-11 05:59:35"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -3256,6 +3305,54 @@
             "time": "2017-05-01T16:14:31+00:00"
         },
         {
+            "name": "tetranz/select2entity-bundle",
+            "version": "v2.9.3",
+            "target-dir": "Tetranz/Select2EntityBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tetranz/select2entity-bundle.git",
+                "reference": "b69a8d95285a6abafe7f0849530db73e8e732957"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tetranz/select2entity-bundle/zipball/b69a8d95285a6abafe7f0849530db73e8e732957",
+                "reference": "b69a8d95285a6abafe7f0849530db73e8e732957",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": ">=2.4",
+                "php": ">=5.4.0",
+                "symfony/symfony": ">=2.2"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": []
+            },
+            "autoload": {
+                "psr-0": {
+                    "Tetranz\\Select2EntityBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ross Keatinge",
+                    "email": "tetranz@gmail.com"
+                }
+            ],
+            "description": "A Symfony2 bundle that integrates Select2 as a drop-in replacement for a standard entity field on a Symfony form.",
+            "keywords": [
+                "autocomplete",
+                "select2",
+                "symfony",
+                "typeahead"
+            ],
+            "time": "2017-04-22T01:16:03+00:00"
+        },
+        {
             "name": "twbs/bootstrap",
             "version": "v3.3.7",
             "source": {
@@ -4963,6 +5060,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "remg/generator-bundle": 20,
+        "iakumai/sphinxsearch-bundle": 20,
         "codeclimate/php-test-reporter": 20
     },
     "prefer-stable": false,

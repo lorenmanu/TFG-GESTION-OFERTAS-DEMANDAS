@@ -23,6 +23,10 @@
 
 		<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
 		<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	  <link rel="stylesheet" href="/resources/demos/style.css">
+
 		<script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
 		<script src="{{ asset('js/app.js') }}"></script>
 
@@ -38,10 +42,38 @@
 	    $( ".datepicker" ).datepicker();
 	  } );
 	  </script>
+		<script>
+		var options = {
+				url: function(phrase) {
+						if (phrase !== "") {
+								return "http://api.duckduckgo.com/?q=" + phrase + "&format=json";
+						} else {
+								//duckduckgo doesn't support empty strings
+								return "http://api.duckduckgo.com/?q=empty&format=json";
+						}
+				},
+
+				getValue: "Text",
+
+				ajaxSettings: {
+						dataType: "jsonp"
+				},
+
+				listLocation: "RelatedTopics",
+
+				requestDelay: 300,
+
+				theme: "round"
+		};
+
+		$("#example-ddg").easyAutocomplete(options);
+		</script>
+
 	</head>
 
 
 	<body>
+<input id="example-ddg"/>
 		<div id="contenedor_margenes" class="container">
 			<div id="contenedor" class="">
 				<div id="cabecera" class="">
@@ -67,7 +99,15 @@
 							</li>
 						</ul>
 					</div>
-				</div><div class="general">
+
+				</div>
+				<div class="list_item_container">
+				    <div class="image"><img src="eider.jpg"></div>
+				    <div class="label">Common Eider</div>
+				    <div class="description">Somateria mollissima</div>
+				</div>
+				</div>
+				<div class="general">
 					<div class="navigation">
 					{% if areas is defined %}
 						{% for area in areas  %}
@@ -150,8 +190,6 @@
 				</div>
 			</div>
 		</div>
-
-
 
 
 	</body>

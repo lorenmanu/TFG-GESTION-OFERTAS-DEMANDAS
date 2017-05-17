@@ -7376,3 +7376,55 @@ li.model-resaltado-02 a.banner:hover {
 .select2{
   height: 25%;
 }
+.list_item_container {
+    width:300px;
+    height: 60px;
+    padding: 5px 0;
+}
+.image {
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    float: left;
+}
+.description {
+    font-style: italic;
+    font-size: 0.8em;
+    color: gray;
+}
+
+
+
+.autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
+.autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
+.autocomplete-selected { background: #f0f0f0; }
+.autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
+
+
+
+#searchfield form {
+  display: inline-block;
+  background: #eeefed;
+  padding: 0;
+  margin: 0;
+  padding: 5px;
+  border-radius: 3px;
+  margin: 5px 0 0 0;
+}
+#searchfield form .biginput {
+  width: 600px;
+  height: 40px;
+  padding: 0 10px 0 10px;
+  background-color: #fff;
+  border: 1px solid #c8c8c8;
+  border-radius: 3px;
+  color: #aeaeae;
+  font-weight:normal;
+  font-size: 1.5em;
+  -webkit-transition: all 0.2s linear;
+  -moz-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+}
+#searchfield form .biginput:focus {
+  color: #858585;
+}

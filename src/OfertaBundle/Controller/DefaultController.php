@@ -100,6 +100,19 @@ class DefaultController extends Controller
 
   public function mostrarOfertasAction($primerCampo=null,$segundoCampo=null,$tercerCampo=null,$page=0,$cursorScroll=0){
 
+    $oferta_busqueda= new Oferta();
+
+    $formOfertaBuscador = $this->createFormBuilder($oferta_busqueda)
+                        ->add('country', 'tetranz_select2entity', [
+                        'multiple' => true,
+                        'remote_route' => 'tetranz_test_default_countryquery',
+                        'class' => '\OfertaBundle\Entity\Oferta',
+                        'text_property' => 'nombre',
+                        'minimum_input_length' => 2,
+                        'page_limit' => 10,
+                        'placeholder' => 'Select a country',
+     ]);
+
     $repository = $this->getDoctrine()->getRepository('OfertaBundle:Oferta');
     $ofertas = $repository->findAll(); // Limit;
 
@@ -131,7 +144,7 @@ class DefaultController extends Controller
      // Pass through the 3 above variables to calculate pages in twig
     return $this->render('OfertaBundle:Default:index.html.twig', compact('ofertas',
                                               'maxPages', 'thisPage','start','length',
-                                              'page','maxPages','cursorScroll','topeScroll','maxScroll'));
+                                              'page','maxPages','cursorScroll','topeScroll','maxScroll','formOfertaBuscador'));
 
 
   }
@@ -351,19 +364,25 @@ class DefaultController extends Controller
 
 
 
+    public function searchOfertaAction(Request $request){
+      $em = $this->getDoctrine()->getManager();
 
-public function searchNombreAction(Request $request)
-{
-    $q = $request->query->get('q'); // use "term" instead of "q" for jquery-ui
-    $results = $this->getDoctrine()->getRepository('OfertaBundle:Oferta')->findLikeName($q);
+      $descripcion = $request->request->get('descripcion');
 
-    return $this->render('your_template.html.twig', ['results' => $results]);
-}
+      $oferta = $em->getRepository('OfertaBundle:Oferta')->findByDescripcion($descripcion);
 
-public function getNombreAction($id = null)
-{
-    $author = $this->getDoctrine()->getRepository('OfertaBundle:Oferta')->find($id);
+      $ofertas = array();
 
-    return new Response($author->getName());
-}
+
+      for ($i = 0 ; $i< count($rama[0]->getDisciplinas()) ; $i++)
+              {
+                      # get params & values
+                      $ofertas[]=$oferta[0]->getId();
+                      $disciplinas[]=$oferta[0]->getNombre();
+              }
+
+
+      return new JsonResponse($disciplinas);
+  }
+
 }

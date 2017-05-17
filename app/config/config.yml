@@ -90,3 +90,20 @@ knp_menu:
     templating: false
     # the renderer to use, list is also available by default
     default_renderer: twig
+
+sphinxsearch:
+    searchd:
+        # Host name for your Sphinx daemon
+        host: localhost
+        # Port number for your Sphinx daemon
+        port: 9312
+        # If you want to connect via scoket
+        socket: /home/lorenmanu/Escritorio/socket.file
+    indexes:
+        # List of sphinx index names (key) and entity names (value)
+        # to use it in searchEx() method
+        IndexName: "OfertaBundle:Oferta"
+
+twig:
+    form_themes:
+        - 'TetranzSelect2EntityBundle:Form:fields.html.twig'
