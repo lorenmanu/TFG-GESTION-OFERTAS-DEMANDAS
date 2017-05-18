@@ -31,13 +31,6 @@ class Oferta
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
-     */
-    private $slug;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="descripcion", type="text", precision=0, scale=0, nullable=false, unique=false)
      */
     private $descripcion;
@@ -69,13 +62,6 @@ class Oferta
      * @ORM\Column(name="contacto", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $contacto;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="palabras_clave", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $palabrasClave;
 
     /**
      * @var string
@@ -176,29 +162,6 @@ class Oferta
       }
     }
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Oferta
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
 
     /**
      * Set descripcion
@@ -318,30 +281,6 @@ class Oferta
     public function getContacto()
     {
         return $this->contacto;
-    }
-
-    /**
-     * Set palabrasClave
-     *
-     * @param string $palabrasClave
-     *
-     * @return Oferta
-     */
-    public function setPalabrasClave($palabrasClave)
-    {
-        $this->palabrasClave = $palabrasClave;
-
-        return $this;
-    }
-
-    /**
-     * Get palabrasClave
-     *
-     * @return string
-     */
-    public function getPalabrasClave()
-    {
-        return $this->palabrasClave;
     }
 
     /**

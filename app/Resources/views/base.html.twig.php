@@ -19,16 +19,24 @@
 		<!-- Optional theme -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/style.css') }}" media="all" />
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-		<script src="//code.jquery.com/jquery-3.1.1.min.js"></script>
+		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/style.css') }}" media="all" />
+		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/easy-autocomplete.css') }}" media="all" />
+		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/easy-autocomplete.min.css') }}" media="all" />
+		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/easy-autocomplete.themes.min.css') }}" media="all" />
+		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/jquery.easy-autocomplete.js') }}" media="all" />
+		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/jquery.easy-autocomplete.min.js') }}" media="all" />
+
+		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
 		<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 	  <link rel="stylesheet" href="/resources/demos/style.css">
 
-		<script src="{{ asset('bundles/pugxautocompleter/js/autocompleter-jqueryui.js') }}"></script>
-		<script src="{{ asset('js/app.js') }}"></script>
+
 
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 		<link rel="stylesheet" href="/resources/demos/style.css">
@@ -43,37 +51,54 @@
 	  } );
 	  </script>
 		<script>
-		var options = {
-				url: function(phrase) {
-						if (phrase !== "") {
-								return "http://api.duckduckgo.com/?q=" + phrase + "&format=json";
-						} else {
-								//duckduckgo doesn't support empty strings
-								return "http://api.duckduckgo.com/?q=empty&format=json";
+		$("#form_rama").change(function() {
+				var data = {
+					rama_id: $(this).val()
+				};
+				alert(data[0])
+				$.ajax({
+						type: 'post',
+						url: '{{ path("select_disciplinas") }}',
+						data: data,
+						success: function(data,url) {
+								var $rama_selector = $('#form_disciplina');
+								alert(data);
+
+								$rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
+								for (var i = 2, total = data.length; i < total;) {
+										$rama_selector.append('<option value="' + data[i] + '">' + data[i+1] + '</option>');
+										i=i+2;
+								}
 						}
-				},
-
-				getValue: "Text",
-
-				ajaxSettings: {
-						dataType: "jsonp"
-				},
-
-				listLocation: "RelatedTopics",
-
-				requestDelay: 300,
-
-				theme: "round"
-		};
-
-		$("#example-ddg").easyAutocomplete(options);
+				});
+		});
+		</script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+		    $("#search").autocomplete({
+		        source: '{{ path("oferta_search") }}',
+		            focus: function( event, ui ) {
+		            $( "#search" ).val( ui.item.title ); // uncomment this line if you want to select value to search box
+		            return false;
+		        },
+		        select: function( event, ui ) {
+		            window.location.href = ui.item.url;;
+		        }
+		    }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+					  alert(item[0]);
+		        var inner_html = '<a href="' + 'http://tfg.local/app_dev.php/showOferta/?id=' + item.id +  '" ><div class="list_item_container"><div class="image"><img src={{ asset('uploads/brochures/oferta') }}/' + item.image + ' ></div><div class="label"><h4><b>' + item.title + '</b></h4></div><p>' + item.description + '</p></div></a>';
+		        return $( "<li></li>" )
+		                .data( "item.autocomplete", item )
+		                .append(inner_html)
+		                .appendTo( ul );
+		    };
+		});
 		</script>
 
 	</head>
 
 
 	<body>
-<input id="example-ddg"/>
 		<div id="contenedor_margenes" class="container">
 			<div id="contenedor" class="">
 				<div id="cabecera" class="">
@@ -83,6 +108,12 @@
 						<span class="separador_enlaces"> | </span>
 						<div class="depto ejemplo_completo"><span class="titulo_stack">Departamento</span><a href="index.html" id="enlace_stack">NOMBRE DEL DEPARTAMENTO</a></div>
 						<span class="separador_enlaces"> | </span>
+					</div>
+				</div>
+				<div class="col-lg-10 col-lg-offset-1">
+					<div class="input-group">
+						<span class="input-group-addon" style="color: white; background-color: #5b518b">BLOG SEARCH</span>
+						<input type="text" autocomplete="off" id="search" class="form-control input-lg" placeholder="Enter Blog Title Here">
 					</div>
 				</div>
 				<div id="rastro-idiomas">

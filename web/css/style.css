@@ -66,7 +66,7 @@ div#contenedor {
     font-family: Verdana,sans;
     font-size: 60%;
     width: 100%;
-    height: 100%;
+    height: 15%;
 }
 div#contenedor_margenes {
   margin-left: auto;
@@ -89,7 +89,7 @@ span.separador_enlaces {
 div#cabecera {
     width: 100%;
 	  border-color: #6D6C71;
-    height: 12%;
+    height: 80%;
     float: left;
 }
 div#cabecera h1#cab_inf {
@@ -587,7 +587,7 @@ div#pagina h1#titulo_pagina {
   padding-bottom: 0%;
   border-color: #DD3B02;
   color: #FFFFFF;
-  font-size: 200%;
+  font-size: 100%;
   text-align: left;
   background-size: 8.5% 79%;
 }
@@ -614,7 +614,7 @@ div#pagina h1#titulo_pagina span.texto_titulo {
 }
 
 .content_doku {
-  height: 70%;
+  height: 100%;
   width: 100%;
   font-size: 100%;
 }
@@ -649,7 +649,7 @@ div#pagina div#contenido {
     margin-top: 1%;
     padding-left: 2%;
     padding-right: 2%;
-    height: 96%;
+    height: 98%;
     width: 100%;
 }
 div#interior_pie {
@@ -1101,7 +1101,7 @@ div.sec_interior h2 {
 }
 
 a {
-  font-size: 100%;
+  font-size: 60%;
 }
 
 div.sec_interior h2 a, div.sec_interior h3 a, div.sec_interior h4 a, div.sec_interior h5 a, div.sec_interior h6 a {
@@ -1144,7 +1144,7 @@ div.sec_interior p a:hover {
 
 #descripcionOferta{
   width: 40%;
-  height: 20%;
+  height: 50%;
   float: left;
 }
 
@@ -7119,7 +7119,7 @@ li.model-resaltado-02 a.banner:hover {
 {
     overflow-x:hidden;
     overflow-y:scroll;
-    height:40%;
+    height:50%;
     width:100%;
     padding: 0 15px;
     float: left;
@@ -7343,88 +7343,84 @@ li.model-resaltado-02 a.banner:hover {
 	  border-radius: 3px 0 0 3px;
 	}
 
-  .select {
-    width: 100%;
-    height: 20%;
-  }
 
-#select2-form_area-container{
-  height: 100%;
-  width: 30%;
+.ui-state-active h4,
+.ui-state-active h4:visited {
+    color: #26004d ;
 }
 
-.select2-container--default{
-  width: 40%;
-  height: 60%;
-  padding-bottom: 5%;
+.ui-menu-item{
+    height: 80px;
+    border: 1px solid #ececf9;
 }
-.selection{
-  height: 20%;
-  width: 100%;
-}
-
-.dropdown-wrapper {
-  height: 20%;
-  width: 100%;
-}
-
-.select2-hidden-accessible{
-  height: 10%;
-  width: 100%;
-}
-
-.select2{
-  height: 25%;
+.ui-widget-content .ui-state-active {
+    background-color: white !important;
+    border: none !important;
 }
 .list_item_container {
-    width:300px;
-    height: 60px;
-    padding: 5px 0;
-}
-.image {
-    width: 60px;
-    height: 60px;
-    margin-right: 10px;
+    width:740px;
+    height: 80px;
     float: left;
+    margin-left: 20px;
 }
-.description {
-    font-style: italic;
-    font-size: 0.8em;
-    color: gray;
+.ui-widget-content .ui-state-active .list_item_container {
+    background-color: #f5f5f5;
+}
+
+.image {
+    width: 15%;
+    float: left;
+    padding: 10px;
+}
+.image img{
+    width: 80px;
+    height : 60px;
+}
+.label{
+    width: 85%;
+    float:right;
+    white-space: nowrap;
+    overflow: hidden;
+    color: rgb(124,77,255);
+    text-align: left;
+}
+input:focus{
+    background-color: #f5f5f5;
 }
 
 
 
-.autocomplete-suggestions { border: 1px solid #999; background: #fff; cursor: default; overflow: auto; }
-.autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
-.autocomplete-selected { background: #f0f0f0; }
-.autocomplete-suggestions strong { font-weight: normal; color: #3399ff; }
 
 
-
-#searchfield form {
-  display: inline-block;
-  background: #eeefed;
-  padding: 0;
-  margin: 0;
-  padding: 5px;
-  border-radius: 3px;
-  margin: 5px 0 0 0;
+h2.number {
+	position: relative;
+	top: 0px;
+	left: 0px;
+	font-size: 10em;
+	color: #ccc;
+	float: left;
+	margin-right: 10px
 }
-#searchfield form .biginput {
-  width: 600px;
-  height: 40px;
-  padding: 0 10px 0 10px;
-  background-color: #fff;
-  border: 1px solid #c8c8c8;
-  border-radius: 3px;
-  color: #aeaeae;
-  font-weight:normal;
-  font-size: 1.5em;
-  -webkit-transition: all 0.2s linear;
-  -moz-transition: all 0.2s linear;
-  transition: all 0.2s linear;
+
+#page-wrap {
+	width: 760px;
+	background: white;
+	margin: 0 auto;
+	padding: 10px 0px 50px 0px;
+	background: white url(images/gradient2-bg.gif) bottom repeat-x;
 }
-#searchfield form .biginput:focus {
-  color: #858585;
+
+#description-area {
+	padding: 20px;
+}
+
+.comment-box {
+  margin: 0px 0px 0px 0px;
+  padding: 0px;
+  width: 100%;
+  height: 30%;
+  border: 1px solid black;
+  float: left;
+  border: 0px;
+  background-color: #81F7F3;
 }

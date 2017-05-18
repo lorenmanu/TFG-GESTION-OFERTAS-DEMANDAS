@@ -56,9 +56,6 @@
            {{ form_widget(formOferta.contacto, { 'attr': {'class': 'contacto'} }) }}
 
 
-           {{ form_label(formOferta.palabrasClave) }}
-           {{ form_widget(formOferta.palabrasClave, { 'attr': {'class': 'palabrasClave'} }) }}
-
            {{ form_label(formOferta.brochure) }}
            {{ form_widget(formOferta.brochure, { 'attr': {'class': 'file'} }) }}
            {% block area %}
@@ -67,11 +64,6 @@
            {{ form_widget(formOferta.area) }}
            {{ form_widget(formOferta.rama) }}
            {{ form_widget(formOferta.disciplina) }}
-           [{% for area in areas -%}
-               {{ {id: area.id, label: area.nombre, value: area.nombre}|json_encode|raw }}
-               {# use "value" instead of "id" key, if you use jquery-ui #}
-               {%- if not loop.last %},{% endif -%}
-           {%- endfor %}]
            {{ form_end(formOferta) }}
 
            <script type="text/javascript">

@@ -9,49 +9,29 @@
           <div id="descripcionOferta">
             <p id="nombre"> {{ oferta.getNombre() }} </li>
             <p id="ruta"> {{ oferta.getFechaInicio()|date('Y-m-d') }} </p>
-            {% for comentario in oferta.getComentarios()  %}
-              <p id="nombre"> {{ comentario.getFecha()|date('Y-m-d') }} </p>
-              <p id="ruta"> {{ comentario.getDescripcion() }} </p>
-            {% endfor %}
           </div>
-          <div class="DocumentList">
-            <ul>
-              {% for comentario in oferta.getComentarios()  %}
 
-                <p id="DocumentItem">{{ comentario.getDescripcion() }}
-                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
-                </p>
-                <p id="DocumentItem">{{ comentario.getDescripcion() }}
-                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
-                </p>
-                <p id="DocumentItem">{{ comentario.getDescripcion() }}
-                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
-                </p>
-                <p id="DocumentItem">{{ comentario.getDescripcion() }}
-                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
-                </p>
-                <p id="DocumentItem">{{ comentario.getDescripcion() }}
-                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
-                </p>
-                <p id="DocumentItem">{{ comentario.getDescripcion() }}
-                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
-                </p>
-                <p id="DocumentItem">{{ comentario.getDescripcion() }}
-                  <a href="{{ path('deleteComment', {idComment: comentario.getId(), id: oferta.getId(),}) }}" class="buttonMy whiteMy" href="#">ejemplo</a>
-                </p>
-
-              {% endfor %}
-          </div>
           {% if form is defined %}
             {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
             {{ form_start(form, {method: 'POST'}) }}
 
-            {{ form_label(form.descripcion) }}
+            {{ form_label(form.contenido) }}
 
             {{ form_widget(form) }}
             {{ form_errors(form) }}
           {% endif %}
+          <div class="DocumentList">
+            <ul>
+              {% for comentario in oferta.getComentarios()  %}
+              <div class="comment-box">
+                <h2 class="number">{{ comentario.getAutor() }}</h2>
+                <p>{{ comentario.getAutor() }}</p>
+              </div>
+
+              {% endfor %}
+          </div>
+
 
         </div>
     </div>

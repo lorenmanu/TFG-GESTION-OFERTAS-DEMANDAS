@@ -31,7 +31,6 @@ class OfertaType extends AbstractType
     {
         $builder
         ->add('nombre','text')
-        ->add('slug','text')
         ->add('descripcion', 'textarea', array('label' => 'Descripcion', 'attr' => array('class' => 'descripcion')))
         ->add('condiciones','textarea')
         ->add('fechaInicio','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'datepicker')))

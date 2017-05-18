@@ -22,6 +22,7 @@ use OfertaBundle\Form\EventListener\AddRamaField;
 use OfertaBundle\Form\EventListener\AddDisciplinaFieldSubscriber;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
+use ComentarioBundle\Form\Type\ComentarioType;
 
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -77,25 +78,33 @@ class DefaultController extends Controller
           );
       }
 
-    $comentarioOferta = new ComentarioOferta();
 
     $url = $this->generateUrl('showOferta',array('id' => $oferta->getId()));
 
-    if($formOferta->isValid()){
+    $form = $this->createForm(new ComentarioType(),$comentario=new Comentario());
 
-      $comentarioOferta->setOferta($oferta);
-      $comentarioOferta->setFecha($oferta->getFechaInicio());
-      $comentarioOferta->setOferta($oferta);
+    $form->handleRequest($request);
+
+    if($form->isValid()){
+
+
+
+      $comentario->setOferta($oferta);
+      $comentario->setFecha($oferta->getFechaInicio());
+      $oferta->addComentario($comentario);
+
+
+
 
       $em = $this->getDoctrine()->getManager();
-      $em->persist($comentarioOferta);
+      $em->persist($comentario);
       $em->flush();
 
 
       return $this->redirectToRoute('showOferta', array('id' => $oferta->getId()));
     }
 
-    return $this->render('OfertaBundle:Default:oferta.html.twig', array('oferta' => $oferta,'form' => $form->createView()));
+  return $this->render('OfertaBundle:Default:oferta.html.twig', array('oferta' => $oferta,'form' => $form->createView()));
   }
 
   public function mostrarOfertasAction($primerCampo=null,$segundoCampo=null,$tercerCampo=null,$page=0,$cursorScroll=0){
@@ -194,13 +203,11 @@ class DefaultController extends Controller
 
     $formOferta = $this->createFormBuilder($oferta)
                   ->add('nombre','text')
-                  ->add('slug','text')
                   ->add('descripcion', 'textarea', array('label' => 'Descripcion', 'attr' => array('class' => 'descripcion')))
                   ->add('condiciones','textarea')
                   ->add('fechaInicio','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'datepicker')))
                   ->add('fechaFin','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'date')))
                   ->add('contacto','email')
-                  ->add('palabrasClave','text')
                   ->add('saveAndAdd','submit')
                   ->add('area', 'entity', array(
                     'class' => 'AreaBundle:Area',
@@ -324,7 +331,7 @@ class DefaultController extends Controller
 
     $area_id = $request->request->get('area_id');
 
-    $area = $em->getRepository('AreaBundle:Area')->findById('2');
+    $area = $em->getRepository('AreaBundle:Area')->findById($area_id);
 
     $ramas = array();
 
@@ -344,9 +351,11 @@ class DefaultController extends Controller
   {
     $em = $this->getDoctrine()->getManager();
 
+    //$rama_id = $request->query->get('rama_id');
     $rama_id = $request->request->get('rama_id');
 
     $rama = $em->getRepository('RamaBundle:Rama')->findById($rama_id);
+
 
     $disciplinas = array();
 
@@ -361,28 +370,34 @@ class DefaultController extends Controller
 
     return new JsonResponse($disciplinas);
   }
+  public function searchOfertaAction(Request $request){
+    $searchterm = $request->query->get('term');
+    $em = $this->getDoctrine()->getManager();
+    $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE o.descripcion like :searchterm")->setParameter('searchterm', '%'.$searchterm.'%');
+
+    $results =  $query->getResult();
 
 
+    for($i=0; $i< count($results); $i++){
+      $new_row['title']= $results[$i]->getNombre();
+      $new_row['image']= $results[$i]->getBrochure();
+      $new_row['description'] = $results[$i]->getDescripcion();
+      $new_row['id'] = $results[$i]->getId();
+      //http://tfg.local/app_dev.php/showOferta/?id=
+      //a$new_row['description']= url('blog/'.$post->slug);
 
-    public function searchOfertaAction(Request $request){
-      $em = $this->getDoctrine()->getManager();
+        $row_set[] = $new_row; //build an array
+    }
 
-      $descripcion = $request->request->get('descripcion');
+    $encoders = array(new XmlEncoder(), new JsonEncoder());
+    $normalizers = array(new ObjectNormalizer());
 
-      $oferta = $em->getRepository('OfertaBundle:Oferta')->findByDescripcion($descripcion);
-
-      $ofertas = array();
-
-
-      for ($i = 0 ; $i< count($rama[0]->getDisciplinas()) ; $i++)
-              {
-                      # get params & values
-                      $ofertas[]=$oferta[0]->getId();
-                      $disciplinas[]=$oferta[0]->getNombre();
-              }
+    $serializer = new Serializer($normalizers, $encoders);
 
 
-      return new JsonResponse($disciplinas);
-  }
+      return new JsonResponse($row_set);
+    }
+
+
 
 }
