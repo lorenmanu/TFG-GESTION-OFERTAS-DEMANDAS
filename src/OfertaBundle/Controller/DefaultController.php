@@ -86,10 +86,7 @@ class DefaultController extends Controller
     $form->handleRequest($request);
 
     if($form->isValid()){
-
-
-
-      $comentario->setOferta($oferta);
+      $comentario->setAutor("lorenzo");
       $comentario->setFecha($oferta->getFechaInicio());
       $oferta->addComentario($comentario);
 
@@ -107,53 +104,43 @@ class DefaultController extends Controller
   return $this->render('OfertaBundle:Default:oferta.html.twig', array('oferta' => $oferta,'form' => $form->createView()));
   }
 
-  public function mostrarOfertasAction($primerCampo=null,$segundoCampo=null,$tercerCampo=null,$page=0,$cursorScroll=0){
-
-    $oferta_busqueda= new Oferta();
-
-    $formOfertaBuscador = $this->createFormBuilder($oferta_busqueda)
-                        ->add('country', 'tetranz_select2entity', [
-                        'multiple' => true,
-                        'remote_route' => 'tetranz_test_default_countryquery',
-                        'class' => '\OfertaBundle\Entity\Oferta',
-                        'text_property' => 'nombre',
-                        'minimum_input_length' => 2,
-                        'page_limit' => 10,
-                        'placeholder' => 'Select a country',
-     ]);
-
-    $repository = $this->getDoctrine()->getRepository('OfertaBundle:Oferta');
-    $ofertas = $repository->findAll(); // Limit;
-
-    $limit = 5;
-    $start = $limit * ($page - 1);
-    $length = $limit * ($page - 1)+5;
-    $maxPages = ceil(count($ofertas) / $limit);
 
 
-    if($primerCampo && $segundoCampo && $tercerCampo){
-      return $primerCamo."./".$segundoCampo."./".$tercerCampo;
+  public function mostrarOfertasAction($page=0,$cursorScroll=0,Request $request){
+    $em = $this->getDoctrine()->getManager();
+    $ofertas= $em->getRepository('OfertaBundle:Oferta')->findAll();
+
+    if($request->query->get('area_id')!=null){
+      dump("Entra a seleccionar el area");
+      $ofertas = $em->getRepository('AreaBundle:Area')->findById($request->query->get('area_id'))[0]->getOfertas();
     }
-
-    if($maxPages%5==0){
-      $maxScroll= $maxPages/5;
-      $topeScroll=$cursorScroll+5;
-     }
+    else if($request->query->get('rama_id')!=null){
+      dump("Entra a seleccionar el rama");
+      $ofertas = $em->getRepository('RamaBundle:Rama')->findById($request->query->get('rama_id'))[0]->getOfertas();
+    }
+    else if($request->query->get('disciplina_id')!=null){
+      dump("Entra a seleccionar el disciplina");
+      $ofertas= $em->getRepository('DisciplinaBundle:Disciplina')->findById($request->query->get('disciplina_id'))[0]->getOfertas();
+    }
     else{
-      $maxScroll= $maxPages/5+1;
-      if($maxPages<(($cursorScroll)+6)){
-        $topeScroll=$cursorScroll+$maxPages%5+1;
-      }
-      else{
-        $topeScroll=$cursorScroll+5;
-      }
+      dump("No entra en ninguno");
     }
 
+
+    $paginator = $this->get('knp_paginator');
+    $pagination = $paginator->paginate(
+            $ofertas,
+            $request->query->getInt('page', 1),
+            5
+    );
+
+    $pagination->setCustomParameters(array(
+    'style' => 'bottom',
+    'span_class' => 'whatever'
+));
 
      // Pass through the 3 above variables to calculate pages in twig
-    return $this->render('OfertaBundle:Default:index.html.twig', compact('ofertas',
-                                              'maxPages', 'thisPage','start','length',
-                                              'page','maxPages','cursorScroll','topeScroll','maxScroll','formOfertaBuscador'));
+    return $this->render('OfertaBundle:Default:index.html.twig',array('pagination' => $pagination));
 
 
   }
@@ -282,6 +269,19 @@ class DefaultController extends Controller
 
 
         $em = $this->getDoctrine()->getManager();
+        for($i=0; $i<20;$i++){
+          $entidad = new Oferta();
+          $entidad->setNombre($oferta->getNombre()."-->".$i);
+          $entidad->setDescripcion($oferta->getDescripcion()."-->".$i);
+          $entidad->setCondiciones($oferta->getDescripcion()."-->".$i);
+          $entidad->setBrochure($oferta->getDescripcion()."-->".$i);
+          $entidad->setFechaInicio(new \DateTime('today'));
+          $entidad->setFechaFin(new \DateTime('today'));
+          $entidad->setContacto($oferta->getContacto()."-->".$i);
+          $em->persist($entidad);
+          $em->flush();
+
+        }
         $em->persist($oferta);
         $em->flush();
 
@@ -382,6 +382,7 @@ class DefaultController extends Controller
       $new_row['title']= $results[$i]->getNombre();
       $new_row['image']= $results[$i]->getBrochure();
       $new_row['description'] = $results[$i]->getDescripcion();
+      $new_row['description'] = str_replace($searchterm, "<strong>".$searchterm."</strong>", $new_row['description']);
       $new_row['id'] = $results[$i]->getId();
       //http://tfg.local/app_dev.php/showOferta/?id=
       //a$new_row['description']= url('blog/'.$post->slug);

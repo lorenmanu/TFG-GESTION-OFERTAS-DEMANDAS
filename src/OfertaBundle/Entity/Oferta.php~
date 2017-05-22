@@ -31,13 +31,6 @@ class Oferta
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
-     */
-    private $slug;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="descripcion", type="text", precision=0, scale=0, nullable=false, unique=false)
      */
     private $descripcion;
@@ -73,13 +66,6 @@ class Oferta
     /**
      * @var string
      *
-     * @ORM\Column(name="palabras_clave", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $palabrasClave;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="brochure", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $brochure;
@@ -93,7 +79,7 @@ class Oferta
      *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE")
+     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE",unique=true)
      *   }
      * )
      */
@@ -168,32 +154,14 @@ class Oferta
      */
     public function getNombre()
     {
+      if($this->nombre==null){
+        return "nimguno";
+      }
+      else{
         return $this->nombre;
+      }
     }
 
-    /**
-     * Set slug
-     *
-     * @param string $slug
-     *
-     * @return Oferta
-     */
-    public function setSlug($slug)
-    {
-        $this->slug = $slug;
-
-        return $this;
-    }
-
-    /**
-     * Get slug
-     *
-     * @return string
-     */
-    public function getSlug()
-    {
-        return $this->slug;
-    }
 
     /**
      * Set descripcion
@@ -316,30 +284,6 @@ class Oferta
     }
 
     /**
-     * Set palabrasClave
-     *
-     * @param string $palabrasClave
-     *
-     * @return Oferta
-     */
-    public function setPalabrasClave($palabrasClave)
-    {
-        $this->palabrasClave = $palabrasClave;
-
-        return $this;
-    }
-
-    /**
-     * Get palabrasClave
-     *
-     * @return string
-     */
-    public function getPalabrasClave()
-    {
-        return $this->palabrasClave;
-    }
-
-    /**
      * Set brochure
      *
      * @param string $brochure
@@ -404,9 +348,10 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setArea(\AreaBundle\Entity\Area $area = null)
-    {
-        $this->area = $area;
+    public function setArea($area = null)
+    {   //dump($area);
+      //exit;
+        $this->area = $area[0];
 
         return $this;
     }
@@ -428,9 +373,10 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setRama(\OfertaBundle\Entity\Oferta $rama = null)
-    {
-        $this->rama = $rama;
+    public function setRama($rama = null)
+    { //dump($rama);
+      //exit;
+        $this->rama = $rama[0];
 
         return $this;
     }
@@ -452,9 +398,9 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setDisciplina(\DisciplinaBundle\Entity\Disciplina $disciplina = null)
+    public function setDisciplina($disciplina)
     {
-        $this->disciplina = $disciplina;
+        $this->disciplina = $disciplina[0];
 
         return $this;
     }
@@ -468,4 +414,5 @@ class Oferta
     {
         return $this->disciplina;
     }
+
 }

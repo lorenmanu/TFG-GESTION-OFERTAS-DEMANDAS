@@ -79,7 +79,7 @@ class Oferta
      *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE")
+     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE",unique=true)
      *   }
      * )
      */
@@ -414,4 +414,5 @@ class Oferta
     {
         return $this->disciplina;
     }
+
 }

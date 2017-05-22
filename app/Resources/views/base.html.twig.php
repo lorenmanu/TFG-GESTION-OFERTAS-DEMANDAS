@@ -13,19 +13,6 @@
 		<meta name="keywords" content="universidad,granada,NOMBRE DEPARTAMENTO" />
 		<meta http-equiv="content-language" name="language" content="es" />
 		<link rel="shortcut icon" href="/img/favicon.ico" type="image/vnd.microsoft.icon" />
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
-		<!-- Optional theme -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-
-		<!-- Latest compiled and minified JavaScript -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/style.css') }}" media="all" />
-		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/easy-autocomplete.css') }}" media="all" />
-		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/easy-autocomplete.min.css') }}" media="all" />
-		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/easy-autocomplete.themes.min.css') }}" media="all" />
 		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/jquery.easy-autocomplete.js') }}" media="all" />
 		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/jquery.easy-autocomplete.min.js') }}" media="all" />
 
@@ -42,6 +29,18 @@
 		<link rel="stylesheet" href="/resources/demos/style.css">
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		<script src="{{ asset('js/jquery.ui.outocomplete.scroll.min.js') }}"></script>
+		<link rel="stylesheet" href="{{ asset('js/jquery.ui.outocomplete.scroll.min.js') }}">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
 		<style>
 			.ui-menu { width: 150px; }
 		</style>
@@ -55,14 +54,12 @@
 				var data = {
 					rama_id: $(this).val()
 				};
-				alert(data[0])
 				$.ajax({
 						type: 'post',
 						url: '{{ path("select_disciplinas") }}',
 						data: data,
 						success: function(data,url) {
 								var $rama_selector = $('#form_disciplina');
-								alert(data);
 
 								$rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
 								for (var i = 2, total = data.length; i < total;) {
@@ -81,11 +78,11 @@
 		            $( "#search" ).val( ui.item.title ); // uncomment this line if you want to select value to search box
 		            return false;
 		        },
+		        maxShowItems: 0, // Make list height fit to 5 items when items are over 5.
 		        select: function( event, ui ) {
 		            window.location.href = ui.item.url;;
 		        }
 		    }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-					  alert(item[0]);
 		        var inner_html = '<a href="' + 'http://tfg.local/app_dev.php/showOferta/?id=' + item.id +  '" ><div class="list_item_container"><div class="image"><img src={{ asset('uploads/brochures/oferta') }}/' + item.image + ' ></div><div class="label"><h4><b>' + item.title + '</b></h4></div><p>' + item.description + '</p></div></a>';
 		        return $( "<li></li>" )
 		                .data( "item.autocomplete", item )
@@ -94,6 +91,9 @@
 		    };
 		});
 		</script>
+
+
+	  <link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/style.css') }}" media="all" />
 
 	</head>
 
@@ -110,32 +110,23 @@
 						<span class="separador_enlaces"> | </span>
 					</div>
 				</div>
-				<div class="col-lg-10 col-lg-offset-1">
-					<div class="input-group">
-						<span class="input-group-addon" style="color: white; background-color: #5b518b">BLOG SEARCH</span>
-						<input type="text" autocomplete="off" id="search" class="form-control input-lg" placeholder="Enter Blog Title Here">
-					</div>
 				</div>
 				<div id="rastro-idiomas">
-					<div id="rastro">
-						<ul id="rastro_breadcrumb">
-							<li class="first">
-								<a class="first" href="#">1er nivel</a>
-							</li>
-							<li>
-								<a href="#">2º nivel</a>
-							</li>
-							<li class="last">
-								<a class="last" href="#">ultimo nivel 2</a>
-							</li>
+				  	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+						<ul id="menu_inicio">
+  							<li id="item_inicio"><a href="http://tfg.local/app_dev.php/mostrarOfertas">Ofertas</a></li>
+  							<li id="item_inicio"><a href="http://tfg.local/app_dev.php/mostrarDemandas">Demandas</a></li>
 						</ul>
-					</div>
-
+        			{% else %}
+						<ul id="menu_inicio">
+  							<li id="item_inicio_login"><a href="http://tfg.local/app_dev.php/login">Ofertas</a></li>
+  							<li id="item_inicio_login"><a href="http://tfg.local/app_dev.php/register">Demandas</a></li>
+  							<li id="item_inicio_login"><a href="http://tfg.local/app_dev.php/profile/change-password">Cambiar Clave</a></li>
+  							<li id="item_inicio_login"><a href="#about">About</a></li>
+						</ul>
+        			{% endif %}
 				</div>
-				<div class="list_item_container">
-				    <div class="image"><img src="eider.jpg"></div>
-				    <div class="label">Common Eider</div>
-				    <div class="description">Somateria mollissima</div>
+
 				</div>
 				</div>
 				<div class="general">
@@ -161,40 +152,38 @@
 								{% endfor %}
 								{% endif %}
 						</div>
-				{% block side %}
 
-				{% endblock %}
+				<div id="pagina">
+  					<h1 id="titulo_pagina">
+  						<span class="texto_titulo">
+  							{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            					Bienvenido {{ app.user.username }} 
+        					{% else %}
+								 Necesita loguearse 
+        					{% endif %}
+  						</span>
+  					</h1>
+  						{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+  							<div class="input-group">
+								<span class="input-group-addon" style="color: white; background-color: #5b518b">BLOG SEARCH</span>
+								<input type="text" autocomplete="off" id="search" class="form-control input-lg" placeholder="Enter Blog Title Here">
+						    </div>
+						 {% else %}
+						 
+        			     {% endif %}
+
+  						{% block side %}
+
+				         {% endblock %}
+				 </div>
 			</div>
 
 				<div id="banners">
 					<div class="mod-banners">
 						<ul>
 							<li class="banner_container model-resaltado-01 showtext">
-								<a class="banner" href="URL DONDE APUNTA EL BANNER">
-									<strong>LINEA 1 DE TEXTO</strong>
-									<em>LINEA 2 DE TEXTO</em>
-									<span>LINEA 3 DE TEXTO</span>
-								</a>
-							</li>
-							<li class="banner_container model-resaltado-01 dont_showtext">
-								<a class="banner" href="URL DONDE APUNTA EL BANNER">
-									<strong>LINEA 1 DE TEXTO</strong>
-									<em>LINEA 2 DE TEXTO</em>
-									<span>LINEA 3 DE TEXTO</span>
-								</a>
-							</li>
-							<li class="banner_container model-resaltado-02 showtext">
-								<a class="banner" href="/depto_bbm3i/pages/www.gmail.com">
-									<strong>linea 1</strong>
-									<em>linea 2</em>
-									<span>linea 3</span>
-								</a>
-							</li>
-							<li class="banner_container model-resaltado-02 dont_showtext">
-								<a class="banner" href="/depto_bbm3i/pages/www.gmail.com">
-									<strong>linea 1</strong>
-									<em>linea 2</em>
-									<span>linea 3</span>
+								<a class="banner" href="{{ path('addOferta') }}">
+									<h1>Añadir Oferta</h1>
 								</a>
 							</li>
 						</ul>

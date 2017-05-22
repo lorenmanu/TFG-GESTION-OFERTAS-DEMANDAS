@@ -26,7 +26,10 @@ class AppKernel extends Kernel
             new RamaBundle\RamaBundle(),
             new ComentarioBundle\ComentarioBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
-            new IAkumaI\SphinxsearchBundle\SphinxsearchBundle()
+            new IAkumaI\SphinxsearchBundle\SphinxsearchBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new FOS\UserBundle\FOSUserBundle(),
+            new UserBundle\UserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
@@ -34,6 +37,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Remg\GeneratorBundle\RemgGeneratorBundle();
         }
 
         return $bundles;

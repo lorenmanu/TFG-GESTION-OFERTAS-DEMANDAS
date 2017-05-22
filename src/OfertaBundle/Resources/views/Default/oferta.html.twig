@@ -1,9 +1,8 @@
 {% extends 'base.html.twig.php' %}
 
 {% block side %}
-<div id="pagina">
-  <h1 id="titulo_pagina"><span class="texto_titulo">Presentación</span></h1>
   <div id="contenido" class="sec_interior">
+    <h1> Bienvenido {{ app.user.username }} </h1>
     <div class="content_doku">
         <img width="200" alt="mapa_bbm3i" title="mapa_bbm3i" class="medialeft" src="{{ asset('uploads/brochures/oferta') }}/{{ oferta.getBrochure() }}" alt="Example" />
           <div id="descripcionOferta">
@@ -25,7 +24,7 @@
             <ul>
               {% for comentario in oferta.getComentarios()  %}
               <div class="comment-box">
-                <h2 class="number">{{ comentario.getAutor() }}</h2>
+                <h2 class="number">{{ comentario.getContenido() }}</h2>
                 <p>{{ comentario.getAutor() }}</p>
               </div>
 
@@ -35,6 +34,5 @@
 
         </div>
     </div>
- </div>
 
 {% endblock %}

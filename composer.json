@@ -30,7 +30,9 @@
         "friendsofsymfony/elastica-bundle": "^4.0",
         "symfony/intl": "^3.2",
         "iakumai/sphinxsearch-bundle": "dev-master",
-        "tetranz/select2entity-bundle": "2.*"
+        "tetranz/select2entity-bundle": "2.*",
+        "knplabs/knp-paginator-bundle": "2.5.*",
+        "friendsofsymfony/user-bundle": "~2.0"
     },
 
     "require-dev": {
