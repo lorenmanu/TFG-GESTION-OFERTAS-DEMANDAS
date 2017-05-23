@@ -198,6 +198,25 @@ a {
   width: 20%;
 }
 
+/****** BOTON SHOW OFERTA ******/
+
+#descripcion_show a:link, a:visited {
+  background-color: #F44336;
+  color: #FFF;
+  padding: 2px 0px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  height: 10%;
+  width: 30%;
+  position: relative;
+  top: 60%;
+  left: 71%;
+}
+
+#descripcion_show a:hover, a:active {
+    background-color: red;
+}
 
 /****** Register ******/
 
@@ -3116,6 +3135,11 @@ div#pie p#pie_credits_img {
   top: -14%;
   width: 11%;
 }
+
+/************/
+/* SELECT ENTITY */
+/************/
+
 
 /************/
 /* BANNERS  */

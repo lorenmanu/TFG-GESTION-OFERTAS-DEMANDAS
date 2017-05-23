@@ -25,14 +25,14 @@ class Builder extends ContainerAware
           foreach((array) $ramas as $rama){
             dump($ramas);
             exit;
-            /*
-            $menu[$rama->getNombre()]->addChild($rama->getNombre(), array('uri' => '/app_dev.php/mostrarOfertas/?area='.$area->getNombre().'&rama='.$rama->getNombre()))->setAttribute('divider_append', true);
+            
+            $menu[$rama->getNombre()]->addChild($rama->getNombre(), array('uri' => '/app_dev.php/mostrarOfertas/?area='.$area->getNombre().'?rama='.$rama->getNombre()))->setAttribute('divider_append', true);
             $disciplinas = $rama->getDisciplinas();
 
             foreach($disciplinas as $disciplina){
-              //$menu[$disciplina->getNombre()]->addChild($rama->getNombre(), array('uri' => '/app_dev.php/mostrarOfertas/?area='.$area->getNombre().'&rama='.$rama->getNombre().'&disciplina'=$disciplina->getNombre()))->setAttribute('divider_append', true);
+              $menu[$disciplina->getNombre()]->addChild($rama->getNombre(), array('uri' => '/app_dev.php/mostrarOfertas/?area='.$area->getNombre().'?disciplina='.$disciplina->getNombre().'&disciplina'=$disciplina->getNombre()))->setAttribute('divider_append', true);
             }
-            */
+            
 
           }
         }

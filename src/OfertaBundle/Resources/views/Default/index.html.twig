@@ -3,23 +3,14 @@
 {% block side %}
   <div id="contenido" class="sec_interior">
     <div class="content_doku">
-        {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            <h1> Bienvenido {{ app.user.username }} </h1>
-        {% else %}
-                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
-        {% endif %}
         {% for entry in pagination %}
                 <div id="showOferta">
                     <img id="img_show" src="{{ asset('uploads/brochures/oferta') }}/{{ entry.brochure }}" alt="" />
                     <div id="descripcion_show">
                                 <p class="lead">{{ entry.descripcion }}</p>
-                            <div class="col-xs-12 col-md-6">
-                                <a class="btn btn-success" href="http://www.jquery2dotnet.com">Más información</a>
-                            </div>
+                            <a id="link_help" href="{{ path('showOferta', {'id': entry.id}) }}" >Ver</a>
                         </div>
                     </div>
-
-
               {% endfor %}
 
 
