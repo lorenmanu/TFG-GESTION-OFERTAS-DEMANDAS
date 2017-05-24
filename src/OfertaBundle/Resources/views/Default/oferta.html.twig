@@ -1,13 +1,14 @@
 {% extends 'base.html.twig.php' %}
 
 {% block side %}
+{% if oferta is defined %}
   <div id="contenido" class="sec_interior">
-    <h1> Bienvenido {{ app.user.username }} </h1>
     <div class="content_doku">
         <img width="200" alt="mapa_bbm3i" title="mapa_bbm3i" class="medialeft" src="{{ asset('uploads/brochures/oferta') }}/{{ oferta.getBrochure() }}" alt="Example" />
           <div id="descripcionOferta">
             <p id="nombre"> {{ oferta.getNombre() }} </li>
             <p id="ruta"> {{ oferta.getFechaInicio()|date('Y-m-d') }} </p>
+            <p id="nombre"> Visitas--> {{ oferta.getVisitas() }} </li>
           </div>
 
           {% if form is defined %}
@@ -23,10 +24,18 @@
           <div class="DocumentList">
             <ul>
               {% for comentario in oferta.getComentarios()  %}
-              <div class="comment-box">
-                <h2 class="number">{{ comentario.getContenido() }}</h2>
-                <p>{{ comentario.getAutor() }}</p>
-              </div>
+                  <div class="divContainerMain">
+                      <h3> Down Side Callout </h3>
+                      <div class="divContainerDown">
+                          {{ comentario.getContenido() }}
+                      </div>
+                      <div class="calloutDown">
+                        <div class="calloutDown2">
+                        </div>
+                  </div>
+                  <div>
+                    <a href="{{ path('send_email', {'receptor': comentario.getAutor(), 'emisor': app.user.name}) }}"> {{ comentario.getAutor() }} </a> Said</div>
+                  </div>
 
               {% endfor %}
           </div>
@@ -34,5 +43,6 @@
 
         </div>
     </div>
-
+{% endif %}
 {% endblock %}
+

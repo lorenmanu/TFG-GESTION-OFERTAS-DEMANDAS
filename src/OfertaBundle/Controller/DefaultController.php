@@ -23,6 +23,7 @@ use OfertaBundle\Form\EventListener\AddDisciplinaFieldSubscriber;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use PUGX\AutocompleterBundle\Form\Type\AutocompleteType;
 use ComentarioBundle\Form\Type\ComentarioType;
+use Ob\HighchartsBundle\Highcharts\Highchart;
 
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\Encoder\XmlEncoder;
@@ -31,6 +32,105 @@ use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 
 class DefaultController extends Controller
 {
+  public function chartAction(Request $request)
+{
+    $session = $request->getSession();
+    $em = $this->getDoctrine()->getManager();
+    $query = null;
+
+
+     if($session->get('area_id')!=null && $session->get('rama_id')!=null && $session->get('disciplina_id')!=null) {
+          $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE 
+                                    o.area = :id_area AND o.rama = :id_rama AND o.disciplina = :id_disciplina ORDER BY o.visitas ASC")
+                              ->setParameter('id_area', $session->get('area_id'))
+                              ->setParameter('id_rama', $session->get('rama_id'))
+                              ->setParameter('id_disciplina', $session->get('disciplina_id'));
+     }
+     else if($session->get('area_id')!=null && $session->get('rama_id')!=null) {
+          $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE 
+                                    o.area = :id_area AND o.rama = :id_rama ORDER BY o.visitas ASC")
+                              ->setParameter('id_area', $session->get('area_id'))
+                              ->setParameter('id_rama', $session->get('rama_id'))
+                              ->orderBy('o.visitas', 'ASC');
+     }
+
+     else if($session->get('area_id')!=null) {
+          $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE o.area = :id_area ORDER BY o.visitas ASC")
+                              ->setParameter('id_area', $session->get('area_id'))->orderBy('o.visitas', 'ASC');
+     }
+
+     $ofertas = $query->getResult();
+
+    // Chart
+    $series = array(
+        array("name" => "Data Serie Name",    "data" => array(1,2,4,5,6,3,8))
+    );
+    $categories = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug');
+    $ob = new Highchart();
+    $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
+    $ob->title->text('Chart Title');
+    $ob->xAxis->title(array('text'  => "Horizontal axis title",  "data" => array("hola","hola","hola","hola","hola","hola","hola")));
+    $ob->xAxis->categories($categories);
+    $ob->yAxis->title(array('text'  => "Vertical axis title"));
+    $ob->series($series);
+
+    return $this->render('OfertaBundle:Default:grafica.html.twig', array(
+        'chart' => $ob
+    ));
+}
+  public function sendEmailAction()
+{    
+    $emisor=$_GET['emisor'];
+    $receptor=$_GET['receptor'];
+    $message = \Swift_Message::newInstance()
+        ->setSubject('Hello Email')
+        ->setFrom("lorenrr1@gmail.com")
+        ->setTo("ronaldochencho@gmail.com")
+        ->setBody(
+            $this->renderView(
+                'OfertaBundle:Default:oferta.html.twig',
+                array('name' => "LorenManuKK")
+            )
+        )
+    ;
+    $this->get('mailer')->send($message);
+
+    return $this->redirectToRoute('showOferta', array('id' => '1'));
+}
+
+  public function menuAction()
+    {
+    $areas = $this->getDoctrine()
+          ->getRepository('AreaBundle:Area')
+          ->findAll();
+
+    //$disciplinas = $ramas->getDisciplinas();
+
+
+    //return $this->redirect($this->generateUrl($nextAction));
+    return $this->render('OfertaBundle:Default:menu.html.twig', array(
+          'areas' => $areas
+          //'disciplinas' => $disciplinas
+        ));
+    }
+
+    public function menu2Action()
+    {
+    $areas = $this->getDoctrine()
+          ->getRepository('AreaBundle:Area')
+          ->findAll();
+
+    //$disciplinas = $ramas->getDisciplinas();
+
+
+    //return $this->redirect($this->generateUrl($nextAction));
+    return $this->render('OfertaBundle:Default:menu2.html.twig', array(
+          'areas' => $areas
+          //'disciplinas' => $disciplinas
+        ));
+    }
+
+
 
   public function deleteCommentAction(){
     $id=$_GET['idComment'];
@@ -85,16 +185,21 @@ class DefaultController extends Controller
 
     $form->handleRequest($request);
 
+      $em = $this->getDoctrine()->getManager();
+      $visitas=$oferta->getVisitas()+1;
+      $oferta->setVisitas($visitas);
+      $em->persist($oferta);
+      $em->flush();
+
+
     if($form->isValid()){
       $comentario->setAutor("lorenzo");
       $comentario->setFecha($oferta->getFechaInicio());
       $oferta->addComentario($comentario);
 
 
-
-
-      $em = $this->getDoctrine()->getManager();
       $em->persist($comentario);
+      $em->persist($oferta);
       $em->flush();
 
 
@@ -107,23 +212,39 @@ class DefaultController extends Controller
 
 
   public function mostrarOfertasAction($page=0,$cursorScroll=0,Request $request){
+
+    $session = $request->getSession();
+ 
+    // obtener el valor de un atributo de la sesión
+    $foo = $session->get('area_id');
+
+
     $em = $this->getDoctrine()->getManager();
     $ofertas= $em->getRepository('OfertaBundle:Oferta')->findAll();
 
-    if($request->query->get('area_id')!=null){
-      dump("Entra a seleccionar el area");
-      $ofertas = $em->getRepository('AreaBundle:Area')->findById($request->query->get('area_id'))[0]->getOfertas();
+    if($request->query->get('area_id')!=null && $request->query->get('rama_id')!=null && $request->query->get('disciplina_id')!=null) {
+      $session->set('area_id', $request->query->get('area_id'));
+      $session->set('rama_id', $request->query->get('rama_id'));
+      $session->set('disciplina_id', $request->query->get('disciplina_id'));
+      $ofertas = $em->getRepository('OfertaBundle:Oferta')->findBy( array('area' => $request->query->get('area_id'),'rama' => $request->query->get('rama_id') , 'disciplina' => $request->query->get('disciplina_id') ));
+
     }
-    else if($request->query->get('rama_id')!=null){
-      dump("Entra a seleccionar el rama");
-      $ofertas = $em->getRepository('RamaBundle:Rama')->findById($request->query->get('rama_id'))[0]->getOfertas();
+    else if($request->query->get('area_id')!=null && $request->query->get('rama_id')!=null){
+      $session->set('rama_id', $request->query->get('rama_id'));
+      $session->set('area_id', $request->query->get('area_id'));
+      $session->remove('disciplina_id');
+      $ofertas = $em->getRepository('OfertaBundle:Oferta')->findBy( array('area' => $request->query->get('area_id'),'rama' => $request->query->get('rama_id')));
     }
-    else if($request->query->get('disciplina_id')!=null){
-      dump("Entra a seleccionar el disciplina");
-      $ofertas= $em->getRepository('DisciplinaBundle:Disciplina')->findById($request->query->get('disciplina_id'))[0]->getOfertas();
+    else if($request->query->get('area_id')!=null){
+      $session->set('rama_id', $request->query->get('rama_id'));
+      $session->remove('rama_id');
+      $session->remove('disciplina_id');
+      $ofertas = $em->getRepository('OfertaBundle:Oferta')->findBy( array('area' => $request->query->get('area_id')));
     }
     else{
-      dump("No entra en ninguno");
+      $session->remove('area_id');
+      $session->remove('rama_id');
+      $session->remove('disciplina_id');
     }
 
 
@@ -371,12 +492,46 @@ class DefaultController extends Controller
     return new JsonResponse($disciplinas);
   }
   public function searchOfertaAction(Request $request){
+    $session = $request->getSession();
     $searchterm = $request->query->get('term');
     $em = $this->getDoctrine()->getManager();
-    $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE o.descripcion like :searchterm")->setParameter('searchterm', '%'.$searchterm.'%');
+    $query = null;
+
+
+     if($session->get('area_id')!=null && $session->get('rama_id')!=null && $session->get('disciplina_id')!=null) {
+          $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE 
+                              o.descripcion like :searchterm 
+                              AND o.area = :id_area AND o.rama = :id_rama AND o.disciplina = :id_disciplina")
+                              ->setParameter('searchterm', '%'.$searchterm.'%')
+                              ->setParameter('id_area', $session->get('area_id'))
+                              ->setParameter('id_rama', $session->get('rama_id'))
+                              ->setParameter('id_disciplina', $session->get('disciplina_id'));
+     }
+     else if($session->get('area_id')!=null && $session->get('rama_id')!=null) {
+          $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE 
+                              o.descripcion like :searchterm 
+                              AND o.area = :id_area AND o.rama = :id_rama")
+                              ->setParameter('searchterm', '%'.$searchterm.'%')
+                              ->setParameter('id_area', $session->get('area_id'))
+                              ->setParameter('id_rama', $session->get('rama_id'));
+     }
+
+     else if($session->get('area_id')!=null) {
+          $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE 
+                              o.descripcion like :searchterm 
+                              AND o.area = :id_area ")
+                              ->setParameter('searchterm', '%'.$searchterm.'%')
+                              ->setParameter('id_area', $session->get('area_id'));
+     }
+
+     else {
+          $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE 
+                              o.descripcion like :searchterm ")
+                              ->setParameter('searchterm', '%'.$searchterm.'%');
+     }
+
 
     $results =  $query->getResult();
-
 
     for($i=0; $i< count($results); $i++){
       $new_row['title']= $results[$i]->getNombre();

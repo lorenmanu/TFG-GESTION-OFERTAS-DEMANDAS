@@ -13,24 +13,12 @@
 		<meta name="keywords" content="universidad,granada,NOMBRE DEPARTAMENTO" />
 		<meta http-equiv="content-language" name="language" content="es" />
 		<link rel="shortcut icon" href="/img/favicon.ico" type="image/vnd.microsoft.icon" />
-		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/jquery.easy-autocomplete.js') }}" media="all" />
-		<link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/jquery.easy-autocomplete.min.js') }}" media="all" />
-
-		<script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
-
-		<script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	  <link rel="stylesheet" href="/resources/demos/style.css">
 
-
-
-		<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/resources/demos/style.css">
 		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-		<script src="{{ asset('js/jquery.ui.outocomplete.scroll.min.js') }}"></script>
-		<link rel="stylesheet" href="{{ asset('js/jquery.ui.outocomplete.scroll.min.js') }}">
+
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -91,7 +79,11 @@
 		    };
 		});
 		</script>
+<script src="https://ajax.googleapis.com/ajax/libs/mootools/1.4.2/mootools-yui-compressed.js" type="text/javascript"></script>
+<script src="//code.highcharts.com/3.0.10/adapters/mootools-adapter.js" type="text/javascript"></script>
 
+<script src="//code.highcharts.com/4.1.8/highcharts.js"></script>
+<script src="//code.highcharts.com/4.1.8/modules/exporting.js"></script>
 
 	  <link rel="stylesheet" id="css-style" type="text/css" href="{{ asset('css/style.css') }}" media="all" />
 
@@ -115,15 +107,8 @@
 				  	{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 						<ul id="menu_inicio">
   							<li id="item_inicio"><a href="http://tfg.local/app_dev.php/mostrarOfertas">Ofertas</a></li>
-  							<li id="item_inicio"><a href="http://tfg.local/app_dev.php/mostrarDemandas">Demandas</a></li>
-						</ul>
-        			{% else %}
-						<ul id="menu_inicio">
-  							<li id="item_inicio_login"><a href="http://tfg.local/app_dev.php/login">Ofertas</a></li>
-  							<li id="item_inicio_login"><a href="http://tfg.local/app_dev.php/register">Demandas</a></li>
-  							<li id="item_inicio_login"><a href="http://tfg.local/app_dev.php/profile/change-password">Cambiar Clave</a></li>
-  							<li id="item_inicio_login"><a href="#about">About</a></li>
-						</ul>
+  							<li id="item_inicio"><a href="http://tfg.local/app_dev.php/mostrarDemandas">Demt</a></li>
+  					    </ul>
         			{% endif %}
 				</div>
 
@@ -131,27 +116,14 @@
 				</div>
 				<div class="general">
 					<div class="navigation">
-					{% if areas is defined %}
-						{% for area in areas  %}
-						  <ul>
-						    <li class="has-sub"> <a href="#">{{ area.getNombre() }}</a>
-						      <ul>
-										{% for rama in area.getRamas()  %}
-						        	<li class="has-sub"> <a href="#">{{ rama.getNombre() }}</a><
-						          	<ul>
-													{% for disciplina in rama.getDisciplinas()  %}
-						            		<li class="has-sub"><a href="#">{{ disciplina.getNombre() }}</a>
-						            		</li>
-														{% endfor %}
-						          		</ul>
-						        		</li>
-												{% endfor %}
-						      	</ul>
-						    	</li>
-						  	</ul>
-								{% endfor %}
-								{% endif %}
-						</div>
+					{% if chart is defined %}
+						{{ render(controller('OfertaBundle:Default:menu2')) }}
+					{% else %}
+						{{ render(controller('OfertaBundle:Default:menu')) }}
+
+					{% endif %}
+
+					</div>
 
 				<div id="pagina">
   					<h1 id="titulo_pagina">

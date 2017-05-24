@@ -26,10 +26,10 @@ class AppKernel extends Kernel
             new RamaBundle\RamaBundle(),
             new ComentarioBundle\ComentarioBundle(),
             new FOS\ElasticaBundle\FOSElasticaBundle(),
-            new IAkumaI\SphinxsearchBundle\SphinxsearchBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
+            new Ob\HighchartsBundle\ObHighchartsBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

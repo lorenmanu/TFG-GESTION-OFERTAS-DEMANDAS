@@ -34,6 +34,20 @@ oferta_search:
     path:     /search_oferta/
     defaults: { _controller: OfertaBundle:Default:searchOferta }
 
+oferta_search:
+    path:     /search_oferta/
+    defaults: { _controller: OfertaBundle:Default:searchOferta }
+
+send_email:
+    path:     /send_email/
+    defaults: { _controller: OfertaBundle:Default:sendEmail }
+
+
+grafica_ofertas:
+    path:     /grafica_ofertas/
+    defaults: { _controller: OfertaBundle:Default:chart }
+
+
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 

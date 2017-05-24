@@ -45,14 +45,14 @@ class Oferta
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaInicio", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="fecha_inicio", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $fechaInicio;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaFin", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="fecha_fin", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $fechaFin;
 
@@ -71,13 +71,6 @@ class Oferta
     private $brochure;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="visitas", type="integer", precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $visitas;
-
-    /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="ComentarioBundle\Entity\Comentario", inversedBy="")
@@ -86,7 +79,7 @@ class Oferta
      *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE")
+     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE",unique=true)
      *   }
      * )
      */
@@ -103,7 +96,7 @@ class Oferta
     private $area;
 
     /**
-     * @var \RamaBundle\Entity\Rama
+     * @var \OfertaBundle\Entity\Oferta
      *
      * @ORM\ManyToOne(targetEntity="RamaBundle\Entity\Rama", inversedBy="ofertas")
      * @ORM\JoinColumns({
@@ -128,7 +121,6 @@ class Oferta
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->visitas = 0;
     }
 
     /**
@@ -162,8 +154,14 @@ class Oferta
      */
     public function getNombre()
     {
+      if($this->nombre==null){
+        return "nimguno";
+      }
+      else{
         return $this->nombre;
+      }
     }
+
 
     /**
      * Set descripcion
@@ -310,30 +308,6 @@ class Oferta
     }
 
     /**
-     * Set visitas
-     *
-     * @param integer $visitas
-     *
-     * @return Oferta
-     */
-    public function setVisitas($visitas)
-    {
-        $this->visitas = $visitas;
-
-        return $this;
-    }
-
-    /**
-     * Get visitas
-     *
-     * @return integer
-     */
-    public function getVisitas()
-    {
-        return $this->visitas;
-    }
-
-    /**
      * Add comentario
      *
      * @param \ComentarioBundle\Entity\Comentario $comentario
@@ -374,9 +348,10 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setArea(\AreaBundle\Entity\Area $area = null)
-    {
-        $this->area = $area;
+    public function setArea($area = null)
+    {   //dump($area);
+      //exit;
+        $this->area = $area[0];
 
         return $this;
     }
@@ -394,13 +369,14 @@ class Oferta
     /**
      * Set rama
      *
-     * @param \RamaBundle\Entity\Rama $rama
+     * @param \OfertaBundle\Entity\Oferta $rama
      *
      * @return Oferta
      */
-    public function setRama(\RamaBundle\Entity\Rama $rama = null)
-    {
-        $this->rama = $rama;
+    public function setRama($rama = null)
+    { //dump($rama);
+      //exit;
+        $this->rama = $rama[0];
 
         return $this;
     }
@@ -408,7 +384,7 @@ class Oferta
     /**
      * Get rama
      *
-     * @return \RamaBundle\Entity\Rama
+     * @return \OfertaBundle\Entity\Oferta
      */
     public function getRama()
     {
@@ -422,9 +398,9 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setDisciplina(\DisciplinaBundle\Entity\Disciplina $disciplina = null)
+    public function setDisciplina($disciplina)
     {
-        $this->disciplina = $disciplina;
+        $this->disciplina = $disciplina[0];
 
         return $this;
     }
@@ -438,5 +414,5 @@ class Oferta
     {
         return $this->disciplina;
     }
-}
 
+}

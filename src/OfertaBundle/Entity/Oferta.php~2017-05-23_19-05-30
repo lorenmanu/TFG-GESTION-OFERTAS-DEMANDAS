@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Oferta
  *
- * @ORM\Table(name="oferta")
+ * @ORM\Table(name="Oferta")
  * @ORM\Entity
  */
 class Oferta
@@ -73,7 +73,7 @@ class Oferta
     /**
      * @var integer
      *
-     * @ORM\Column(name="visitas", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     * @ORM\Column(name="visitas", type="integer", nullable=false, unique=false)
      */
     private $visitas;
 
@@ -128,7 +128,6 @@ class Oferta
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->visitas = 0;
     }
 
     /**

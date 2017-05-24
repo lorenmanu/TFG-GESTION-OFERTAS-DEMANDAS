@@ -78,10 +78,9 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport: "%mailer_transport%"
-    host:      "%mailer_host%"
-    username:  "%mailer_user%"
-    password:  "%mailer_password%"
+    transport:  gmail
+    username:  '%mailer_user%'
+    password:  '%mailer_password%'
     spool:     { type: memory }
 
 knp_menu:
@@ -92,19 +91,6 @@ knp_menu:
     templating: false
     # the renderer to use, list is also available by default
     default_renderer: twig
-
-sphinxsearch:
-    searchd:
-        # Host name for your Sphinx daemon
-        host: localhost
-        # Port number for your Sphinx daemon
-        port: 9312
-        # If you want to connect via scoket
-        socket: /home/lorenmanu/Escritorio/socket.file
-    indexes:
-        # List of sphinx index names (key) and entity names (value)
-        # to use it in searchEx() method
-        IndexName: "OfertaBundle:Oferta"
 
 twig:
     form_themes:
