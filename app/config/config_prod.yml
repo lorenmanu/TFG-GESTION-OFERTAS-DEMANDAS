@@ -1,7 +1,7 @@
 imports:
-    - { resource: parameters.yml }
+    - { resource: parameters_production.php }
     - { resource: config.yml }
-
+    
 doctrine:
     orm:
 #        metadata_cache_driver: apc
