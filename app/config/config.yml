@@ -95,9 +95,6 @@ doctrine:
                 wrapper_class:        ~
                 # the DBAL keepSlave option
                 keep_slave:           false
-                options:
-                    # an array of options
-                    key:                  []
                 mapping_types:
                     # an array of mapping types
                     name:                 []
