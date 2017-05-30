@@ -69,6 +69,10 @@
         },
         "branch-alias": {
             "dev-master": "2.8-dev"
+        },
+        "env-map": {
+            "database_url": "DATABASE_URL",
+            "monolog_action_level": "LOG_LEVEL"
         }
     }
 }

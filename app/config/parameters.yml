@@ -1,5 +1,6 @@
 # This file is auto-generated during the composer install
 parameters:
+    database_url: ~
     database_host: localhost
     database_port: 8080
     database_name: example
