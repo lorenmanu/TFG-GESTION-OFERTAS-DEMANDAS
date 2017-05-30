@@ -24,7 +24,6 @@
         "mopa/bootstrap-bundle": "^3.1",
         "sensio/generator-bundle": "^3.1",
         "symfony/yaml": "2.*",
-        "remg/generator-bundle": "dev-master",
         "jms/serializer-bundle": "^2.0",
         "friendsofsymfony/elastica-bundle": "^4.0",
         "symfony/intl": "^3.2",
