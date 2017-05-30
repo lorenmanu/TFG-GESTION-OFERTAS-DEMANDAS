@@ -32,7 +32,9 @@ return array(
     'Sensio\\Bundle\\FrameworkExtraBundle\\' => array($vendorDir . '/sensio/framework-extra-bundle'),
     'Sensio\\Bundle\\DistributionBundle\\' => array($vendorDir . '/sensio/distribution-bundle'),
     'Satooshi\\' => array($vendorDir . '/satooshi/php-coveralls/src/Satooshi'),
+    'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
+    'Psr\\Cache\\' => array($vendorDir . '/psr/cache/src'),
     'Ob\\HighchartsBundle\\' => array($vendorDir . '/ob/highcharts-bundle'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Knp\\Menu\\' => array($vendorDir . '/knplabs/knp-menu/src/Knp/Menu'),
@@ -54,5 +56,8 @@ return array(
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'Composer\\CaBundle\\' => array($vendorDir . '/composer/ca-bundle/src'),
     'CodeClimate\\PhpTestReporter\\' => array($vendorDir . '/codeclimate/php-test-reporter/src'),
+    'Cache\\TagInterop\\' => array($vendorDir . '/cache/tag-interop'),
+    'Cache\\Adapter\\Common\\' => array($vendorDir . '/cache/adapter-common'),
+    'Cache\\Adapter\\Apcu\\' => array($vendorDir . '/cache/apcu-adapter'),
     '' => array($baseDir . '/src'),
 );

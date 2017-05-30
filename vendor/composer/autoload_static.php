@@ -63,7 +63,9 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
+            'Psr\\Cache\\' => 10,
         ),
         'O' => 
         array (
@@ -115,6 +117,9 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         array (
             'Composer\\CaBundle\\' => 18,
             'CodeClimate\\PhpTestReporter\\' => 28,
+            'Cache\\TagInterop\\' => 17,
+            'Cache\\Adapter\\Common\\' => 21,
+            'Cache\\Adapter\\Apcu\\' => 19,
         ),
     );
 
@@ -225,9 +230,17 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         array (
             0 => __DIR__ . '/..' . '/satooshi/php-coveralls/src/Satooshi',
         ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
+        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
+        ),
+        'Psr\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
         'Ob\\HighchartsBundle\\' => 
         array (
@@ -312,6 +325,18 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         'CodeClimate\\PhpTestReporter\\' => 
         array (
             0 => __DIR__ . '/..' . '/codeclimate/php-test-reporter/src',
+        ),
+        'Cache\\TagInterop\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cache/tag-interop',
+        ),
+        'Cache\\Adapter\\Common\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cache/adapter-common',
+        ),
+        'Cache\\Adapter\\Apcu\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cache/apcu-adapter',
         ),
     );
 
