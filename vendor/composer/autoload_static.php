@@ -12,13 +12,13 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
         'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
-        'd9d39f82a605ebe5918f683dd402334c' => __DIR__ . '/..' . '/padraic/humbug_get_contents/src/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'edc6464955a37aa4d5fbf39d40fb6ee7' => __DIR__ . '/..' . '/symfony/polyfill-php55/bootstrap.php',
         '3e2471375464aac821502deb0ac64275' => __DIR__ . '/..' . '/symfony/polyfill-php54/bootstrap.php',
         '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
+        'd9d39f82a605ebe5918f683dd402334c' => __DIR__ . '/..' . '/padraic/humbug_get_contents/src/function.php',
         'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
     );
 
@@ -60,10 +60,6 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
             'Satooshi\\' => 9,
-        ),
-        'R' => 
-        array (
-            'Remg\\GeneratorBundle\\' => 21,
         ),
         'P' => 
         array (
@@ -228,10 +224,6 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         'Satooshi\\' => 
         array (
             0 => __DIR__ . '/..' . '/satooshi/php-coveralls/src/Satooshi',
-        ),
-        'Remg\\GeneratorBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/remg/generator-bundle',
         ),
         'Psr\\Log\\' => 
         array (

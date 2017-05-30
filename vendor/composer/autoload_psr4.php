@@ -32,7 +32,6 @@ return array(
     'Sensio\\Bundle\\FrameworkExtraBundle\\' => array($vendorDir . '/sensio/framework-extra-bundle'),
     'Sensio\\Bundle\\DistributionBundle\\' => array($vendorDir . '/sensio/distribution-bundle'),
     'Satooshi\\' => array($vendorDir . '/satooshi/php-coveralls/src/Satooshi'),
-    'Remg\\GeneratorBundle\\' => array($vendorDir . '/remg/generator-bundle'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
     'Ob\\HighchartsBundle\\' => array($vendorDir . '/ob/highcharts-bundle'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),

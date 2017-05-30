@@ -207,17 +207,6 @@ class appDevDebugProjectContainer extends Container
             'profiler' => 'getProfilerService',
             'profiler_listener' => 'getProfilerListenerService',
             'property_accessor' => 'getPropertyAccessorService',
-            'remg_generator.association_helper' => 'getRemgGenerator_AssociationHelperService',
-            'remg_generator.bundle_manager' => 'getRemgGenerator_BundleManagerService',
-            'remg_generator.classmetadata_factory' => 'getRemgGenerator_ClassmetadataFactoryService',
-            'remg_generator.entity_builder' => 'getRemgGenerator_EntityBuilderService',
-            'remg_generator.entity_factory' => 'getRemgGenerator_EntityFactoryService',
-            'remg_generator.entity_generator' => 'getRemgGenerator_EntityGeneratorService',
-            'remg_generator.entity_helper' => 'getRemgGenerator_EntityHelperService',
-            'remg_generator.field_helper' => 'getRemgGenerator_FieldHelperService',
-            'remg_generator.kernel_bundles' => 'getRemgGenerator_KernelBundlesService',
-            'remg_generator.mapping_guesser' => 'getRemgGenerator_MappingGuesserService',
-            'remg_generator.mapping_validator' => 'getRemgGenerator_MappingValidatorService',
             'request' => 'getRequestService',
             'request_stack' => 'getRequestStackService',
             'response_listener' => 'getResponseListenerService',
@@ -678,7 +667,7 @@ class appDevDebugProjectContainer extends Container
         $c->addEventSubscriber(new \FOS\UserBundle\Doctrine\UserListener($this->get('fos_user.util.password_updater'), $this->get('fos_user.util.canonical_fields_updater')));
         $c->addEventListener(array(0 => 'loadClassMetadata'), $this->get('doctrine.orm.default_listeners.attach_entity_listeners'));
 
-        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('driver' => 'pdo_mysql', 'host' => '127.0.0.1', 'port' => NULL, 'dbname' => 'example', 'user' => 'root', 'password' => 'fermina7', 'charset' => 'UTF8', 'driverOptions' => array(), 'defaultTableOptions' => array()), $b, $c, array());
+        return $this->services['doctrine.dbal.default_connection'] = $this->get('doctrine.dbal.connection_factory')->createConnection(array('url' => NULL, 'driver' => 'pdo_mysql', 'host' => 'localhost', 'port' => 8080, 'dbname' => 'example', 'user' => 'root', 'password' => 'fermina7', 'charset' => 'UTF8', 'driverOptions' => array(), 'defaultTableOptions' => array()), $b, $c, array());
     }
 
     /**
@@ -2759,153 +2748,6 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the 'remg_generator.association_helper' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Command\Helper\AssociationHelper A Remg\GeneratorBundle\Command\Helper\AssociationHelper instance
-     */
-    protected function getRemgGenerator_AssociationHelperService()
-    {
-        return $this->services['remg_generator.association_helper'] = new \Remg\GeneratorBundle\Command\Helper\AssociationHelper($this->get('remg_generator.mapping_validator'), $this->get('remg_generator.mapping_guesser'));
-    }
-
-    /**
-     * Gets the 'remg_generator.bundle_manager' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Tools\BundleManager A Remg\GeneratorBundle\Tools\BundleManager instance
-     */
-    protected function getRemgGenerator_BundleManagerService()
-    {
-        return $this->services['remg_generator.bundle_manager'] = new \Remg\GeneratorBundle\Tools\BundleManager($this->get('remg_generator.kernel_bundles'));
-    }
-
-    /**
-     * Gets the 'remg_generator.classmetadata_factory' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\ClassMetadataFactory A Remg\GeneratorBundle\Mapping\ClassMetadataFactory instance
-     */
-    protected function getRemgGenerator_ClassmetadataFactoryService()
-    {
-        $this->services['remg_generator.classmetadata_factory'] = $instance = new \Remg\GeneratorBundle\Mapping\ClassMetadataFactory();
-
-        $instance->setEntityManager($this->get('doctrine.orm.default_entity_manager'));
-
-        return $instance;
-    }
-
-    /**
-     * Gets the 'remg_generator.entity_builder' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\EntityBuilder A Remg\GeneratorBundle\Mapping\EntityBuilder instance
-     */
-    protected function getRemgGenerator_EntityBuilderService()
-    {
-        return $this->services['remg_generator.entity_builder'] = new \Remg\GeneratorBundle\Mapping\EntityBuilder();
-    }
-
-    /**
-     * Gets the 'remg_generator.entity_factory' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\EntityFactory A Remg\GeneratorBundle\Mapping\EntityFactory instance
-     */
-    protected function getRemgGenerator_EntityFactoryService()
-    {
-        return $this->services['remg_generator.entity_factory'] = new \Remg\GeneratorBundle\Mapping\EntityFactory($this->get('doctrine.orm.default_entity_manager'), $this->get('remg_generator.bundle_manager'), $this->get('remg_generator.classmetadata_factory'), $this->get('remg_generator.entity_builder'));
-    }
-
-    /**
-     * Gets the 'remg_generator.entity_generator' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Generator\EntityGenerator A Remg\GeneratorBundle\Generator\EntityGenerator instance
-     */
-    protected function getRemgGenerator_EntityGeneratorService()
-    {
-        return $this->services['remg_generator.entity_generator'] = new \Remg\GeneratorBundle\Generator\EntityGenerator($this->get('remg_generator.classmetadata_factory'), array('configuration_format' => 'annotation', 'generate_constraints' => true));
-    }
-
-    /**
-     * Gets the 'remg_generator.entity_helper' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Command\Helper\EntityHelper A Remg\GeneratorBundle\Command\Helper\EntityHelper instance
-     */
-    protected function getRemgGenerator_EntityHelperService()
-    {
-        return $this->services['remg_generator.entity_helper'] = new \Remg\GeneratorBundle\Command\Helper\EntityHelper($this->get('remg_generator.mapping_validator'), $this->get('remg_generator.mapping_guesser'));
-    }
-
-    /**
-     * Gets the 'remg_generator.field_helper' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Command\Helper\FieldHelper A Remg\GeneratorBundle\Command\Helper\FieldHelper instance
-     */
-    protected function getRemgGenerator_FieldHelperService()
-    {
-        return $this->services['remg_generator.field_helper'] = new \Remg\GeneratorBundle\Command\Helper\FieldHelper($this->get('remg_generator.mapping_validator'), $this->get('remg_generator.mapping_guesser'));
-    }
-
-    /**
-     * Gets the 'remg_generator.kernel_bundles' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Symfony\Component\HttpKernel\Kernel A Symfony\Component\HttpKernel\Kernel instance
-     */
-    protected function getRemgGenerator_KernelBundlesService()
-    {
-        return $this->services['remg_generator.kernel_bundles'] = $this->get('kernel')->getBundles();
-    }
-
-    /**
-     * Gets the 'remg_generator.mapping_guesser' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\MappingGuesser A Remg\GeneratorBundle\Mapping\MappingGuesser instance
-     */
-    protected function getRemgGenerator_MappingGuesserService()
-    {
-        return $this->services['remg_generator.mapping_guesser'] = new \Remg\GeneratorBundle\Mapping\MappingGuesser();
-    }
-
-    /**
-     * Gets the 'remg_generator.mapping_validator' service.
-     *
-     * This service is shared.
-     * This method always returns the same instance of the service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\MappingValidator A Remg\GeneratorBundle\Mapping\MappingValidator instance
-     */
-    protected function getRemgGenerator_MappingValidatorService()
-    {
-        return $this->services['remg_generator.mapping_validator'] = new \Remg\GeneratorBundle\Mapping\MappingValidator($this->get('remg_generator.entity_factory'));
-    }
-
-    /**
      * Gets the 'request' service.
      *
      * This service is shared.
@@ -3149,7 +2991,7 @@ class appDevDebugProjectContainer extends Container
         $p = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $m, array(), $a);
         $p->setOptions(array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($l, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $n, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $m, 'main', $o, $p, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $c, $this->get('security.csrf.token_manager')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '59247de3d4c9b5.54318233', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $l, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $m, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $m, '/login', false), NULL, NULL, $a, false));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($l, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username')), 'main', $a, $c), 2 => $n, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $m, 'main', $o, $p, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $c, $this->get('security.csrf.token_manager')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '592da4424a2339.17602027', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $l, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $m, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $m, '/login', false), NULL, NULL, $a, false));
     }
 
     /**
@@ -4621,7 +4463,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker.main'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('59247de3d4c9b5.54318233')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username'), $this->get('security.user_checker.main'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('592da4424a2339.17602027')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -4834,7 +4676,6 @@ class appDevDebugProjectContainer extends Container
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
                 'SensioGeneratorBundle' => 'Sensio\\Bundle\\GeneratorBundle\\SensioGeneratorBundle',
-                'RemgGeneratorBundle' => 'Remg\\GeneratorBundle\\RemgGeneratorBundle',
             ),
             'kernel.bundles_metadata' => array(
                 'FrameworkBundle' => array(
@@ -4957,24 +4798,20 @@ class appDevDebugProjectContainer extends Container
                     'path' => ($this->targetDirs[3].'/vendor/sensio/generator-bundle'),
                     'namespace' => 'Sensio\\Bundle\\GeneratorBundle',
                 ),
-                'RemgGeneratorBundle' => array(
-                    'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'/vendor/remg/generator-bundle'),
-                    'namespace' => 'Remg\\GeneratorBundle',
-                ),
             ),
             'kernel.charset' => 'UTF-8',
             'kernel.container_class' => 'appDevDebugProjectContainer',
-            'database_host' => '127.0.0.1',
-            'database_port' => NULL,
+            'database_host' => 'localhost',
+            'database_port' => 8080,
             'database_name' => 'example',
             'database_user' => 'root',
             'database_password' => 'fermina7',
             'mailer_transport' => 'gmail',
-            'mailer_host' => NULL,
             'mailer_user' => 'lorenrr1@gmail.com',
             'mailer_password' => '75139515Xlrr',
             'secret' => 'ThisTokenIsNotSoSecretChangeIt',
+            'database_url' => NULL,
+            'mailer_host' => 'localhost',
             'locale' => 'en',
             'brochures_directory' => ($this->targetDirs[2].'/../web/uploads/brochures/oferta/'),
             'controller_resolver.class' => 'Symfony\\Bundle\\FrameworkBundle\\Controller\\ControllerResolver',
@@ -5551,10 +5388,6 @@ class appDevDebugProjectContainer extends Container
             'web_profiler.debug_toolbar.class' => 'Symfony\\Bundle\\WebProfilerBundle\\EventListener\\WebDebugToolbarListener',
             'web_profiler.debug_toolbar.intercept_redirects' => false,
             'web_profiler.debug_toolbar.mode' => 2,
-            'remg_generator.entity' => array(
-                'configuration_format' => 'annotation',
-                'generate_constraints' => true,
-            ),
             'data_collector.templates' => array(
                 'data_collector.request' => array(
                     0 => 'request',
