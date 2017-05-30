@@ -46,6 +46,11 @@ twig:
     globals:
         fos_csrf_provider: "@security.csrf.token_manager"
 
+remg_generator:
+    entity:
+        # available configuration formats are: 'annotation', 'yaml', 'xml' and 'php'.
+        configuration_format: annotation
+
 # Doctrine Configuration
 doctrine:
     dbal:
