@@ -95,9 +95,6 @@ doctrine:
                 wrapper_class:        ~
                 # the DBAL keepSlave option
                 keep_slave:           false
-                mapping_types:
-                    # an array of mapping types
-                    name:                 []
                 slaves:
 
                     # a collection of named slave connections (e.g. slave1, slave2)
