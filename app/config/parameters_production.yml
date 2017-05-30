@@ -4,4 +4,3 @@ parameters:
     mailer_password: 75139515Xlrr
     secret: ThisTokenIsNotSoSecretChangeIt
     database_url: null
-    mailer_host: localhost
