@@ -2,6 +2,7 @@ imports:
     - { resource: parameters_production.yml }
     - { resource: config.yml }
 
+
 doctrine:
     dbal:
         url: "%database_url%"

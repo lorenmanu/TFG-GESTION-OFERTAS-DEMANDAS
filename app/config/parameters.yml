@@ -1,13 +1,11 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host: localhost
-    database_port: 8080
-    database_name: example
-    database_user: root
+    database_host:     127.0.0.1
+    database_port:     ~
+    database_name:     example
+    database_user:     root
     database_password: fermina7
-    mailer_transport: gmail
+    database_url: null
     mailer_user: lorenrr1@gmail.com
     mailer_password: 75139515Xlrr
     secret: ThisTokenIsNotSoSecretChangeIt
-    database_url: null
-    mailer_host: localhost
