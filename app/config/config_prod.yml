@@ -48,6 +48,7 @@ twig:
 
 doctrine:
     dbal:
+        driver:   pdo_mysql
         url: "%database_url%"
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
