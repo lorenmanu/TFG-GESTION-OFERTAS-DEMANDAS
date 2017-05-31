@@ -1,7 +1,11 @@
 # This file is auto-generated during the composer install
 parameters:
+    database_host:     localhost
+    database_port:     ~
+    database_name:     example
+    database_user:     root
+    database_password: fermina7
+    database_url: null
     mailer_user: lorenrr1@gmail.com
     mailer_password: 75139515Xlrr
-    database_url: ~
-    monolog_action_level: error
     secret: ThisTokenIsNotSoSecretChangeIt
