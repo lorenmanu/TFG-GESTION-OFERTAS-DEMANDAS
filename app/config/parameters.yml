@@ -1,11 +1,12 @@
 # This file is auto-generated during the composer install
 parameters:
-    database_host:     localhost
-    database_port:     ~
-    database_name:     example
-    database_user:     root
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port:
+    database_name: example
+    database_memory: true 
+    database_user: root
     database_password: fermina7
-    database_url: ~
+    secret: ThisTokenIsNotSoSecretChangeIt
     mailer_user: lorenrr1@gmail.com
     mailer_password: 75139515Xlrr
-    secret: ThisTokenIsNotSoSecretChangeIt
