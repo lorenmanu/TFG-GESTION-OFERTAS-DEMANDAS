@@ -212,9 +212,7 @@ class DefaultController extends Controller
 
 
   public function mostrarOfertasAction($page=0,$cursorScroll=0,Request $request){
-
     $session = $request->getSession();
- 
     // obtener el valor de un atributo de la sesión
     $foo = $session->get('area_id');
 
@@ -236,7 +234,7 @@ class DefaultController extends Controller
       $ofertas = $em->getRepository('OfertaBundle:Oferta')->findBy( array('area' => $request->query->get('area_id'),'rama' => $request->query->get('rama_id')));
     }
     else if($request->query->get('area_id')!=null){
-      $session->set('rama_id', $request->query->get('rama_id'));
+      $session->set('area_id', $request->query->get('area_id'));
       $session->remove('rama_id');
       $session->remove('disciplina_id');
       $ofertas = $em->getRepository('OfertaBundle:Oferta')->findBy( array('area' => $request->query->get('area_id')));
@@ -449,6 +447,10 @@ class DefaultController extends Controller
   public function selectRamasAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
+    $session = $request->getSession();
+    $session->set('area_id', $request->request->get('area_id'));
+    $session->remove('rama_id');
+    $session->remove('disciplina_id');
 
     $area_id = $request->request->get('area_id');
 
@@ -471,25 +473,53 @@ class DefaultController extends Controller
   public function selectDisciplinasAction(Request $request)
   {
     $em = $this->getDoctrine()->getManager();
-
-    //$rama_id = $request->query->get('rama_id');
-    $rama_id = $request->request->get('rama_id');
-
-    $rama = $em->getRepository('RamaBundle:Rama')->findById($rama_id);
-
-
     $disciplinas = array();
+    $session = $request->getSession();
+
+    if($request->request->get('disciplina_id')!=null){
+       $session->set('disciplina_id', $request->request->get('disciplina_id'));
+     }
+
+    if($request->request->get('rama_id')!=null){
+
+       $session->set('rama_id', $request->request->get('rama_id'));
+       $session->remove('disciplina_id');
+    }
+
+    if($session->get('rama_id')!=null){
+     
+       
+       $rama_id = $session->get('rama_id');
+
+       $rama = $em->getRepository('RamaBundle:Rama')->findById($rama_id);
 
 
-    for ($i = 0 ; $i< count($rama[0]->getDisciplinas()) ; $i++)
+
+       for ($i = 0 ; $i< count($rama[0]->getDisciplinas()) ; $i++)
             {
                     # get params & values
                     $disciplinas[]=$rama[0]->getDisciplinas()[$i]->getId();
                     $disciplinas[]=$rama[0]->getDisciplinas()[$i]->getNombre();
             }
+    }
 
 
-    return new JsonResponse($disciplinas);
+      
+      else{
+        $disciplinas_aux = $em->getRepository('DisciplinaBundle:Disciplina')->findAll();
+
+
+
+       for ($i = 0 ; $i< count($disciplinas_aux) ; $i++)
+            {
+                    # get params & values
+                    $disciplinas[]=$disciplinas_aux[$i]->getId();
+                    $disciplinas[]=$disciplinas_aux[$i]->getNombre();
+            }
+
+      }
+
+      return new JsonResponse($disciplinas);
   }
   public function searchOfertaAction(Request $request){
     $session = $request->getSession();

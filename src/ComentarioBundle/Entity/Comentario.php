@@ -109,4 +109,8 @@ class Comentario
     {
         return $this->contenido;
     }
+
+    public function __toString() {
+        return $this->autor;
+    }
 }

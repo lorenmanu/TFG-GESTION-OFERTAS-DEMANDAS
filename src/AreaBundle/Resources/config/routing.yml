@@ -2,6 +2,10 @@ addArea:
     path:     /areas/addArea/
     defaults: { _controller:AreaBundle:Default:addArea }
 
-mostrarAreas:
-    path:     /areas/mostrarAreas/
-    defaults: { _controller:AreaBundle:Default:mostrarAreas }
+editarMenu:
+    path:     /areas/editarMenu/
+    defaults: { _controller:AreaBundle:Default:editarMenu }
+
+updateArea:
+    path:     /areas/editarArea/
+    defaults: { _controller:AreaBundle:Default:editarArea }

@@ -1,0 +1,115 @@
+{% extends 'base.html.twig.php' %}
+
+
+
+{% block side %}
+
+<div class="menu_item">
+ <h1> Areas </h1>
+ <form action="/app_dev.php/areas/addArea/">
+    <input type="submit" class="login login-submit"  value="Añadir"/>
+</form> 
+ <form action="/app_dev.php/areas/editarArea/">
+    <input type="submit" class="login login-submit"  value="Editar"/>
+</form>
+ <form action="/app_dev.php/areas/editarArea/">
+    <input type="submit" class="login login-submit"  value="Eliminar"/>
+</form>
+  <select id="form_area" name="form[area][]" required="required" class="form-control" multiple="multiple">
+    {% for area in areas  %}
+    <option value={{ area.getId() }} >{{ area.getNombre() }}</option>
+    {% endfor %}
+   </select>
+
+</div>
+
+<div class="menu_item">
+<h1> Ramas </h1>
+ <form action="/app_dev.php/ramas/addRama/">
+    <input type="submit" class="login login-submit"  value="Añadir"/>
+</form> 
+ <form action="/app_dev.php/areas/editarArea/">
+    <input type="submit" class="login login-submit"  value="Editar"/>
+</form>
+ <form action="/app_dev.php/areas/editarArea/">
+    <input type="submit" class="login login-submit"  value="Eliminar"/>
+</form>
+  <select id="form_rama" name="form[rama][]" required="required" class="form-control" multiple="multiple"></select>
+</div>
+
+<div class="menu_item">
+<h1> Disciplinas </h1>
+ <form action="/app_dev.php/disciplinas/addDisciplina/">
+    <input type="submit" class="login login-submit"  value="Añadir"/>
+</form> 
+ <form action="/app_dev.php/areas/editarArea/">
+    <input type="submit" class="login login-submit"  value="Editar"/>
+</form>
+ <form action="/app_dev.php/areas/editarArea/">
+    <input type="submit" class="login login-submit"  value="Eliminar"/>
+</form>
+  <select id="form_disciplina" name="form[disciplina][]" required="required" class="form-control" multiple="multiple"></select>
+</div> 
+
+          <script>
+              $("#form_area").change(function() {
+                  var data = {
+                    area_id: $(this).val()
+                  };
+                  alert(data[0])
+                  $.ajax({
+                      type: 'post',
+                      url: '{{ path("select_ramas") }}',
+                      data: data,
+                      success: function(data,url) {
+                          var $rama_selector = $('#form_rama');
+                          alert(data);
+
+                          $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
+                          for (var i = 2, total = data.length; i < total;) {
+                              $rama_selector.append('<option value="' + data[i] + '">' + data[i+1] + '</option>');
+                              i=i+2;
+                          }
+
+                      }
+                  });
+              });
+          </script>
+          <script>
+          $("#form_rama").change(function() {
+              var data = {
+                rama_id: $(this).val()
+              };
+              alert(data[0])
+              $.ajax({
+                  type: 'post',
+                  url: '{{ path("select_disciplinas") }}',
+                  data: data,
+                  success: function(data,url) {
+                      var $rama_selector = $('#form_disciplina');
+                      alert(data);
+
+                      $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
+                      for (var i = 2, total = data.length; i < total;) {
+                          $rama_selector.append('<option value="' + data[i] + '">' + data[i+1] + '</option>');
+                          i=i+2;
+                      }
+                  }
+              });
+          });
+          $("#form_disciplina").change(function() {
+              var data = {
+                disciplina_id: $(this).val()
+              };
+              alert(data[0])
+              $.ajax({
+                  type: 'post',
+                  url: '{{ path("select_disciplinas") }}',
+                  data: data,
+                  success: function(data,url) {
+                  }
+              });
+          });
+      </script>
+
+{% endblock %}

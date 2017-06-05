@@ -2,6 +2,8 @@
 
 namespace OfertaBundle\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,6 +27,8 @@ class Oferta
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
+     * @Assert\Length(min="5", minMessage="El nombre tirne que tener como minimo 5 caracteres-")
+     * @Assert\Length(max="10", maxMessage="El nombre tiene que tener como max10 caracteres-")
      */
     private $nombre;
 
@@ -53,6 +57,10 @@ class Oferta
      * @var \DateTime
      *
      * @ORM\Column(name="fechaFin", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     * @Assert\Expression(
+     *     "this.getFechaInicio() >= this.getFechaFin()",
+     *     message="vacancy.date.not_more_than"
+     * )
      */
     private $fechaFin;
 
@@ -60,6 +68,10 @@ class Oferta
      * @var string
      *
      * @ORM\Column(name="contacto", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Assert\Email(
+     *     message = "El correo no es valido",
+     *     checkMX = true
+     * )
      */
     private $contacto;
 
@@ -374,9 +386,9 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setArea(\AreaBundle\Entity\Area $area = null)
+    public function setArea($areas = null)
     {
-        $this->area = $area;
+        $this->area = $areas->get(0);
 
         return $this;
     }
@@ -398,9 +410,9 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setRama(\RamaBundle\Entity\Rama $rama = null)
+    public function setRama($ramas = null)
     {
-        $this->rama = $rama;
+        $this->rama = $ramas->get(0);
 
         return $this;
     }
@@ -422,9 +434,9 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setDisciplina(\DisciplinaBundle\Entity\Disciplina $disciplina = null)
+    public function setDisciplina($disciplinas = null)
     {
-        $this->disciplina = $disciplina;
+        $this->disciplina = $disciplinas->get(0);
 
         return $this;
     }
@@ -437,6 +449,9 @@ class Oferta
     public function getDisciplina()
     {
         return $this->disciplina;
+    }
+    public function __toString(){
+      return $this->getNombre();
     }
 }
 

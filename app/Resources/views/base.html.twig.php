@@ -32,11 +32,26 @@
 		<style>
 			.ui-menu { width: 150px; }
 		</style>
-		<script>
-	  $( function() {
-	    $( ".datepicker" ).datepicker();
-	  } );
-	  </script>
+ <script type="text/javascript">
+$(function () {
+    $("#form_fechaInicio").datepicker({
+        numberOfMonths: 1,
+        onSelect: function (selected) {
+            var dt = new Date(selected);
+            dt.setDate(dt.getDate() );
+            $("#form_fechaFin").datepicker("option", "minDate", dt);
+        }
+    });
+    $("#form_fechaFin").datepicker({
+        numberOfMonths: 1,
+        onSelect: function (selected) {
+            var dt = new Date(selected);
+            dt.setDate(dt.getDate() );
+            $("#form_fechaInicio").datepicker("option", "maxDate", dt);
+        }
+    });
+});
+</script>
 		<script>
 		$("#form_rama").change(function() {
 				var data = {
@@ -155,7 +170,14 @@
 						<ul>
 							<li class="banner_container model-resaltado-01 showtext">
 								<a class="banner" href="{{ path('addOferta') }}">
-									<h1>Añadir Oferta</h1>
+									<h1>Añadir Oferta.</h1>
+								</a>
+							</li>
+						</ul>
+						<ul>
+							<li class="banner_container model-resaltado-01 showtext">
+								<a class="banner" href="{{ logout_path('main') }}">
+									<h1>Logout.</h1>
 								</a>
 							</li>
 						</ul>

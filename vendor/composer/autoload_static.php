@@ -11,14 +11,15 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '6a47392539ca2329373e0d33e1dba053' => __DIR__ . '/..' . '/symfony/polyfill-intl-icu/bootstrap.php',
-        'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
+        'e40631d46120a9c38ea139981f8dab26' => __DIR__ . '/..' . '/ircmaxell/password-compat/lib/password.php',
         '023d27dca8066ef29e6739335ea73bad' => __DIR__ . '/..' . '/symfony/polyfill-php70/bootstrap.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
         'edc6464955a37aa4d5fbf39d40fb6ee7' => __DIR__ . '/..' . '/symfony/polyfill-php55/bootstrap.php',
         '3e2471375464aac821502deb0ac64275' => __DIR__ . '/..' . '/symfony/polyfill-php54/bootstrap.php',
         '32dcc8afd4335739640db7d200c1971d' => __DIR__ . '/..' . '/symfony/polyfill-apcu/bootstrap.php',
         'd9d39f82a605ebe5918f683dd402334c' => __DIR__ . '/..' . '/padraic/humbug_get_contents/src/function.php',
+        '8ac9dba77d5c65db2811440ee8265f5d' => __DIR__ . '/..' . '/sonata-project/block-bundle/Resources/stubs/symfony2.php',
         'ce89ac35a6c330c55f4710717db9ff78' => __DIR__ . '/..' . '/kriswallsmith/assetic/src/functions.php',
     );
 
@@ -34,6 +35,10 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         'W' => 
         array (
             'Webmozart\\Assert\\' => 17,
+        ),
+        'T' => 
+        array (
+            'Twig\\Extensions\\' => 16,
         ),
         'S' => 
         array (
@@ -56,6 +61,12 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
             'Symfony\\Bridge\\PhpUnit\\' => 23,
             'Symfony\\Bridge\\Monolog\\' => 23,
             'Symfony\\Bridge\\Doctrine\\' => 24,
+            'Sonata\\DatagridBundle\\' => 22,
+            'Sonata\\CoreBundle\\' => 18,
+            'Sonata\\Cache\\Tests\\' => 19,
+            'Sonata\\Cache\\' => 13,
+            'Sonata\\BlockBundle\\' => 19,
+            'Sonata\\AdminBundle\\' => 19,
             'Sensio\\Bundle\\GeneratorBundle\\' => 30,
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
@@ -83,6 +94,7 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         ),
         'J' => 
         array (
+            'JavierEguiluz\\Bundle\\EasyAdminBundle\\' => 37,
             'JMS\\SerializerBundle\\' => 21,
         ),
         'I' => 
@@ -101,6 +113,7 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         ),
         'E' => 
         array (
+            'Exporter\\' => 9,
             'Elastica\\' => 9,
         ),
         'D' => 
@@ -117,6 +130,7 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         array (
             'Composer\\CaBundle\\' => 18,
             'CodeClimate\\PhpTestReporter\\' => 28,
+            'Cocur\\Slugify\\' => 14,
             'Cache\\TagInterop\\' => 17,
             'Cache\\Adapter\\Common\\' => 21,
             'Cache\\Adapter\\Apcu\\' => 19,
@@ -137,6 +151,10 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Twig\\Extensions\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/twig/extensions/src',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -214,6 +232,30 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         array (
             0 => __DIR__ . '/..' . '/symfony/symfony/src/Symfony/Bridge/Doctrine',
         ),
+        'Sonata\\DatagridBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/datagrid-bundle',
+        ),
+        'Sonata\\CoreBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/core-bundle',
+        ),
+        'Sonata\\Cache\\Tests\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/cache/test',
+        ),
+        'Sonata\\Cache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/cache/lib',
+        ),
+        'Sonata\\BlockBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/block-bundle',
+        ),
+        'Sonata\\AdminBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/admin-bundle',
+        ),
         'Sensio\\Bundle\\GeneratorBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/sensio/generator-bundle',
@@ -262,6 +304,10 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         array (
             0 => __DIR__ . '/..' . '/knplabs/knp-menu-bundle',
         ),
+        'JavierEguiluz\\Bundle\\EasyAdminBundle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/javiereguiluz/easyadmin-bundle',
+        ),
         'JMS\\SerializerBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/jms/serializer-bundle',
@@ -285,6 +331,10 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         'FOS\\ElasticaBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/friendsofsymfony/elastica-bundle',
+        ),
+        'Exporter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sonata-project/exporter/src',
         ),
         'Elastica\\' => 
         array (
@@ -326,6 +376,10 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         array (
             0 => __DIR__ . '/..' . '/codeclimate/php-test-reporter/src',
         ),
+        'Cocur\\Slugify\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/cocur/slugify/src',
+        ),
         'Cache\\TagInterop\\' => 
         array (
             0 => __DIR__ . '/..' . '/cache/tag-interop',
@@ -347,6 +401,10 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
     public static $prefixesPsr0 = array (
         'T' => 
         array (
+            'Twig_Extensions_' => 
+            array (
+                0 => __DIR__ . '/..' . '/twig/extensions/lib',
+            ),
             'Twig_' => 
             array (
                 0 => __DIR__ . '/..' . '/twig/twig/lib',
@@ -372,6 +430,10 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
             'PhpCollection' => 
             array (
                 0 => __DIR__ . '/..' . '/phpcollection/phpcollection/src',
+            ),
+            'Pagerfanta\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/pagerfanta/pagerfanta/src',
             ),
         ),
         'M' => 

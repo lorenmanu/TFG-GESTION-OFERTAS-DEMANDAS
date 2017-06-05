@@ -3,7 +3,7 @@ parameters:
     database_driver: pdo_mysql
     database_host: localhost
     database_port:
-    database_name: example
+    database_name: example2
     database_memory: true 
     database_user: root
     database_password: fermina7

@@ -24,35 +24,30 @@
 
 {% block side %}
 
-  <div id="pagina">
-    <h1 id="titulo_pagina"><span class="texto_titulo"> DEMANDA NUEVA</span></h1>
-    <div id="contenido" class="sec_interior">
-      <div class="content_doku">
-        <p>
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio. Quisque volutpat mattis eros. Nullam malesuada erat ut turpis. Suspendisse urna nibh, viverra non, semper suscipit, posuere a, pede. Donec nec justo eget felis facilisis fermentum. Aliquam porttitor mauris sit amet orci. Aenean dignissim pellentesque felis. Morbi in sem quis dui placerat ornare. Pellentesque odio nisi, euismod in, pharetra a, ultricies in, diam. Sed arcu. Cras consequat. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.
-        </p>
+        <p> Editar areas </p>
 
-        {% form_theme formArea 'bootstrap_3_layout.html.twig' %}
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
-           {{ form_start(formArea, {'action': path('addArea'), 'method': 'POST'}) }}
+           {{ form_start(form, {'action': path('addArea'), 'method': 'POST'}) }}
 
-           {{ form_label(formArea.nombre) }}
-           {{ form_widget(formArea.ramas, { 'separator': '=====' }) }}
+           {{ form_label(form.nombre) }}
+           {{ form_widget(form.nombre, { 'attr': {'class': 'nombre'} }) }}
+
+           {{ form_label(form.ramas) }}
+           {{ form_widget(form.ramas, { 'separator': '=====' }) }}
 
 
 
-           {{ form_widget(formArea) }}
-           {{ form_errors(formArea) }}
+           {{ form_widget(form) }}
+           {{ form_errors(form) }}
 
 
 
-           {{ form_rest(formArea) }}
-           {{ form_end(formArea) }}
+           {{ form_rest(form) }}
+           {{ form_end(form) }}
 
 
 
 
-      </div>
-    </div>
-  </div>
+
   {% endblock %}

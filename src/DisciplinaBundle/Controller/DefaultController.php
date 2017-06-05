@@ -41,7 +41,7 @@ class DefaultController extends Controller
 
           //return $this->redirect($this->generateUrl($nextAction));
           return $this->render('DisciplinaBundle:Default:addDisciplina.html.twig', array(
-                'formDisciplina' => $formDisciplina->createView()
+                'form' => $formDisciplina->createView()
                 //'ramas' => $rama
                 //'disciplinas' => $disciplinas
               ));

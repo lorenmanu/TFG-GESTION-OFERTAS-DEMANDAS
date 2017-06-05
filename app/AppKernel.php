@@ -29,7 +29,11 @@ class AppKernel extends Kernel
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
-            new Ob\HighchartsBundle\ObHighchartsBundle()
+            new Ob\HighchartsBundle\ObHighchartsBundle(),
+
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {

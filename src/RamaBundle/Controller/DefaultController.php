@@ -12,29 +12,24 @@ class DefaultController extends Controller
   public function addRamaAction(Request $request)
   {
 
-        $formRama = $this->createForm($rama = new RamaType(),$rama = new Rama());
+        $form = $this->createForm($rama = new RamaType(),$rama = new Rama());
 
-        $formRama->handleRequest($request);
+        $form->handleRequest($request);
 
 
-        if($formRama->isValid()){
-          $nextAction = $formRama->get('saveAndAdd')->isClicked()
+        if($form->isValid()){
+          $nextAction = $form->get('saveAndAdd')->isClicked()
               ? 'mostrarRamas'
               : 'addRama';
 
             $em = $this->getDoctrine()->getManager();
-            //$em->persist($disciplina);
+            foreach ($rama->getDisciplinas() as $disciplina) {
+              $disciplina->addRama($rama);
+              $em->persist($disciplina);
+            }
             $em->persist($rama);
 
             $em->flush();
-            $em->persist($rama);
-
-            $em->flush();
-            //dump($rama);
-            $ramas = $em->getRepository('RamaBundle:Rama')->findById($rama->getId());
-            $rama->addDisciplina($rama->getDisciplinas()[0]);
-            //dump($ramas[0]);
-            //exit;
 
             return $this->redirectToRoute('mostrarRamas');
         }
@@ -48,7 +43,7 @@ class DefaultController extends Controller
 
         //return $this->redirect($this->generateUrl($nextAction));
         return $this->render('RamaBundle:Default:addRama.html.twig', array(
-              'formRama' => $formRama->createView()
+              'form' => $form->createView()
               //'ramas' => $rama
               //'disciplinas' => $disciplinas
             ));
