@@ -31,7 +31,7 @@ class DefaultController extends Controller
 
             $em->flush();
 
-            return $this->redirectToRoute('mostrarRamas');
+            return $this->redirectToRoute('editarMenu');
         }
 
         $ramas = $this->getDoctrine()

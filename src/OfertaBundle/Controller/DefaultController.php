@@ -371,11 +371,20 @@ class DefaultController extends Controller
     
     if ($request->getMethod() == 'POST') {
         $form->handleRequest($request);
+        $file = $oferta[0]->getBrochure();
 
+        // Generate a unique name for the file before saving it
+        $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+        // Move the file to the directory where brochures are stored
+        $file->move(
+            $this->getParameter('brochures_directory'),
+            $fileName
+        );
+        $oferta[0]->setBrochure($fileName);
         if ($form->isValid()) {
               $em->flush();
-
-      
+              return $this->redirectToRoute('mostrarOfertas');
         }
     }
 
@@ -465,12 +474,18 @@ class DefaultController extends Controller
             $fileName
         );
 
+        $i=0;
+        $em = $this->getDoctrine()->getManager();
+
+      
+
+
+
         // Update the 'brochure' property to store the PDF file name
         // instead of its contents
         $oferta->setBrochure($fileName);
 
 
-        $em = $this->getDoctrine()->getManager();
         $em->persist($oferta);
         $em->flush();
 
@@ -508,10 +523,6 @@ class DefaultController extends Controller
           'areas' => $areas
           //'disciplinas' => $disciplinas
         ));
-
-
-      echo "hola";
-      dump("hola");
   }
 
   public function selectRamasAction(Request $request)

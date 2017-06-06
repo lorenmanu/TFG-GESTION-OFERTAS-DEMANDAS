@@ -2,11 +2,10 @@
 
 {% block side %}
 <div class="input-group">
-                <span class="input-group-addon" style="color: white; background-color: #5b518b">BLOG SEARCH</span>
+                <span class="input-group-addon" style="color: white; background-color: black">BLOG SEARCH</span>
                 <input type="text" autocomplete="off" id="search" class="form-control input-lg" placeholder="Enter Blog Title Here">
                 </div>
-  <div id="contenido" class="sec_interior">
-    <div class="content_doku">
+
         {% for entry in pagination %}
                 <div id="showOferta">
                     <img id="img_show" src="{{ asset('uploads/brochures/oferta') }}/{{ entry.brochure }}" alt="" />
@@ -21,11 +20,10 @@
 
 
 
-        </div>
+
         <div id="paginacion">
           {{ knp_pagination_render(pagination) }}
         </div>
-    </div>
-  </div>
+
 
 {% endblock %}

@@ -1,9 +1,6 @@
 {% extends 'base.html.twig.php' %}
 {% block side %}
 
-    <div id="contenido" class="sec_interior">
-      <div class="content_doku">
-
         {% form_theme formOferta 'bootstrap_3_layout.html.twig' %}
             {{ form_errors(formOferta.nombre) }}
 
@@ -29,14 +26,19 @@
            {{ form_label(formOferta.contacto) }}
            {{ form_widget(formOferta.contacto, { 'attr': {'class': 'contacto'} }) }}
 
-
-           {{ form_label(formOferta.brochure) }}
-           {{ form_widget(formOferta.brochure, { 'attr': {'class': 'file'} }) }}
+           <div>
+              {{ form_label(formOferta.brochure) }}
+              {{ form_widget(formOferta.brochure, { 'attr': {'class': 'file2'} }) }}
+            </div>
+           
            {% block area %}
 
            {% endblock %}
+           {{ form_label(formOferta.area) }}
            {{ form_widget(formOferta.area) }}
+           {{ form_label(formOferta.rama) }}
            {{ form_widget(formOferta.rama) }}
+           {{ form_label(formOferta.disciplina) }}
            {{ form_widget(formOferta.disciplina) }}
            {{ form_end(formOferta) }}
 
@@ -89,6 +91,7 @@
           });
       </script>
 
-      </div>
-    </div>
+
+
+ 
   {% endblock %}

@@ -9,7 +9,7 @@
            {{ form_start(form, {'action': path('addDisciplina'), 'method': 'POST'}) }}
 
            {{ form_label(form.nombre) }}
-           {{ form_widget(form.nombre) }}
+		   {{ form_widget(form.nombre, { 'attr': {'class': 'nombreDisciplina'} }) }}
 
 
 

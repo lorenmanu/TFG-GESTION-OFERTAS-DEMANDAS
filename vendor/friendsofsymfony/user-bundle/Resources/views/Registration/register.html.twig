@@ -7,7 +7,6 @@
                                 Bienvenido {{ app.user.username }} 
                             {% else %}
 
-<div class="register-container">
 {% block fos_user_content %}
 <form action="{{ path("fos_user_registration_register") }}" {{ form_enctype(form) }} method="POST" class="form-horizontal fos_user_registration_register" role="form">
     {{ form_errors(form) }}
@@ -51,8 +50,7 @@
     <a id="link_help" href="/app_dev.php/login">Login</a>
 {{ form_end(form) }}
 {% endblock fos_user_content %}
-</div>
-</div>
+
 
                             {% endif %}
 {% endblock %}

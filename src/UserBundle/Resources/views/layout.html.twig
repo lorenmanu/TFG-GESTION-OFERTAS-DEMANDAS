@@ -3,6 +3,7 @@
 {% block side %}
  
     <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
+            <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.refreshToken('authenticate') }}" />
             {% if error %}
                 <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
             {% endif %}
@@ -18,7 +19,7 @@
                     <label id="remLabel" for="remember_me">Remember me</label>
                     <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
                 </div>
-                <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                <input type="submit" id="_submit" name="_submit" value="Login" />
                 <a id="link_help" href="{{ path('fos_user_registration_register') }}">Register</a> 
                 <a id="link_help" href="{{ path('fos_user_change_password') }}">Forgot Password</a>
        

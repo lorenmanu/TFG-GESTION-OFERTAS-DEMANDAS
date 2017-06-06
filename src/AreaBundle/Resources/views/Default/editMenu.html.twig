@@ -5,15 +5,15 @@
 {% block side %}
 
 <div class="menu_item">
- <h1> Areas </h1>
+ <h4 id="categoria"> Areas </h4>
  <form action="/app_dev.php/areas/addArea/">
-    <input type="submit" class="login login-submit"  value="Añadir"/>
+    <input type="submit" class="menu-edit-option"  value="Añadir"/>
 </form> 
  <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="login login-submit"  value="Editar"/>
+    <input type="submit" class="menu-edit-option"  value="Editar"/>
 </form>
  <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="login login-submit"  value="Eliminar"/>
+    <input type="submit" class="menu-edit-option"  value="Eliminar"/>
 </form>
   <select id="form_area" name="form[area][]" required="required" class="form-control" multiple="multiple">
     {% for area in areas  %}
@@ -24,29 +24,29 @@
 </div>
 
 <div class="menu_item">
-<h1> Ramas </h1>
+<h4 id="categoria"> Ramas </h4>
  <form action="/app_dev.php/ramas/addRama/">
-    <input type="submit" class="login login-submit"  value="Añadir"/>
+    <input type="submit" class="menu-edit-option"  value="Añadir"/>
 </form> 
  <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="login login-submit"  value="Editar"/>
+    <input type="submit" class="menu-edit-option"  value="Editar"/>
 </form>
  <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="login login-submit"  value="Eliminar"/>
+    <input type="submit" class="menu-edit-option"  value="Eliminar"/>
 </form>
   <select id="form_rama" name="form[rama][]" required="required" class="form-control" multiple="multiple"></select>
 </div>
 
 <div class="menu_item">
-<h1> Disciplinas </h1>
+<h4 id="categoria"> Disciplinas </h4>
  <form action="/app_dev.php/disciplinas/addDisciplina/">
-    <input type="submit" class="login login-submit"  value="Añadir"/>
+    <input type="submit" class="menu-edit-option"  value="Añadir"/>
 </form> 
  <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="login login-submit"  value="Editar"/>
+    <input type="submit" class="menu-edit-option"  value="Editar"/>
 </form>
  <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="login login-submit"  value="Eliminar"/>
+    <input type="submit" class="menu-edit-option"  value="Eliminar"/>
 </form>
   <select id="form_disciplina" name="form[disciplina][]" required="required" class="form-control" multiple="multiple"></select>
 </div> 

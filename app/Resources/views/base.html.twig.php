@@ -84,7 +84,7 @@
 		        	window.location.href = ui.item.url;;
 		        }
 		    }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-				var inner_html = '<a href="' + 'http://tfg.local/app_dev.php/showOferta/?id=' + item.id +  '" ><div class="list_item_container"><div class="image"><img src={{ asset('uploads/brochures/oferta') }}/' + item.image + ' ></div><div class="label"><h4><b>' + item.title + '</b></h4></div><p>' + item.description + '</p></div></a>';
+				var inner_html = '<a id="itemResult" href="' + 'http://tfg.local/app_dev.php/showOferta/?id=' + item.id +  '" ><div class="list_item_container"><div id="imgSearch"><img src={{ asset('uploads/brochures/oferta') }}/' + item.image + ' ></div><p id="desSearch">' + item.description + '</p></div></a>';
 				return $( "<li></li>" )
 				.data( "item.autocomplete", item )
 				.append(inner_html)
@@ -143,7 +143,7 @@
 			<span class="texto_titulo">
 			</span>
 		</h1>
-<div class="login-container">
+<div class="pag-container">
 			{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
 			<p> Bienvenido {{ app.user.username }} </p>
 			{% else %}
@@ -157,26 +157,27 @@
 		</div>
 	</div>
 
+
 <div id="banners">
 	<div class="mod-banners">
 		<ul>
 			<li class="banner_container model-resaltado-01 showtext">
 				<a class="banner" href="{{ path('addOferta') }}">
-					<h1>Añadir Oferta.</h1>
+					<h4>Añadir Oferta.</h4>
 				</a>
 			</li>
 		</ul>
 		<ul>
 			<li class="banner_container model-resaltado-01 showtext">
 				<a class="banner" href="{{ logout_path('main') }}">
-					<h1>Logout.</h1>
+					<h4>Logout.</h4>
 				</a>
 			</li>
 		</ul>
 		<ul>
 			<li class="banner_container model-resaltado-01 showtext">
 				<a class="banner" href="{{ path('editarMenu') }}">
-					<h1>Editar Menu.</h1>
+					<h4>Editar Menu.</h4>
 				</a>
 			</li>
 		</ul>
@@ -201,9 +202,7 @@
 			<p><a href="http://www.ugr.es/pages/creditos">&copy; 2011</a> <span class="separador_enlaces"> | </span> <a href="http://www.ugr.es">Universidad de Granada</a></p>
 		</div>
 	</div>
-</div>
-</div>
-
+  </div>
 
 </body>
 </html>

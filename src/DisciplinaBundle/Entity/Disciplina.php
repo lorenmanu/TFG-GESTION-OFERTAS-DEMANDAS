@@ -126,7 +126,7 @@ class Disciplina
      *
      * @return Disciplina
      */
-    public function addOferta(\DisciplinaBundle\Entity\Disciplina $oferta)
+    public function addOferta($oferta)
     {
         $this->ofertas[] = $oferta;
 
@@ -138,7 +138,7 @@ class Disciplina
      *
      * @param \DisciplinaBundle\Entity\Disciplina $oferta
      */
-    public function removeOferta(\DisciplinaBundle\Entity\Disciplina $oferta)
+    public function removeOferta($oferta)
     {
         $this->ofertas->removeElement($oferta);
     }

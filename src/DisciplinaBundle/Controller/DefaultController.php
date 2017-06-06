@@ -29,7 +29,7 @@ class DefaultController extends Controller
 
               $em->flush();
 
-              return $this->redirectToRoute('mostrarDisciplinas');
+              return $this->redirectToRoute('editarMenu');
           }
 
           $ramas = $this->getDoctrine()
