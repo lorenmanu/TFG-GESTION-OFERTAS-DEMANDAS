@@ -1,6 +1,10 @@
 {% extends 'base.html.twig.php' %}
 
 {% block side %}
+<div class="input-group">
+                <span class="input-group-addon" style="color: white; background-color: #5b518b">BLOG SEARCH</span>
+                <input type="text" autocomplete="off" id="search" class="form-control input-lg" placeholder="Enter Blog Title Here">
+                </div>
   <div id="contenido" class="sec_interior">
     <div class="content_doku">
         {% for entry in pagination %}
@@ -8,13 +12,9 @@
                     <img id="img_show" src="{{ asset('uploads/brochures/oferta') }}/{{ entry.brochure }}" alt="" />
                     <div id="descripcion_show">
                                 <p class="lead">{{ entry.descripcion }}</p>
-                                <p class="lead">Area</p>
-                                <p class="lead">{{ entry.area.nombre }}</p>
-                                <p class="lead">Rama</p>
-                                <p class="lead">{{ entry.rama.nombre }}</p>
-                                <p class="lead">Disciplina</p>
-                                <p class="lead">{{ entry.disciplina.nombre }}</p>
                             <a id="link_help" href="{{ path('showOferta', {'id': entry.id}) }}" >Ver</a>
+                            <a id="link_help" href="{{ path('editOferta', {'idOferta': entry.id}) }}" >Editar</a>
+                            <a id="link_help" href="{{ path('deleteOferta', {'id': entry.id}) }}" >Eliminar</a>
                         </div>
                     </div>
               {% endfor %}

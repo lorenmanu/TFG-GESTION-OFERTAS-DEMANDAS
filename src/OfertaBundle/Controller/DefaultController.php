@@ -37,7 +37,15 @@ class DefaultController extends Controller
     $session = $request->getSession();
     $em = $this->getDoctrine()->getManager();
     $query = null;
+    $ofertas=null;
+    $max=null;
 
+    if($_GET['numItem']!=null){
+      $max=$_GET['numItem'];
+    }
+    else{
+      $max=2;
+    }
 
      if($session->get('area_id')!=null && $session->get('rama_id')!=null && $session->get('disciplina_id')!=null) {
           $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE 
@@ -45,6 +53,7 @@ class DefaultController extends Controller
                               ->setParameter('id_area', $session->get('area_id'))
                               ->setParameter('id_rama', $session->get('rama_id'))
                               ->setParameter('id_disciplina', $session->get('disciplina_id'));
+          $ofertas=$query->getResult();
      }
      else if($session->get('area_id')!=null && $session->get('rama_id')!=null) {
           $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE 
@@ -52,20 +61,36 @@ class DefaultController extends Controller
                               ->setParameter('id_area', $session->get('area_id'))
                               ->setParameter('id_rama', $session->get('rama_id'))
                               ->orderBy('o.visitas', 'ASC');
+          $ofertas=$query->getResult();
      }
 
      else if($session->get('area_id')!=null) {
           $query = $em->createQuery("SELECT o FROM OfertaBundle:Oferta o WHERE o.area = :id_area ORDER BY o.visitas ASC")
                               ->setParameter('id_area', $session->get('area_id'))->orderBy('o.visitas', 'ASC');
+            $ofertas=$query->getResult();
+     }
+     else{
+      $ofertas=$this->getDoctrine()
+          ->getRepository('OfertaBundle:Oferta')
+          ->findAll();
      }
 
-     $ofertas = $query->getResult();
+
+    $visitas = array();
+    $nombres = array();
+    $i=0;
+
+    for($i=0; $i<$max; $i=$i+1){
+      $visitas[] = $i;
+      $nombres[]=$ofertas[$i]->getNombre();
+    }
+
 
     // Chart
     $series = array(
-        array("name" => "Data Serie Name",    "data" => array(1,2,4,5,6,3,8))
+        array("name" => "Data Serie Name",    "data" => $visitas)
     );
-    $categories = array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug');
+    $categories = $nombres;
     $ob = new Highchart();
     $ob->chart->renderTo('linechart');  // The #id of the div where to render the chart
     $ob->title->text('Chart Title');
@@ -303,6 +328,64 @@ class DefaultController extends Controller
     return $this->render('OfertaBundle:Default:portada.html.twig.php', array('oferta' => $entidad));
   }
 
+  public function editOfertaAction(Request $request){
+    $session = $request->getSession();
+    if($request->query->get('idOferta')!=null){
+      $session->set('idOferta', $request->query->get('idOferta'));
+    }
+    $em = $this->getDoctrine()->getManager();
+    $oferta=$em->getRepository('OfertaBundle:Oferta')->findById($session->get('idOferta'));
+    $areas = $this->getDoctrine()->getRepository('AreaBundle:Area')->createQueryBuilder('c')
+                        ->orderBy('c.id', 'ASC');
+    $ramas = $this->getDoctrine()->getRepository('RamaBundle:Rama')->createQueryBuilder('c')
+                        ->orderBy('c.id', 'ASC');
+    $disciplinas = $this->getDoctrine()->getRepository('DisciplinaBundle:Disciplina')->createQueryBuilder('c')
+                        ->orderBy('c.id', 'ASC');
+
+    $form = $this->createFormBuilder($oferta[0])
+                  ->add('nombre','text')
+                  ->add('descripcion', 'textarea', array('label' => 'Descripcion', 'attr' => array('class' => 'descripcion')))
+                  ->add('condiciones','textarea')
+                  ->add('fechaInicio','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'datepicker')))
+                  ->add('fechaFin','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'datepicker')))
+                  ->add('contacto','email')
+                  ->add('saveAndAdd','submit')
+                  ->add('area', 'entity', array(
+                    'class' => 'AreaBundle:Area',
+                    'property' => 'nombre',
+                    'query_builder' => $areas,    
+                  ))
+                  ->add('rama', 'entity', array(
+                    'class' => 'RamaBundle:Rama',
+                    'property' => 'nombre',
+                    'query_builder' => $ramas
+                  ))
+                  ->add('disciplina', 'entity', array(
+                    'class' => 'DisciplinaBundle:Disciplina',
+                    'property' => 'nombre',
+                    'query_builder' => $disciplinas
+                  ))
+                  ->add('brochure', 'file', array('data_class' => null))
+                  ->setAction($this->generateUrl('addOferta'))
+                  ->getForm();
+    
+    if ($request->getMethod() == 'POST') {
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+              $em->flush();
+
+      
+        }
+    }
+
+    return $this->render('OfertaBundle:Default:updateOferta.html.twig', array(
+          'formOferta' => $form->createView(),
+          'areas' => $areas
+          //'disciplinas' => $disciplinas
+        ));
+  }
+
   public function subirOfertaAction(Request $request){
 
     $oferta = new Oferta();
@@ -312,7 +395,7 @@ class DefaultController extends Controller
                   ->add('descripcion', 'textarea', array('label' => 'Descripcion', 'attr' => array('class' => 'descripcion')))
                   ->add('condiciones','textarea')
                   ->add('fechaInicio','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'datepicker')))
-                  ->add('fechaFin','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'date')))
+                  ->add('fechaFin','datetime',array('widget' => 'single_text','format' => 'dd-MM-yyyy','attr' => array('class' => 'datepicker')))
                   ->add('contacto','email')
                   ->add('saveAndAdd','submit')
                   ->add('area', 'entity', array(
@@ -388,19 +471,6 @@ class DefaultController extends Controller
 
 
         $em = $this->getDoctrine()->getManager();
-        for($i=0; $i<20;$i++){
-          $entidad = new Oferta();
-          $entidad->setNombre($oferta->getNombre()."-->".$i);
-          $entidad->setDescripcion($oferta->getDescripcion()."-->".$i);
-          $entidad->setCondiciones($oferta->getDescripcion()."-->".$i);
-          $entidad->setBrochure($oferta->getDescripcion()."-->".$i);
-          $entidad->setFechaInicio(new \DateTime('today'));
-          $entidad->setFechaFin(new \DateTime('today'));
-          $entidad->setContacto($oferta->getContacto()."-->".$i);
-          $em->persist($entidad);
-          $em->flush();
-
-        }
         $em->persist($oferta);
         $em->flush();
 

@@ -39,6 +39,14 @@ send_email:
     path:     /send_email/
     defaults: { _controller: OfertaBundle:Default:sendEmail }
 
+editOferta:
+    path:     /editOferta/
+    defaults: { _controller: OfertaBundle:Default:editOferta }
+
+deleteOferta:
+    path:     /deleteOferta/
+    defaults: { _controller: OfertaBundle:Default:deleteOferta }
+
 
 grafica_ofertas:
     path:     /grafica_ofertas/

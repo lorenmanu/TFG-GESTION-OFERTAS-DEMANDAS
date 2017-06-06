@@ -1,13 +1,11 @@
 {% extends 'base.html.twig.php' %}
 {% block side %}
 
-    <div id="contenido" class="sec_interior">
-      <div class="content_doku">
 
         {% form_theme formOferta 'bootstrap_3_layout.html.twig' %}
             {{ form_errors(formOferta.nombre) }}
 
-           {{ form_start(formOferta, {'action': path('addOferta'), 'method': 'POST', 'multipart': 'true'}) }}
+           {{ form_start(formOferta, {'action': path('editOferta'), 'method': 'POST', 'multipart': 'true'}) }}
 
            {{ form_label(formOferta.nombre) }}
            {{ form_widget(formOferta.nombre, { 'attr': {'class': 'nombre'} }) }}
@@ -89,6 +87,4 @@
           });
       </script>
 
-      </div>
-    </div>
   {% endblock %}

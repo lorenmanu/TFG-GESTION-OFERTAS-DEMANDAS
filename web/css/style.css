@@ -1,8 +1,8 @@
 
 
 body{
-  padding-left: 7%;
-  padding-right: 7%;
+  padding-left: 0%;
+  padding-right: 0%;
   width: 100%;
   height: 1400px;
   align-content: center;
@@ -39,6 +39,14 @@ body{
   padding-left: 4%;
   padding-bottom: 0.4%;
 }
+
+
+#pagina .form-signin{
+  width: 100%;
+  height: 100%;
+  float: left;
+}
+
 .menu_item input {
   float: left;
   width: 100%;
@@ -79,7 +87,18 @@ a {
   float: left;
 }
 
+#remember_me {
+  height: 100%;
+  width: 10%;
+  float: left;
+}
 
+#idRemember {
+  height: 100%;
+  width: 15%;
+  float: left;
+  padding-top: 1%;
+}
 
 /****** Comentarios ******/
 
@@ -161,18 +180,13 @@ a {
 .login-container label{
   padding-top: 3%;
   display: inline-block;
-  width: 100%;
+  width: 15%;
   margin-bottom: 5px;
   font-weight: 700;
   padding-left: 0%;
   float: left;
 }
 
-#remember_me {
-  position: relative;
-  top: 8%;
-  right: 70%;
-}
 
 .login-container input{
   float: left;
@@ -184,6 +198,7 @@ a {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   font-family: roboto;
   padding-left: 5%;
+    float: left;
 }
 .login-container h1 {
   text-align: center;
@@ -192,12 +207,10 @@ a {
 }
 .login-container input[type=submit] {
   width: 30%;
-  position: relative;
+  float: left;
   padding-left: 0%;
-  height: 5%;
+  height: 10%;
   background-color: #00F;
-  top: 0%;
-  left: 30%;
 }
 
 
@@ -210,37 +223,33 @@ a {
 }
 
 .login-container a {
-  width: 12%;
-  position: relative;
-  padding-left: 0%;
-  height: 5%;
-  float: left;
-  padding-left: 2%;
-  padding-top: 3%;
-  background-color: red;
-  top: 10%;
-  left: 1.5%;
-  text-align: middle;
-  margin-left: 1%;
+width: 20%;
+padding-left: 0%;
+height: 5%;
+float: left;
+padding-left: 0%;
+padding-top: 1%;
+background-color: red;
+text-align: center;
+margin-left: 1%;
+float: left;
 }
 
 .login-container a:hover {
-  width: 12%;
-  position: relative;
-  padding-left: 0%;
-  height: 5%;
-  float: left;
-  padding-left: 2%;
-  padding-top: 3%;
-  background-color: blue;
-  top: 10%;
-  left: 1.5%;
-  text-align: middle;
-  margin-left: 1%;
+width: 20%;
+padding-left: 0%;
+height: 5%;
+float: left;
+padding-left: 0%;
+padding-top: 1%;
+background-color: blue;
+text-align: center;
+margin-left: 1%;
+float: left;
 }
 
 #username {
-  height: 4%;
+  height: 60%;
   font-size: 100%;
   width: 90%;
   margin-bottom: 0px;
@@ -253,10 +262,11 @@ a {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   padding-left: 2%;
+  float: left;
 }
 
 #password {
-  height: 4%;
+  height: 60%;
   font-size: 100%;
   width: 90%;
   margin-bottom: 0px;
@@ -269,10 +279,11 @@ a {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   padding-left: 2%;
+  float: left;
 }
 
 #fos_user_registration_form_email {
-  height: 20%;
+  height: 40%;
   font-size: 100%;
   width: 90%;
   margin-bottom: 0px;
@@ -334,18 +345,16 @@ a {
 #descripcion_show a:link, a:visited {
   background-color: #F44336;
   color: #FFF;
-  padding: 2px 0px;
+  margin-left: 1%;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  height: 10%;
-  width: 30%;
-  position: relative;
-  top: 60%;
-  left: 71%;
+  height: 12%;
+  width: 32%;
+  float: left;
 }
 
-#descripcion_show a:hover, a:active {
+#descripcion_show a:hover {
     background-color: red;
 }
 
@@ -361,14 +370,26 @@ a {
   float: left;
 }
 
-#remember_me {
-  position: relative;
-  top: 5.7%;
-  right: 70%;
+.fos_user_registration_register {
+  width: 100%;
+  height: 100%;
 }
 
 .register-container input{
-  float: left;
+height: 40%;
+font-size: 100%;
+width: 90%;
+margin-bottom: 0px;
+-webkit-appearance: none;
+background: #fff;
+border: 1px solid #d9d9d9;
+border-top: 1px solid #c0c0c0;
+border-radius: 2px;
+padding: 0 0px;
+box-sizing: border-box;
+-moz-box-sizing: border-box;
+padding-left: 2%;
+float: left;
 }
 .register-container {
   width: 100%;
@@ -377,6 +398,7 @@ a {
   box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
   font-family: roboto;
   padding-left: 5%;
+    float: left;
 }
 .register-container h1 {
   text-align: center;
@@ -384,95 +406,55 @@ a {
   font-family: roboto;
 }
 .register-container input[type=submit] {
+  width: 30%;
+  position: relative;
+  padding-left: 0%;
+  height: 5%;
+  background-color: #00F;
+  top: 0%;
+  left: 30%;
+}
+
+
+.register-container input[type=submit]:hover {
  width: 30%;
  float: left;
  padding-left: 0%;
  height: 5%;
+ background-color: red;
 }
-.register-container input[type=text], input[type=password] {
-  height: 20%;
-  font-size: 100%;
-  width: 90%;
-  margin-bottom: 0px;
-  -webkit-appearance: none;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  border-top: 1px solid #c0c0c0;
-  /* border-radius: 2px; */
-  padding: 0 0px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  padding-left: 2%;
-}
-#fos_user_registration_form_email {
-  height: 20%;
-  font-size: 100%;
-  width: 90%;
-  margin-bottom: 0px;
-  -webkit-appearance: none;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  border-top: 1px solid #c0c0c0;
-  /* border-radius: 2px; */
-  padding: 0 0px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  padding-left: 2%;          
-}
-.requireḍ{
-  height: 20%;
-  font-size: 100%;
-  width: 90%;
-  margin-bottom: 0px;
-  -webkit-appearance: none;
-  background: #fff;
-  border: 1px solid #d9d9d9;
-  border-top: 1px solid #c0c0c0;
-  /* border-radius: 2px; */
-  padding: 0 0px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  padding-left: 2%;      
-}
-.register-container input[type=text]:hover, input[type=password]:hover {
-  border: 1px solid #b9b9b9;
-  border-top: 1px solid #a0a0a0;
-  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
-}
-.register-submit {
-  /* border: 1px solid #3079ed; */
-  border: 0px;
-  color: #fff;
-  text-shadow: 0 1px rgba(0,0,0,0.1);
-  background-color: #4d90fe;
-  padding: 17px 0px;
-  font-family: roboto;
-  font-size: 14px;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
-}
-.register-submit:hover {
-  /* border: 1px solid #2f5bb7; */
-  border: 0px;
-  text-shadow: 0 1px rgba(0,0,0,0.3);
-  background-color: #357ae8;
-  /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
-}
+
 .register-container a {
-  text-decoration: none;
-  color: #666;
-  font-weight: 400;
-  text-align: center;
-  display: inline-block;
-  opacity: 0.6;
-  transition: opacity ease 0.5s;
-}
-.register-help{
-  font-size: 12px;
+width: 30%;
+position: relative;
+padding-left: 0%;
+height: 3%;
+float: left;
+padding-left: 0%;
+padding-top: 1.8%;
+background-color: red;
+top: 10%;
+left: 0%;
+text-align: center;
+margin-left: 0%;
+font-size: 100%;
 }
 
-
+.register-container a:hover {
+width: 30%;
+position: relative;
+padding-left: 0%;
+height: 3%;
+float: left;
+padding-left: 0%;
+padding-top: 1.8%;
+background-color: blue;
+top: 10%;
+left: 0%;
+text-align: center;
+margin-left: 0%;
+font-size: 100%;
+}
 
 
 /****** Register ******/
@@ -497,23 +479,30 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-
+#divRemember {
+  width: 100%;
+  height: 10%;
+  float: left;
+  padding-top: 3%;
+}
 
 div#contenedor {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 1%;
-  background-repeat: no-repeat;
-  font-family: Verdana,sans;
-  font-size: 60%;
-  width: 100%;
-  height: 77%;
+margin-left: auto;
+margin-right: auto;
+padding-top: 1%;
+background-repeat: no-repeat;
+font-family: Verdana,sans;
+font-size: 60%;
+width: 98.4%;
+height: 80%;
+float: left;
+padding-left: 1%;
 }
 div#contenedor_margenes {
   margin-left: auto;
   margin-right: auto;
   width: 100%;
-  height: 13%;
+  height: 11%;
   font-size: 100%;
 }
 div#sombras {
@@ -534,25 +523,26 @@ div#cabecera {
   float: left;
 }
 div#cabecera h1#cab_inf {
-  height: 18%;
-  left: 23%;
-  position: absolute;
-  top: 11%;
-  width: 68.8%;
-  text-indent: -9999em;
-  background-image: url("../img/general/cabecera-foto.jpg");
-  background-position: 0px 0px;
-  border-color: #6D6C71;
-  background-size: 100% 100%;
+height: 13.5%;
+left: 25%;
+position: absolute;
+top: 10%;
+width: 72.2%;
+text-indent: -9999em;
+background-image: url("../img/general/cabecera-foto.jpg");
+background-position: 0px 0px;
+border-color: #6D6C71;
+background-size: 100% 100%;
 }
 
 #rastro-idiomas{
-  height: 20%;
-  width: 100%;
-  letter-spacing: 0px;
-  float: left;
-  font-size: 100%;
-  padding-top: 0.7%;
+height: 20%;
+width: 98.4%;
+letter-spacing: 0px;
+float: left;
+font-size: 100%;
+padding-top: 0.7%;
+padding-left: 1%;
 }
 
 .first {
@@ -618,7 +608,7 @@ div#cabecera.activar_obituario div#formularios span#obituario {
 }
 div#cabecera a#enlace_ugr {
   display: block;
-  height: 30%;
+  height: 35%;
   margin-left: 74%;
   width: 15%;
   text-indent: -9999em;
@@ -632,7 +622,7 @@ div#cabecera div.depto {
   border-bottom: 8px none;
   border-top: 8px none;
   float: left;
-  height: 70%;
+  height: 60%;
   width: 100%;
   background-image: url("../img/general/cabecera-departamento.png");
   background-repeat: no-repeat;
@@ -760,9 +750,10 @@ div#rastro a:hover {
 }
 
 #item_inicio {
-  float: left;
-  width: 50%;
-  height: 100%;
+float: left;
+width: 43%;
+height: 85%;
+padding-left: 5%;
 }
 
 #item_inicio_login {
@@ -775,12 +766,18 @@ div#rastro a:hover {
   display: block;
   color: white;
   text-align: center;
-  padding: 2%;
+  padding-top: 2%;
   text-decoration: none;
+  background-color: #635959;
 }
 
 #item_inicio a:hover {
   background-color: #111111;
+  display: block;
+  color: white;
+  text-align: center;
+  padding-top: 1.8%;
+  text-decoration: none;
 }
 
 /***************/
@@ -1009,6 +1006,14 @@ form {
   padding-left: 0%;
 }
 
+.login-container .form-group {
+  padding-bottom: 0%;
+  height: 5%;
+  width: 100%;
+  float: left;
+  padding-left: 0%;
+}
+
 .form-control {
   width: 100%;
   height: 4%;
@@ -1052,31 +1057,31 @@ form {
 }
 
 div#pagina h1#titulo_pagina {
-  margin: 0px;
-  min-height: 4%;
-  padding-left: 10%;
-  padding-top: 0%;
-  position: relative;
-  background-color: #FFFFFF;
-  background-image: url("../img/interior/pagina-titulo_principal.png");
-  border-bottom-style: solid;
-  padding-bottom: 0%;
-  border-color: #DD3B02;
-  color: #FFFFFF;
-  font-size: 100%;
-  text-align: left;
-  background-size: 8.5% 79%;
+margin: 0px;
+height: 4%;
+padding-left: 10%;
+padding-top: 0%;
+background-color: #FFF;
+background-image: url("../img/interior/pagina-titulo_principal.png");
+border-bottom-style: solid;
+padding-bottom: 0%;
+border-color: #DD3B02;
+color: #FFFFFF;
+font-size: 90%;
+text-align: left;
+background-size: 8.5% 100%;
+float: left;
 }
 div#pagina h1#titulo_pagina span.texto_titulo {
-  display: block;
-  min-height: 90%;
-  padding-left: 0%;
-  padding-top: 1.5%;
-  background-color: #000000;
-  background-image: url(../img/interior/pagina-titulo_principal-h1.png);
-  background-position: 0 bottom;
-  width: 100%;
-  text-align: center;
+display: block;
+min-height: 90%;
+padding-left: 35%;
+padding-top: 1.5%;
+background-color: #000000;
+background-image: url(../img/interior/pagina-titulo_principal-h1.png);
+background-position: 0 bottom;
+width: 100%;
+text-align: left;
 }
 
 .level1 {
@@ -1590,7 +1595,7 @@ div.sec_interior img.mediacenter, div.sec_interior img.medialeft, div.sec_interi
   height: 13%;
 }
 div.sec_interior p {
-  height: 13%;
+  height: 80%;
 }
 div.sec_interior p a {
   color: #DD3B02;
@@ -2000,7 +2005,6 @@ div.mod-banners ul li a.banner {
   padding-top: 1%;
   position: relative;
   z-index: -1;
-  color: red;
 }
 div.mod-banners ul li:hover {
   position: relative;
@@ -2537,21 +2541,6 @@ form#formSubir {
   float: left;
 }
 
-.general {
-  width: 85%;
-  height: 75%;
-  float: left;
-  border-width: 0 0 1px;
-  float: left;
-  overflow: hidden;
-  position: relative;
-  background-image: url("../img/general/sombra_izq.png");
-  background-position: left center;
-  background-repeat: repeat-y;
-  border-color: #FFFFFF;
-  background-size: 0% 0%;
-}
-
 .pagina {
   width: 70%;
   height: 100%;
@@ -2950,23 +2939,10 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
 }
 
-
-
-div#contenedor {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 1%;
-  background-repeat: no-repeat;
-  font-family: Verdana,sans;
-  font-size: 60%;
-  width: 100%;
-  height: 100%;
-}
 div#contenedor_margenes {
-  margin-left: auto;
-  margin-right: auto;
   width: 100%;
   height: 100%;
+  folat:left;
 }
 div#sombras {
   background-image: url("../img/general/sombra.png");
@@ -2984,19 +2960,6 @@ div#cabecera {
   width: 100%;
   border-color: #6D6C71;
   height: 12%;
-}
-div#cabecera h1#cab_inf {
-  height: 60%;
-  left: 24%;
-  position: absolute;
-  top: 35.2%;
-  width: 77%;
-  background-position: center center;
-  text-indent: -9999em;
-  background-image: url("../img/general/cabecera-foto.jpg");
-  background-position: 0 0;
-  border-color: #6D6C71;
-  background-size: 100% 100%;
 }
 
 #rastro-idiomas{
@@ -3390,7 +3353,7 @@ div#pagina {
   padding-left: 0.7%;
 }
 
-div#pagina_contenido {
+div#pagina div#pagina_contenido {
   float: left;
   margin-bottom: 1%;
   padding-bottom: 3%;
@@ -4903,18 +4866,20 @@ form#formSubir {
 }
 
 .general {
-  width: 85%;
-  height: 75%;
-  float: left;
-  border-width: 0 0 1px;
-  float: left;
-  overflow: hidden;
-  position: relative;
-  background-image: url("../img/general/sombra_izq.png");
-  background-position: left center;
-  background-repeat: repeat-y;
-  border-color: #FFFFFF;
-  background-size: 0% 0%;
+width: 84%;
+height: 75%;
+float: left;
+border-width: 0 0 1px;
+float: left;
+overflow: hidden;
+position: relative;
+background-image: url("../img/general/sombra_izq.png");
+background-position: left center;
+background-repeat: repeat-y;
+border-color: #FFFFFF;
+background-size: 0% 0%;
+padding-left: 2%;
+padding-top: 0.1%;
 }
 
 .pagina {
@@ -5316,17 +5281,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 
-
-div#contenedor {
-  margin-left: auto;
-  margin-right: auto;
-  padding-top: 1%;
-  background-repeat: no-repeat;
-  font-family: Verdana,sans;
-  font-size: 60%;
-  width: 100%;
-  height: 100%;
-}
 div#contenedor_margenes {
   margin-left: auto;
   margin-right: auto;
@@ -5350,19 +5304,7 @@ div#cabecera {
   border-color: #6D6C71;
   height: 12%;
 }
-div#cabecera h1#cab_inf {
-  height: 60%;
-  left: 24%;
-  position: absolute;
-  top: 35.2%;
-  width: 77%;
-  background-position: center center;
-  text-indent: -9999em;
-  background-image: url("../img/general/cabecera-foto.jpg");
-  background-position: 0 0;
-  border-color: #6D6C71;
-  background-size: 100% 100%;
-}
+
 
 #rastro-idiomas{
   height: 2%;
@@ -5439,6 +5381,26 @@ div#cabecera a#enlace_ugr {
   text-indent: -9999em;
   float: right;
 }
+
+div#cabecera a:hover {
+  display: block;
+  height: 30%;
+  margin-left: 74%;
+  width: 15%;
+  text-indent: -9999em;
+  float: right;
+}
+
+div#cabecera a:focus {
+  display: block;
+  height: 30%;
+  margin-left: 74%;
+  width: 15%;
+  text-indent: -9999em;
+  float: right;
+  background-color: blue;
+}
+
 div#cabecera div.depto span {
   display: block;
   text-indent: -9999em;
@@ -5561,6 +5523,8 @@ div#rastro a:hover {
   color: #DD3B15;
   text-decoration: none;
 }
+
+
 
 /***************/
 /* Pie         */
@@ -7246,22 +7210,6 @@ form#formSubir {
   float: left;
 }
 
-.general {
-  width: 85%;
-  height: 75%;
-  float: left;
-  border-width: 0 0 1px;
-  float: left;
-  overflow: hidden;
-  position: relative;
-  background-image: url("../img/general/sombra_izq.png");
-  background-position: left center;
-  background-repeat: repeat-y;
-  border-color: #FFFFFF;
-  background-size: 0% 0%;
-  padding-left: 1.4%;
-}
-
 .pagina {
   width: 70%;
   height: 100%;
@@ -7324,13 +7272,6 @@ div.mod-menu_secciones ul li.tipo1-selected a, div.mod-menu_secciones ul li.tipo
   width: 88%;
   height: 60%;
   padding-top: 10%;
-}
-
-li{
-  border: 10px;
-  border-color: black;
-  height: 20%;
-  width: 80%;
 }
 
 div.mod-menu_secciones ul li.adicional1 a {
@@ -7746,7 +7687,6 @@ li.model-resaltado-02 a.banner:hover {
 .navigation > ul { width: 100%; height: 5%; }
 .navigation ul ul { width: 13em; }
 .navigation > ul > li > a {
- border-right: 0.3em solid #34A65F;
  color: #ffffff;
 }
 .navigation > ul > li > a:hover { color: #ffffff; }
@@ -7937,6 +7877,7 @@ h2.number {
 #showOferta {
   width: 100%;
   height: 19%;
+  float: left;
 }
 
 #img_show {

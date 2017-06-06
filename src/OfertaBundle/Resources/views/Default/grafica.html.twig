@@ -1,6 +1,10 @@
 {% extends 'base.html.twig.php' %}
 
 {% block side %}
+ <form action="/app_dev.php/grafica_ofertas/">
+  Username: <input type="text" name="numItem"><br>
+  <input type="submit" value="Submit">
+</form> 
   <div id="contenido" class="sec_interior">
     <div class="content_doku">
          <div id="linechart" style="min-width: 400px; height: 400px; margin: 0 auto"></div>

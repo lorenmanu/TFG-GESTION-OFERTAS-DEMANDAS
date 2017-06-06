@@ -1,9 +1,8 @@
 {% trans_default_domain 'FOSUserBundle' %}
+{% extends 'base.html.twig.php' %}
 
-{% if error %}
-    <div><p> Usuario o contraseña inválidos.</div>
-{% endif %}
-
+{% block side %}
+<div class="login-container">
 <form action="{{ path("fos_user_security_check") }}" method="post">
     {% if csrf_token %}
         <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
@@ -15,8 +14,12 @@
     <label for="password">{{ 'security.login.password'|trans }}</label>
     <input type="password" id="password" name="_password" required="required" />
 
-    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+    <div id="divRemember">
+        <label id="idRemember" for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+        <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    </div>
 
     <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
 </form>
+</div>
+{% endblock %}

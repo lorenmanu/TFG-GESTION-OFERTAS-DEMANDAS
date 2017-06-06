@@ -1,7 +1,7 @@
 <?php
 
 namespace OfertaBundle\Entity;
-
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -57,10 +57,6 @@ class Oferta
      * @var \DateTime
      *
      * @ORM\Column(name="fechaFin", type="datetime", precision=0, scale=0, nullable=false, unique=false)
-     * @Assert\Expression(
-     *     "this.getFechaInicio() >= this.getFechaFin()",
-     *     message="vacancy.date.not_more_than"
-     * )
      */
     private $fechaFin;
 
@@ -69,16 +65,17 @@ class Oferta
      *
      * @ORM\Column(name="contacto", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      * @Assert\Email(
-     *     message = "El correo no es valido",
-     *     checkMX = true
+     *     message = "El correo no es valido"
      * )
      */
     private $contacto;
 
+
     /**
-     * @var string
+     * @ORM\Column(type="string")
      *
-     * @ORM\Column(name="brochure", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/jpeg" })
      */
     private $brochure;
 
@@ -401,6 +398,7 @@ class Oferta
     public function getArea()
     {
         return $this->area;
+        $array=new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
