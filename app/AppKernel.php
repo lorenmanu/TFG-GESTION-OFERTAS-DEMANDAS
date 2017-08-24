@@ -41,15 +41,15 @@ class AppKernel extends Kernel
             new RegistroVisitasDemandaBundle\RegistroVisitasDemandaBundle(),
             new PalabrasClaveDemandaBundle\PalabrasClaveDemandaBundle(),
             new PruebaBundle\PruebaBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle()
+            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
+            new Remg\GeneratorBundle\RemgGeneratorBundle()
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
+        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
-            //$bundles[] = new Remg\GeneratorBundle\RemgGeneratorBundle();
         }
 
         return $bundles;

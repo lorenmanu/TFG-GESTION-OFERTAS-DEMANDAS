@@ -40,11 +40,11 @@
       <parameter key="PalabrasClaveDemandaBundle">PalabrasClaveDemandaBundle\PalabrasClaveDemandaBundle</parameter>
       <parameter key="PruebaBundle">PruebaBundle\PruebaBundle</parameter>
       <parameter key="AsseticBundle">Symfony\Bundle\AsseticBundle\AsseticBundle</parameter>
+      <parameter key="RemgGeneratorBundle">Remg\GeneratorBundle\RemgGeneratorBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
       <parameter key="SensioGeneratorBundle">Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle</parameter>
-      <parameter key="RemgGeneratorBundle">Remg\GeneratorBundle\RemgGeneratorBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
@@ -207,6 +207,11 @@
         <parameter key="path">/home/ubuntu/Escritorio/todo/TFG-LRR2/vendor/symfony/assetic-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\AsseticBundle</parameter>
       </parameter>
+      <parameter key="RemgGeneratorBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/home/ubuntu/Escritorio/todo/TFG-LRR2/vendor/remg/generator-bundle</parameter>
+        <parameter key="namespace">Remg\GeneratorBundle</parameter>
+      </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
         <parameter key="path">/home/ubuntu/Escritorio/todo/TFG-LRR2/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle</parameter>
@@ -226,11 +231,6 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/home/ubuntu/Escritorio/todo/TFG-LRR2/vendor/sensio/generator-bundle</parameter>
         <parameter key="namespace">Sensio\Bundle\GeneratorBundle</parameter>
-      </parameter>
-      <parameter key="RemgGeneratorBundle" type="collection">
-        <parameter key="parent">null</parameter>
-        <parameter key="path">/home/ubuntu/Escritorio/todo/TFG-LRR2/vendor/remg/generator-bundle</parameter>
-        <parameter key="namespace">Remg\GeneratorBundle</parameter>
       </parameter>
     </parameter>
     <parameter key="kernel.charset">UTF-8</parameter>
@@ -850,11 +850,11 @@
       <parameter>PalabrasClaveDemandaBundle</parameter>
       <parameter>PruebaBundle</parameter>
       <parameter>AsseticBundle</parameter>
+      <parameter>RemgGeneratorBundle</parameter>
       <parameter>DebugBundle</parameter>
       <parameter>WebProfilerBundle</parameter>
       <parameter>SensioDistributionBundle</parameter>
       <parameter>SensioGeneratorBundle</parameter>
-      <parameter>RemgGeneratorBundle</parameter>
     </parameter>
     <parameter key="assetic.twig_extension.class">Symfony\Bundle\AsseticBundle\Twig\AsseticExtension</parameter>
     <parameter key="assetic.twig_formula_loader.class">Assetic\Extension\Twig\TwigFormulaLoader</parameter>
@@ -879,6 +879,10 @@
     <parameter key="assetic.cache.class">Assetic\Cache\FilesystemCache</parameter>
     <parameter key="assetic.use_controller_worker.class">Symfony\Bundle\AsseticBundle\Factory\Worker\UseControllerWorker</parameter>
     <parameter key="assetic.request_listener.class">Symfony\Bundle\AsseticBundle\EventListener\RequestListener</parameter>
+    <parameter key="remg_generator.entity" type="collection">
+      <parameter key="configuration_format">annotation</parameter>
+      <parameter key="generate_constraints">true</parameter>
+    </parameter>
     <parameter key="web_profiler.controller.profiler.class">Symfony\Bundle\WebProfilerBundle\Controller\ProfilerController</parameter>
     <parameter key="web_profiler.controller.router.class">Symfony\Bundle\WebProfilerBundle\Controller\RouterController</parameter>
     <parameter key="web_profiler.controller.exception.class">Symfony\Bundle\WebProfilerBundle\Controller\ExceptionController</parameter>
@@ -887,10 +891,6 @@
     <parameter key="web_profiler.debug_toolbar.class">Symfony\Bundle\WebProfilerBundle\EventListener\WebDebugToolbarListener</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
-    <parameter key="remg_generator.entity" type="collection">
-      <parameter key="configuration_format">annotation</parameter>
-      <parameter key="generate_constraints">true</parameter>
-    </parameter>
     <parameter key="data_collector.templates" type="collection">
       <parameter key="data_collector.request" type="collection">
         <parameter>request</parameter>
@@ -2630,7 +2630,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>599e880ff298e2.22103415</argument>
+            <argument>599ef80c110b08.13858057</argument>
           </service>
         </argument>
       </argument>
@@ -2930,7 +2930,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>599e880ff298e2.22103415</argument>
+            <argument>599ef80c110b08.13858057</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3282,11 +3282,11 @@
               <argument>PalabrasClaveDemandaBundle</argument>
               <argument>PruebaBundle</argument>
               <argument>AsseticBundle</argument>
+              <argument>RemgGeneratorBundle</argument>
               <argument>DebugBundle</argument>
               <argument>WebProfilerBundle</argument>
               <argument>SensioDistributionBundle</argument>
               <argument>SensioGeneratorBundle</argument>
-              <argument>RemgGeneratorBundle</argument>
             </argument>
             <argument type="service">
               <service class="Symfony\Bundle\AsseticBundle\DefaultValueSupplier" public="false">
@@ -5622,6 +5622,33 @@
               <argument type="service">
                 <service class="%assetic.directory_resource.class%" public="false">
                   <argument type="service" id="templating.loader"/>
+                  <argument>RemgGeneratorBundle</argument>
+                  <argument>/home/ubuntu/Escritorio/todo/TFG-LRR2/app/Resources/RemgGeneratorBundle/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
+                  <argument>RemgGeneratorBundle</argument>
+                  <argument>/home/ubuntu/Escritorio/todo/TFG-LRR2/vendor/remg/generator-bundle/Resources/views</argument>
+                  <argument>/\.[^.]+\.twig$/</argument>
+                </service>
+              </argument>
+            </argument>
+          </service>
+        </argument>
+        <argument>twig</argument>
+      </call>
+      <call method="addResource">
+        <argument type="service">
+          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
+            <tag name="assetic.templating.twig"/>
+            <tag name="assetic.formula_resource" loader="twig"/>
+            <argument type="collection">
+              <argument type="service">
+                <service class="%assetic.directory_resource.class%" public="false">
+                  <argument type="service" id="templating.loader"/>
                   <argument>DebugBundle</argument>
                   <argument>/home/ubuntu/Escritorio/todo/TFG-LRR2/app/Resources/DebugBundle/views</argument>
                   <argument>/\.[^.]+\.twig$/</argument>
@@ -5723,33 +5750,6 @@
       </call>
       <call method="addResource">
         <argument type="service">
-          <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource" public="false">
-            <tag name="assetic.templating.twig"/>
-            <tag name="assetic.formula_resource" loader="twig"/>
-            <argument type="collection">
-              <argument type="service">
-                <service class="%assetic.directory_resource.class%" public="false">
-                  <argument type="service" id="templating.loader"/>
-                  <argument>RemgGeneratorBundle</argument>
-                  <argument>/home/ubuntu/Escritorio/todo/TFG-LRR2/app/Resources/RemgGeneratorBundle/views</argument>
-                  <argument>/\.[^.]+\.twig$/</argument>
-                </service>
-              </argument>
-              <argument type="service">
-                <service class="%assetic.directory_resource.class%" public="false">
-                  <argument type="service" id="templating.loader"/>
-                  <argument>RemgGeneratorBundle</argument>
-                  <argument>/home/ubuntu/Escritorio/todo/TFG-LRR2/vendor/remg/generator-bundle/Resources/views</argument>
-                  <argument>/\.[^.]+\.twig$/</argument>
-                </service>
-              </argument>
-            </argument>
-          </service>
-        </argument>
-        <argument>twig</argument>
-      </call>
-      <call method="addResource">
-        <argument type="service">
           <service class="Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource" public="false">
             <tag name="assetic.templating.twig"/>
             <tag name="assetic.formula_resource" loader="twig"/>
@@ -5795,6 +5795,47 @@
     </service>
     <service id="assetic.request_listener" class="Symfony\Bundle\AsseticBundle\EventListener\RequestListener">
       <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest"/>
+    </service>
+    <service id="remg_generator.kernel_bundles" class="Symfony\Component\HttpKernel\Kernel">
+      <factory service="kernel" method="getBundles"/>
+    </service>
+    <service id="remg_generator.bundle_manager" class="Remg\GeneratorBundle\Tools\BundleManager">
+      <argument type="service" id="remg_generator.kernel_bundles"/>
+    </service>
+    <service id="remg_generator.classmetadata_factory" class="Remg\GeneratorBundle\Mapping\ClassMetadataFactory">
+      <call method="setEntityManager">
+        <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      </call>
+    </service>
+    <service id="remg_generator.entity_builder" class="Remg\GeneratorBundle\Mapping\EntityBuilder"/>
+    <service id="remg_generator.entity_factory" class="Remg\GeneratorBundle\Mapping\EntityFactory">
+      <argument type="service" id="doctrine.orm.default_entity_manager"/>
+      <argument type="service" id="remg_generator.bundle_manager"/>
+      <argument type="service" id="remg_generator.classmetadata_factory"/>
+      <argument type="service" id="remg_generator.entity_builder"/>
+    </service>
+    <service id="remg_generator.mapping_validator" class="Remg\GeneratorBundle\Mapping\MappingValidator">
+      <argument type="service" id="remg_generator.entity_factory"/>
+    </service>
+    <service id="remg_generator.mapping_guesser" class="Remg\GeneratorBundle\Mapping\MappingGuesser"/>
+    <service id="remg_generator.entity_helper" class="Remg\GeneratorBundle\Command\Helper\EntityHelper">
+      <argument type="service" id="remg_generator.mapping_validator"/>
+      <argument type="service" id="remg_generator.mapping_guesser"/>
+    </service>
+    <service id="remg_generator.field_helper" class="Remg\GeneratorBundle\Command\Helper\FieldHelper">
+      <argument type="service" id="remg_generator.mapping_validator"/>
+      <argument type="service" id="remg_generator.mapping_guesser"/>
+    </service>
+    <service id="remg_generator.association_helper" class="Remg\GeneratorBundle\Command\Helper\AssociationHelper">
+      <argument type="service" id="remg_generator.mapping_validator"/>
+      <argument type="service" id="remg_generator.mapping_guesser"/>
+    </service>
+    <service id="remg_generator.entity_generator" class="Remg\GeneratorBundle\Generator\EntityGenerator">
+      <argument type="service" id="remg_generator.classmetadata_factory"/>
+      <argument type="collection">
+        <argument key="configuration_format">annotation</argument>
+        <argument key="generate_constraints">true</argument>
+      </argument>
     </service>
     <service id="data_collector.dump" class="Symfony\Component\HttpKernel\DataCollector\DumpDataCollector">
       <tag name="data_collector" id="dump" template="@Debug/Profiler/dump.html.twig" priority="240"/>
@@ -5916,47 +5957,6 @@
     <service id="sensio_distribution.security_checker.command" class="SensioLabs\Security\Command\SecurityCheckerCommand">
       <tag name="console.command"/>
       <argument type="service" id="sensio_distribution.security_checker"/>
-    </service>
-    <service id="remg_generator.kernel_bundles" class="Symfony\Component\HttpKernel\Kernel">
-      <factory service="kernel" method="getBundles"/>
-    </service>
-    <service id="remg_generator.bundle_manager" class="Remg\GeneratorBundle\Tools\BundleManager">
-      <argument type="service" id="remg_generator.kernel_bundles"/>
-    </service>
-    <service id="remg_generator.classmetadata_factory" class="Remg\GeneratorBundle\Mapping\ClassMetadataFactory">
-      <call method="setEntityManager">
-        <argument type="service" id="doctrine.orm.default_entity_manager"/>
-      </call>
-    </service>
-    <service id="remg_generator.entity_builder" class="Remg\GeneratorBundle\Mapping\EntityBuilder"/>
-    <service id="remg_generator.entity_factory" class="Remg\GeneratorBundle\Mapping\EntityFactory">
-      <argument type="service" id="doctrine.orm.default_entity_manager"/>
-      <argument type="service" id="remg_generator.bundle_manager"/>
-      <argument type="service" id="remg_generator.classmetadata_factory"/>
-      <argument type="service" id="remg_generator.entity_builder"/>
-    </service>
-    <service id="remg_generator.mapping_validator" class="Remg\GeneratorBundle\Mapping\MappingValidator">
-      <argument type="service" id="remg_generator.entity_factory"/>
-    </service>
-    <service id="remg_generator.mapping_guesser" class="Remg\GeneratorBundle\Mapping\MappingGuesser"/>
-    <service id="remg_generator.entity_helper" class="Remg\GeneratorBundle\Command\Helper\EntityHelper">
-      <argument type="service" id="remg_generator.mapping_validator"/>
-      <argument type="service" id="remg_generator.mapping_guesser"/>
-    </service>
-    <service id="remg_generator.field_helper" class="Remg\GeneratorBundle\Command\Helper\FieldHelper">
-      <argument type="service" id="remg_generator.mapping_validator"/>
-      <argument type="service" id="remg_generator.mapping_guesser"/>
-    </service>
-    <service id="remg_generator.association_helper" class="Remg\GeneratorBundle\Command\Helper\AssociationHelper">
-      <argument type="service" id="remg_generator.mapping_validator"/>
-      <argument type="service" id="remg_generator.mapping_guesser"/>
-    </service>
-    <service id="remg_generator.entity_generator" class="Remg\GeneratorBundle\Generator\EntityGenerator">
-      <argument type="service" id="remg_generator.classmetadata_factory"/>
-      <argument type="collection">
-        <argument key="configuration_format">annotation</argument>
-        <argument key="generate_constraints">true</argument>
-      </argument>
     </service>
     <service id="monolog.logger.request" class="Symfony\Bridge\Monolog\Logger">
       <argument>request</argument>
