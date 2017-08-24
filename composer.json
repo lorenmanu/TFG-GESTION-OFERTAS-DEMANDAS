@@ -32,8 +32,7 @@
         "cache/apcu-adapter": "^0.3.0",
         "ghunti/highcharts-php": "~2.0",
         "php-http/guzzle6-adapter": "^1.1",
-        "php-http/httplug-bundle": "^1.7",
-        "remg/generator-bundle": "dev-master"
+        "php-http/httplug-bundle": "^1.7"
     },
 
     "require-dev": {

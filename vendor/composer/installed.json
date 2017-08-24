@@ -4960,48 +4960,5 @@
             "form",
             "template"
         ]
-    },
-    {
-        "name": "remg/generator-bundle",
-        "version": "dev-master",
-        "version_normalized": "9999999-dev",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/Remg/GeneratorBundle.git",
-            "reference": "b51db70500ef9956fa27f6e1898a8386a1653c97"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/Remg/GeneratorBundle/zipball/b51db70500ef9956fa27f6e1898a8386a1653c97",
-            "reference": "b51db70500ef9956fa27f6e1898a8386a1653c97",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/doctrine-bundle": "^1.6",
-            "doctrine/orm": "^2.5",
-            "php": ">=5.5.9",
-            "symfony/framework-bundle": "~2.7|~3.0"
-        },
-        "require-dev": {
-            "codeclimate/php-test-reporter": "dev-master",
-            "phpunit/phpunit": "5.6.*",
-            "symfony/phpunit-bridge": "^3.2"
-        },
-        "time": "2017-02-21T17:49:47+00:00",
-        "type": "symfony-bundle",
-        "installation-source": "source",
-        "autoload": {
-            "psr-4": {
-                "Remg\\GeneratorBundle\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "description": "Code generation tool for Symfony3."
     }
 ]

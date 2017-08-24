@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2cf953032d4ad873a05961e11371a18",
+    "content-hash": "d1c60c8562990fb53fda2cc1f2ecbc9f",
     "packages": [
         {
             "name": "cache/adapter-common",
@@ -3452,47 +3452,6 @@
             "time": "2017-01-02T13:31:39+00:00"
         },
         {
-            "name": "remg/generator-bundle",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Remg/GeneratorBundle.git",
-                "reference": "b51db70500ef9956fa27f6e1898a8386a1653c97"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Remg/GeneratorBundle/zipball/b51db70500ef9956fa27f6e1898a8386a1653c97",
-                "reference": "b51db70500ef9956fa27f6e1898a8386a1653c97",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/doctrine-bundle": "^1.6",
-                "doctrine/orm": "^2.5",
-                "php": ">=5.5.9",
-                "symfony/framework-bundle": "~2.7|~3.0"
-            },
-            "require-dev": {
-                "codeclimate/php-test-reporter": "dev-master",
-                "phpunit/phpunit": "5.6.*",
-                "symfony/phpunit-bridge": "^3.2"
-            },
-            "type": "symfony-bundle",
-            "autoload": {
-                "psr-4": {
-                    "Remg\\GeneratorBundle\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Code generation tool for Symfony3.",
-            "time": "2017-02-21T17:49:47+00:00"
-        },
-        {
             "name": "ruflin/elastica",
             "version": "3.2.3",
             "source": {
@@ -6447,7 +6406,6 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "remg/generator-bundle": 20,
         "codeclimate/php-test-reporter": 20
     },
     "prefer-stable": false,

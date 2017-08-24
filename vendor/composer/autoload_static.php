@@ -58,10 +58,6 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
             'Sensio\\Bundle\\FrameworkExtraBundle\\' => 35,
             'Sensio\\Bundle\\DistributionBundle\\' => 33,
         ),
-        'R' => 
-        array (
-            'Remg\\GeneratorBundle\\' => 21,
-        ),
         'P' => 
         array (
             'Psr\\SimpleCache\\' => 16,
@@ -229,10 +225,6 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         'Sensio\\Bundle\\DistributionBundle\\' => 
         array (
             0 => __DIR__ . '/..' . '/sensio/distribution-bundle',
-        ),
-        'Remg\\GeneratorBundle\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/remg/generator-bundle',
         ),
         'Psr\\SimpleCache\\' => 
         array (
@@ -2680,45 +2672,6 @@ class ComposerStaticInit60968235570fdc4f4e2eb438d4abd763
         'RegistroVisitasUsuarioBundle\\Entity\\RegistroVisitasUsuario' => __DIR__ . '/../..' . '/src/RegistroVisitasUsuarioBundle/Entity/RegistroVisitasUsuario.php',
         'RegistroVisitasUsuarioBundle\\RegistroVisitasUsuarioBundle' => __DIR__ . '/../..' . '/src/RegistroVisitasUsuarioBundle/RegistroVisitasUsuarioBundle.php',
         'RegistroVisitasUsuarioBundle\\Repository\\RegistroVisitasUsuarioRepository' => __DIR__ . '/../..' . '/src/RegistroVisitasUsuarioBundle/Repository/RegistroVisitasUsuarioRepository.php',
-        'Remg\\GeneratorBundle\\Command\\GenerateEntityCommand' => __DIR__ . '/..' . '/remg/generator-bundle/Command/GenerateEntityCommand.php',
-        'Remg\\GeneratorBundle\\Command\\GeneratorCommand' => __DIR__ . '/..' . '/remg/generator-bundle/Command/GeneratorCommand.php',
-        'Remg\\GeneratorBundle\\Command\\Helper\\AssociationHelper' => __DIR__ . '/..' . '/remg/generator-bundle/Command/Helper/AssociationHelper.php',
-        'Remg\\GeneratorBundle\\Command\\Helper\\AssociationHelperInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Command/Helper/AssociationHelperInterface.php',
-        'Remg\\GeneratorBundle\\Command\\Helper\\EntityHelper' => __DIR__ . '/..' . '/remg/generator-bundle/Command/Helper/EntityHelper.php',
-        'Remg\\GeneratorBundle\\Command\\Helper\\EntityHelperInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Command/Helper/EntityHelperInterface.php',
-        'Remg\\GeneratorBundle\\Command\\Helper\\FieldHelper' => __DIR__ . '/..' . '/remg/generator-bundle/Command/Helper/FieldHelper.php',
-        'Remg\\GeneratorBundle\\Command\\Helper\\FieldHelperInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Command/Helper/FieldHelperInterface.php',
-        'Remg\\GeneratorBundle\\Command\\Helper\\MappingHelper' => __DIR__ . '/..' . '/remg/generator-bundle/Command/Helper/MappingHelper.php',
-        'Remg\\GeneratorBundle\\Command\\Helper\\StyleAwareInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Command/Helper/StyleAwareInterface.php',
-        'Remg\\GeneratorBundle\\Command\\RegenerateEntityCommand' => __DIR__ . '/..' . '/remg/generator-bundle/Command/RegenerateEntityCommand.php',
-        'Remg\\GeneratorBundle\\DependencyInjection\\Configuration' => __DIR__ . '/..' . '/remg/generator-bundle/DependencyInjection/Configuration.php',
-        'Remg\\GeneratorBundle\\DependencyInjection\\RemgGeneratorExtension' => __DIR__ . '/..' . '/remg/generator-bundle/DependencyInjection/RemgGeneratorExtension.php',
-        'Remg\\GeneratorBundle\\Exception\\BundleNotFoundException' => __DIR__ . '/..' . '/remg/generator-bundle/Exception/BundleNotFoundException.php',
-        'Remg\\GeneratorBundle\\Exception\\EntityNotFoundException' => __DIR__ . '/..' . '/remg/generator-bundle/Exception/EntityNotFoundException.php',
-        'Remg\\GeneratorBundle\\Exception\\MappingException' => __DIR__ . '/..' . '/remg/generator-bundle/Exception/MappingException.php',
-        'Remg\\GeneratorBundle\\Generator\\EntityGenerator' => __DIR__ . '/..' . '/remg/generator-bundle/Generator/EntityGenerator.php',
-        'Remg\\GeneratorBundle\\Generator\\EntityGeneratorInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Generator/EntityGeneratorInterface.php',
-        'Remg\\GeneratorBundle\\Mapping\\ClassMetadataFactory' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/ClassMetadataFactory.php',
-        'Remg\\GeneratorBundle\\Mapping\\ClassMetadataFactoryInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/ClassMetadataFactoryInterface.php',
-        'Remg\\GeneratorBundle\\Mapping\\EntityBuilder' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/EntityBuilder.php',
-        'Remg\\GeneratorBundle\\Mapping\\EntityBuilderInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/EntityBuilderInterface.php',
-        'Remg\\GeneratorBundle\\Mapping\\EntityFactory' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/EntityFactory.php',
-        'Remg\\GeneratorBundle\\Mapping\\EntityFactoryInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/EntityFactoryInterface.php',
-        'Remg\\GeneratorBundle\\Mapping\\MappingGuesser' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/MappingGuesser.php',
-        'Remg\\GeneratorBundle\\Mapping\\MappingGuesserInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/MappingGuesserInterface.php',
-        'Remg\\GeneratorBundle\\Mapping\\MappingValidator' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/MappingValidator.php',
-        'Remg\\GeneratorBundle\\Mapping\\MappingValidatorInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Mapping/MappingValidatorInterface.php',
-        'Remg\\GeneratorBundle\\Model\\Association' => __DIR__ . '/..' . '/remg/generator-bundle/Model/Association.php',
-        'Remg\\GeneratorBundle\\Model\\AssociationInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Model/AssociationInterface.php',
-        'Remg\\GeneratorBundle\\Model\\Entity' => __DIR__ . '/..' . '/remg/generator-bundle/Model/Entity.php',
-        'Remg\\GeneratorBundle\\Model\\EntityInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Model/EntityInterface.php',
-        'Remg\\GeneratorBundle\\Model\\Field' => __DIR__ . '/..' . '/remg/generator-bundle/Model/Field.php',
-        'Remg\\GeneratorBundle\\Model\\FieldInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Model/FieldInterface.php',
-        'Remg\\GeneratorBundle\\Model\\PrimaryKey' => __DIR__ . '/..' . '/remg/generator-bundle/Model/PrimaryKey.php',
-        'Remg\\GeneratorBundle\\Model\\PrimaryKeyInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Model/PrimaryKeyInterface.php',
-        'Remg\\GeneratorBundle\\RemgGeneratorBundle' => __DIR__ . '/..' . '/remg/generator-bundle/RemgGeneratorBundle.php',
-        'Remg\\GeneratorBundle\\Tools\\BundleManager' => __DIR__ . '/..' . '/remg/generator-bundle/Tools/BundleManager.php',
-        'Remg\\GeneratorBundle\\Tools\\BundleManagerInterface' => __DIR__ . '/..' . '/remg/generator-bundle/Tools/BundleManagerInterface.php',
         'SensioLabs\\Security\\Command\\SecurityCheckerCommand' => __DIR__ . '/..' . '/sensiolabs/security-checker/SensioLabs/Security/Command/SecurityCheckerCommand.php',
         'SensioLabs\\Security\\Crawler\\BaseCrawler' => __DIR__ . '/..' . '/sensiolabs/security-checker/SensioLabs/Security/Crawler/BaseCrawler.php',
         'SensioLabs\\Security\\Crawler\\CrawlerInterface' => __DIR__ . '/..' . '/sensiolabs/security-checker/SensioLabs/Security/Crawler/CrawlerInterface.php',

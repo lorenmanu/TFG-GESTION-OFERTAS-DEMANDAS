@@ -143,9 +143,3 @@ assetic:
     use_controller: '%kernel.debug%'
     filters:
         cssrewrite: ~
-
-
-remg_generator:
-    entity:
-        # available configuration formats are: 'annotation', 'yaml', 'xml' and 'php'.
-        configuration_format: annotation

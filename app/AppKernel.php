@@ -41,11 +41,10 @@ class AppKernel extends Kernel
             new RegistroVisitasDemandaBundle\RegistroVisitasDemandaBundle(),
             new PalabrasClaveDemandaBundle\PalabrasClaveDemandaBundle(),
             new PruebaBundle\PruebaBundle(),
-            new Symfony\Bundle\AsseticBundle\AsseticBundle(),
-            new Remg\GeneratorBundle\RemgGeneratorBundle()
+            new Symfony\Bundle\AsseticBundle\AsseticBundle()
         );
 
-        if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+        if (in_array($this->getEnvironment(), ['dev', 'test'])) {
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

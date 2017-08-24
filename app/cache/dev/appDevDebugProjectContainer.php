@@ -214,17 +214,6 @@ class appDevDebugProjectContainer extends Container
             'profiler' => 'getProfilerService',
             'profiler_listener' => 'getProfilerListenerService',
             'property_accessor' => 'getPropertyAccessorService',
-            'remg_generator.association_helper' => 'getRemgGenerator_AssociationHelperService',
-            'remg_generator.bundle_manager' => 'getRemgGenerator_BundleManagerService',
-            'remg_generator.classmetadata_factory' => 'getRemgGenerator_ClassmetadataFactoryService',
-            'remg_generator.entity_builder' => 'getRemgGenerator_EntityBuilderService',
-            'remg_generator.entity_factory' => 'getRemgGenerator_EntityFactoryService',
-            'remg_generator.entity_generator' => 'getRemgGenerator_EntityGeneratorService',
-            'remg_generator.entity_helper' => 'getRemgGenerator_EntityHelperService',
-            'remg_generator.field_helper' => 'getRemgGenerator_FieldHelperService',
-            'remg_generator.kernel_bundles' => 'getRemgGenerator_KernelBundlesService',
-            'remg_generator.mapping_guesser' => 'getRemgGenerator_MappingGuesserService',
-            'remg_generator.mapping_validator' => 'getRemgGenerator_MappingValidatorService',
             'request' => 'getRequestService',
             'request_stack' => 'getRequestStackService',
             'response_listener' => 'getResponseListenerService',
@@ -421,7 +410,6 @@ class appDevDebugProjectContainer extends Container
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'PalabrasClaveDemandaBundle', ($this->targetDirs[2].'/Resources/PalabrasClaveDemandaBundle/views'), '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'PalabrasClaveDemandaBundle', ($this->targetDirs[3].'/src/PalabrasClaveDemandaBundle/Resources/views'), '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'PruebaBundle', ($this->targetDirs[2].'/Resources/PruebaBundle/views'), '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'PruebaBundle', ($this->targetDirs[3].'/src/PruebaBundle/Resources/views'), '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'AsseticBundle', ($this->targetDirs[2].'/Resources/AsseticBundle/views'), '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'AsseticBundle', ($this->targetDirs[3].'/vendor/symfony/assetic-bundle/Resources/views'), '/\\.[^.]+\\.twig$/'))), 'twig');
-        $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'RemgGeneratorBundle', ($this->targetDirs[2].'/Resources/RemgGeneratorBundle/views'), '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'RemgGeneratorBundle', ($this->targetDirs[3].'/vendor/remg/generator-bundle/Resources/views'), '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'DebugBundle', ($this->targetDirs[2].'/Resources/DebugBundle/views'), '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'DebugBundle', ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/DebugBundle/Resources/views'), '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'WebProfilerBundle', ($this->targetDirs[2].'/Resources/WebProfilerBundle/views'), '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'WebProfilerBundle', ($this->targetDirs[3].'/vendor/symfony/symfony/src/Symfony/Bundle/WebProfilerBundle/Resources/views'), '/\\.[^.]+\\.twig$/'))), 'twig');
         $instance->addResource(new \Symfony\Bundle\AsseticBundle\Factory\Resource\CoalescingDirectoryResource(array(0 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioDistributionBundle', ($this->targetDirs[2].'/Resources/SensioDistributionBundle/views'), '/\\.[^.]+\\.twig$/'), 1 => new \Symfony\Bundle\AsseticBundle\Factory\Resource\DirectoryResource($a, 'SensioDistributionBundle', ($this->targetDirs[3].'/vendor/sensio/distribution-bundle/Resources/views'), '/\\.[^.]+\\.twig$/'))), 'twig');
@@ -2391,120 +2379,6 @@ class appDevDebugProjectContainer extends Container
     }
 
     /**
-     * Gets the public 'remg_generator.association_helper' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Command\Helper\AssociationHelper
-     */
-    protected function getRemgGenerator_AssociationHelperService()
-    {
-        return $this->services['remg_generator.association_helper'] = new \Remg\GeneratorBundle\Command\Helper\AssociationHelper($this->get('remg_generator.mapping_validator'), $this->get('remg_generator.mapping_guesser'));
-    }
-
-    /**
-     * Gets the public 'remg_generator.bundle_manager' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Tools\BundleManager
-     */
-    protected function getRemgGenerator_BundleManagerService()
-    {
-        return $this->services['remg_generator.bundle_manager'] = new \Remg\GeneratorBundle\Tools\BundleManager($this->get('remg_generator.kernel_bundles'));
-    }
-
-    /**
-     * Gets the public 'remg_generator.classmetadata_factory' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\ClassMetadataFactory
-     */
-    protected function getRemgGenerator_ClassmetadataFactoryService()
-    {
-        $this->services['remg_generator.classmetadata_factory'] = $instance = new \Remg\GeneratorBundle\Mapping\ClassMetadataFactory();
-
-        $instance->setEntityManager($this->get('doctrine.orm.default_entity_manager'));
-
-        return $instance;
-    }
-
-    /**
-     * Gets the public 'remg_generator.entity_builder' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\EntityBuilder
-     */
-    protected function getRemgGenerator_EntityBuilderService()
-    {
-        return $this->services['remg_generator.entity_builder'] = new \Remg\GeneratorBundle\Mapping\EntityBuilder();
-    }
-
-    /**
-     * Gets the public 'remg_generator.entity_factory' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\EntityFactory
-     */
-    protected function getRemgGenerator_EntityFactoryService()
-    {
-        return $this->services['remg_generator.entity_factory'] = new \Remg\GeneratorBundle\Mapping\EntityFactory($this->get('doctrine.orm.default_entity_manager'), $this->get('remg_generator.bundle_manager'), $this->get('remg_generator.classmetadata_factory'), $this->get('remg_generator.entity_builder'));
-    }
-
-    /**
-     * Gets the public 'remg_generator.entity_generator' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Generator\EntityGenerator
-     */
-    protected function getRemgGenerator_EntityGeneratorService()
-    {
-        return $this->services['remg_generator.entity_generator'] = new \Remg\GeneratorBundle\Generator\EntityGenerator($this->get('remg_generator.classmetadata_factory'), array('configuration_format' => 'annotation', 'generate_constraints' => true));
-    }
-
-    /**
-     * Gets the public 'remg_generator.entity_helper' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Command\Helper\EntityHelper
-     */
-    protected function getRemgGenerator_EntityHelperService()
-    {
-        return $this->services['remg_generator.entity_helper'] = new \Remg\GeneratorBundle\Command\Helper\EntityHelper($this->get('remg_generator.mapping_validator'), $this->get('remg_generator.mapping_guesser'));
-    }
-
-    /**
-     * Gets the public 'remg_generator.field_helper' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Command\Helper\FieldHelper
-     */
-    protected function getRemgGenerator_FieldHelperService()
-    {
-        return $this->services['remg_generator.field_helper'] = new \Remg\GeneratorBundle\Command\Helper\FieldHelper($this->get('remg_generator.mapping_validator'), $this->get('remg_generator.mapping_guesser'));
-    }
-
-    /**
-     * Gets the public 'remg_generator.kernel_bundles' shared service.
-     *
-     * @return \Symfony\Component\HttpKernel\Kernel
-     */
-    protected function getRemgGenerator_KernelBundlesService()
-    {
-        return $this->services['remg_generator.kernel_bundles'] = $this->get('kernel')->getBundles();
-    }
-
-    /**
-     * Gets the public 'remg_generator.mapping_guesser' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\MappingGuesser
-     */
-    protected function getRemgGenerator_MappingGuesserService()
-    {
-        return $this->services['remg_generator.mapping_guesser'] = new \Remg\GeneratorBundle\Mapping\MappingGuesser();
-    }
-
-    /**
-     * Gets the public 'remg_generator.mapping_validator' shared service.
-     *
-     * @return \Remg\GeneratorBundle\Mapping\MappingValidator
-     */
-    protected function getRemgGenerator_MappingValidatorService()
-    {
-        return $this->services['remg_generator.mapping_validator'] = new \Remg\GeneratorBundle\Mapping\MappingValidator($this->get('remg_generator.entity_factory'));
-    }
-
-    /**
      * Gets the public 'request' shared service.
      *
      * @throws RuntimeException always since this service is expected to be injected dynamically
@@ -2707,7 +2581,7 @@ class appDevDebugProjectContainer extends Container
         $p = new \Symfony\Component\Security\Http\Authentication\DefaultAuthenticationFailureHandler($e, $m, array(), $a);
         $p->setOptions(array('login_path' => '/login', 'failure_path' => NULL, 'failure_forward' => false, 'failure_path_parameter' => '_failure_path'));
 
-        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($l, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username_email')), 'main', $a, $c), 2 => $n, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $m, 'main', $o, $p, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $c, $this->get('security.csrf.token_manager')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '599ef80c110b08.13858057', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $l, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $m, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $m, '/login', false), NULL, NULL, $a, false));
+        return $this->services['security.firewall.map.context.main'] = new \Symfony\Bundle\SecurityBundle\Security\FirewallContext(array(0 => new \Symfony\Component\Security\Http\Firewall\ChannelListener($l, new \Symfony\Component\Security\Http\EntryPoint\RetryAuthenticationEntryPoint(80, 443), $a), 1 => new \Symfony\Component\Security\Http\Firewall\ContextListener($b, array(0 => $this->get('fos_user.user_provider.username_email')), 'main', $a, $c), 2 => $n, 3 => new \Symfony\Component\Security\Http\Firewall\UsernamePasswordFormAuthenticationListener($b, $f, $this->get('security.authentication.session_strategy'), $m, 'main', $o, $p, array('check_path' => '/login_check', 'use_forward' => false, 'require_previous_session' => true, 'username_parameter' => '_username', 'password_parameter' => '_password', 'csrf_parameter' => '_csrf_token', 'csrf_token_id' => 'authenticate', 'post_only' => true), $a, $c, $this->get('security.csrf.token_manager')), 4 => new \Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener($b, '599f037e8042a6.59551126', $a, $f), 5 => new \Symfony\Component\Security\Http\Firewall\AccessListener($b, $this->get('security.access.decision_manager'), $l, $f)), new \Symfony\Component\Security\Http\Firewall\ExceptionListener($b, $this->get('security.authentication.trust_resolver'), $m, 'main', new \Symfony\Component\Security\Http\EntryPoint\FormAuthenticationEntryPoint($e, $m, '/login', false), NULL, NULL, $a, false));
     }
 
     /**
@@ -3475,7 +3349,7 @@ class appDevDebugProjectContainer extends Container
         $instance->addExtension(new \JMS\Serializer\Twig\SerializerExtension($this->get('jms_serializer')));
         $instance->addExtension($this->get('knp_paginator.twig.extension.pagination'));
         $instance->addExtension($this->get('ob_highcharts.twig.highcharts_extension'));
-        $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(0 => 'FrameworkBundle', 1 => 'SecurityBundle', 2 => 'TwigBundle', 3 => 'MonologBundle', 4 => 'SwiftmailerBundle', 5 => 'DoctrineBundle', 6 => 'SensioFrameworkExtraBundle', 7 => 'KnpMenuBundle', 8 => 'JMSSerializerBundle', 9 => 'OfertaBundle', 10 => 'DisciplinaBundle', 11 => 'AreaBundle', 12 => 'RamaBundle', 13 => 'ComentarioBundle', 14 => 'FOSElasticaBundle', 15 => 'KnpPaginatorBundle', 16 => 'FOSUserBundle', 17 => 'UserBundle', 18 => 'ObHighchartsBundle', 19 => 'VisitasDiaBundle', 20 => 'VisitasMesBundle', 21 => 'VisitasAnioBundle', 22 => 'RegistroOfertasDemandasBundle', 23 => 'RegistroVisitasUsuarioBundle', 24 => 'RegistroVisitasOfertaBundle', 25 => 'TipoBundle', 26 => 'PalabrasClaveOfertaBundle', 27 => 'DemandaBundle', 28 => 'RegistroVisitasDemandaBundle', 29 => 'PalabrasClaveDemandaBundle', 30 => 'PruebaBundle', 31 => 'AsseticBundle', 32 => 'RemgGeneratorBundle', 33 => 'DebugBundle', 34 => 'WebProfilerBundle', 35 => 'SensioDistributionBundle', 36 => 'SensioGeneratorBundle'), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
+        $instance->addExtension(new \Symfony\Bundle\AsseticBundle\Twig\AsseticExtension($this->get('assetic.asset_factory'), $this->get('templating.name_parser'), true, array(), array(0 => 'FrameworkBundle', 1 => 'SecurityBundle', 2 => 'TwigBundle', 3 => 'MonologBundle', 4 => 'SwiftmailerBundle', 5 => 'DoctrineBundle', 6 => 'SensioFrameworkExtraBundle', 7 => 'KnpMenuBundle', 8 => 'JMSSerializerBundle', 9 => 'OfertaBundle', 10 => 'DisciplinaBundle', 11 => 'AreaBundle', 12 => 'RamaBundle', 13 => 'ComentarioBundle', 14 => 'FOSElasticaBundle', 15 => 'KnpPaginatorBundle', 16 => 'FOSUserBundle', 17 => 'UserBundle', 18 => 'ObHighchartsBundle', 19 => 'VisitasDiaBundle', 20 => 'VisitasMesBundle', 21 => 'VisitasAnioBundle', 22 => 'RegistroOfertasDemandasBundle', 23 => 'RegistroVisitasUsuarioBundle', 24 => 'RegistroVisitasOfertaBundle', 25 => 'TipoBundle', 26 => 'PalabrasClaveOfertaBundle', 27 => 'DemandaBundle', 28 => 'RegistroVisitasDemandaBundle', 29 => 'PalabrasClaveDemandaBundle', 30 => 'PruebaBundle', 31 => 'AsseticBundle', 32 => 'DebugBundle', 33 => 'WebProfilerBundle', 34 => 'SensioDistributionBundle', 35 => 'SensioGeneratorBundle'), new \Symfony\Bundle\AsseticBundle\DefaultValueSupplier($this)));
         $instance->addExtension(new \Symfony\Bridge\Twig\Extension\DumpExtension($this->get('var_dumper.cloner')));
         $instance->addExtension(new \Symfony\Bundle\WebProfilerBundle\Twig\WebProfilerExtension());
         $instance->addGlobal('app', $i);
@@ -3848,7 +3722,7 @@ class appDevDebugProjectContainer extends Container
      */
     protected function getSecurity_Authentication_ManagerService()
     {
-        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username_email'), $this->get('security.user_checker.main'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('599ef80c110b08.13858057')), true);
+        $this->services['security.authentication.manager'] = $instance = new \Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager(array(0 => new \Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider($this->get('fos_user.user_provider.username_email'), $this->get('security.user_checker.main'), 'main', $this->get('security.encoder_factory'), true), 1 => new \Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider('599f037e8042a6.59551126')), true);
 
         $instance->setEventDispatcher($this->get('debug.event_dispatcher'));
 
@@ -4010,7 +3884,6 @@ class appDevDebugProjectContainer extends Container
                 'PalabrasClaveDemandaBundle' => 'PalabrasClaveDemandaBundle\\PalabrasClaveDemandaBundle',
                 'PruebaBundle' => 'PruebaBundle\\PruebaBundle',
                 'AsseticBundle' => 'Symfony\\Bundle\\AsseticBundle\\AsseticBundle',
-                'RemgGeneratorBundle' => 'Remg\\GeneratorBundle\\RemgGeneratorBundle',
                 'DebugBundle' => 'Symfony\\Bundle\\DebugBundle\\DebugBundle',
                 'WebProfilerBundle' => 'Symfony\\Bundle\\WebProfilerBundle\\WebProfilerBundle',
                 'SensioDistributionBundle' => 'Sensio\\Bundle\\DistributionBundle\\SensioDistributionBundle',
@@ -4176,11 +4049,6 @@ class appDevDebugProjectContainer extends Container
                     'parent' => NULL,
                     'path' => ($this->targetDirs[3].'/vendor/symfony/assetic-bundle'),
                     'namespace' => 'Symfony\\Bundle\\AsseticBundle',
-                ),
-                'RemgGeneratorBundle' => array(
-                    'parent' => NULL,
-                    'path' => ($this->targetDirs[3].'/vendor/remg/generator-bundle'),
-                    'namespace' => 'Remg\\GeneratorBundle',
                 ),
                 'DebugBundle' => array(
                     'parent' => NULL,
@@ -4836,11 +4704,10 @@ class appDevDebugProjectContainer extends Container
                 29 => 'PalabrasClaveDemandaBundle',
                 30 => 'PruebaBundle',
                 31 => 'AsseticBundle',
-                32 => 'RemgGeneratorBundle',
-                33 => 'DebugBundle',
-                34 => 'WebProfilerBundle',
-                35 => 'SensioDistributionBundle',
-                36 => 'SensioGeneratorBundle',
+                32 => 'DebugBundle',
+                33 => 'WebProfilerBundle',
+                34 => 'SensioDistributionBundle',
+                35 => 'SensioGeneratorBundle',
             ),
             'assetic.twig_extension.class' => 'Symfony\\Bundle\\AsseticBundle\\Twig\\AsseticExtension',
             'assetic.twig_formula_loader.class' => 'Assetic\\Extension\\Twig\\TwigFormulaLoader',
@@ -4869,10 +4736,6 @@ class appDevDebugProjectContainer extends Container
             'assetic.cache.class' => 'Assetic\\Cache\\FilesystemCache',
             'assetic.use_controller_worker.class' => 'Symfony\\Bundle\\AsseticBundle\\Factory\\Worker\\UseControllerWorker',
             'assetic.request_listener.class' => 'Symfony\\Bundle\\AsseticBundle\\EventListener\\RequestListener',
-            'remg_generator.entity' => array(
-                'configuration_format' => 'annotation',
-                'generate_constraints' => true,
-            ),
             'web_profiler.controller.profiler.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ProfilerController',
             'web_profiler.controller.router.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\RouterController',
             'web_profiler.controller.exception.class' => 'Symfony\\Bundle\\WebProfilerBundle\\Controller\\ExceptionController',
