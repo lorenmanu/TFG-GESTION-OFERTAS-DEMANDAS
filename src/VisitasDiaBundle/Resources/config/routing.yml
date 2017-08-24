@@ -1,0 +1,3 @@
+visitas_dia_homepage:
+    path:     /
+    defaults: { _controller: VisitasDiaBundle:Default:index }

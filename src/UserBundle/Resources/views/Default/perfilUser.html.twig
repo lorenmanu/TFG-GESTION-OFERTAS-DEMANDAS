@@ -1,0 +1,118 @@
+{% extends 'base.html.twig' %}
+
+
+{% block cuerpo %}
+
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/modalMostrarOfertas.css') }}" media="all" />
+
+  <!-- /.container -->
+  {% if app.request.get('page') %}
+    <script>
+      // This would automatically run when page loads.
+      $( document ).ready(function() {
+        $("#myModalFullscreen").modal('show');
+      });
+    </script>
+
+  {% endif %}
+
+    <div class="jumbotron">
+        <h3 id="cabeceraBienvenida"> Usuario {{ user.getName() }}</h3>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 text-center">
+              <div class="btn-group" style="padding: 0px; margin-top: 1%">
+                <a href="{{ path('mostrarOfertasUser', {'nameUser': user.getName(), 'userId': user.getId()}) }}"><button class="btn btn-primary center-block" data-target="#myModalFullscreenOfertas" contenteditable="false"> Ver Ofertas  </button> </a>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 text-center">
+              <div class="btn-group" style="padding: 0px; margin-top: 1%">
+                  <a href="{{ path('mostrarDemandasUser', {'nameUser': user.getName(), 'userId': user.getId()}) }}"><button class="btn btn-primary center-block"  data-target="#myModalFullscreenDemandas" contenteditable="false"> Ver Demandas  </button></a>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 text-center">
+              <div class="btn-group" style="padding: 0px; margin-top: 1%">
+                <a href="{{ path('deleteUser', {'nameUser': user.getName()}) }}"><button class="btn btn-primary center-block" data-toggle="modal" data-target="#myModalFullscreen" contenteditable="false"> Eliminar  </button> </a>
+              </div>
+            </div>
+
+            <div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 text-center">
+              <div class="btn-group" style="padding: 0px; margin-top: 1%">
+                <button type="button" class="btn btn-primary center-block" data-toggle="modal" data-target="#contact_dialog">Contactar</button>
+              </div>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <div class="btn-group" style="padding: 0px; margin-top: 1%">
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Seleccione el año para ver el número de visitas. <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                {% for anio in anios  %}
+                  <li><a href="{{ path('registroVisitasUser', {'idAnio': anio.id, 'userId':user.getId() }) }}">Visitas Año {{ anio.getAnio() }}. Total: {{ anio.getVisitas() }} visitas. </a></li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+
+        </div>
+    </div>
+
+
+
+
+
+
+  <div class="modal fade" id="contact_dialog" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Escribe el mensaje.</h4>
+            </div>
+            <div class="modal-body">
+
+                {% if formContact is defined %}
+                    {% form_theme formContact 'bootstrap_3_layout.html.twig' %}
+
+                    {{ form_start(formContact, {'action': path('perfilUser', {'userId': user.id}), 'method': 'POST'}) }}
+
+                    {{ form_label(formContact.mensaje) }}
+                    {{ form_widget(formContact.mensaje) }}
+                    <br>
+                    {{ form_end(formContact) }}
+                    <br>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="row">
+      <!-- Load jQuery from Google's CDN if needed -->
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+  <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+      <script type="text/javascript">
+        {{ chart(ob, 'mootools')  }}
+      </script>
+
+      <hr>
+
+      <div class="col-md-12">
+        <div  id="linechart" style="margin: 4px"></div>
+      </div>
+      <hr>
+
+
+  </div>
+
+    <br>
+
+
+{% endblock %}

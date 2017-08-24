@@ -2,36 +2,58 @@
 
 namespace ComentarioBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Comentario
+ *
+ * @ORM\Table(name="Comentario")
+ * @ORM\Entity
  */
 class Comentario
 {
     /**
-     * @var int
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="autor", type="string", length=255, nullable=false, unique=false)
      */
     private $autor;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="fecha", type="datetime", nullable=false, unique=false)
      */
     private $fecha;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="contenido", type="text", nullable=false, unique=false)
      */
     private $contenido;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=255, nullable=true, unique=false)
+     */
+    private $email;
 
 
     /**
      * Get id
      *
-     * @return int
+     * @return integer
      */
     public function getId()
     {
@@ -110,7 +132,27 @@ class Comentario
         return $this->contenido;
     }
 
-    public function __toString() {
-        return $this->autor;
+    /**
+     * Set email
+     *
+     * @param string $email
+     *
+     * @return Comentario
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * Get email
+     *
+     * @return string
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
 }

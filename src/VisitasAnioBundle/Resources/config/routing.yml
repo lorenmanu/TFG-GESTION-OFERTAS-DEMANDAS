@@ -1,0 +1,3 @@
+visitas_anio_homepage:
+    path:     /
+    defaults: { _controller: VisitasAnioBundle:Default:index }

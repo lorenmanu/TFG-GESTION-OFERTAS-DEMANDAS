@@ -1,0 +1,66 @@
+<?php
+
+namespace RegistroOfertasDemandasBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RegistroOfertasDemandas
+ *
+ * @ORM\Table(name="RegistroOfertasDemandas")
+ * @ORM\Entity
+ */
+class RegistroOfertasDemandas
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="demandasNoResueltas", type="integer", nullable=false, unique=false)
+     */
+    private $demandasNoResueltas;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set demandasNoResueltas
+     *
+     * @param integer $demandasNoResueltas
+     *
+     * @return RegistroOfertasDemandas
+     */
+    public function setDemandasNoResueltas($demandasNoResueltas)
+    {
+        $this->demandasNoResueltas = $demandasNoResueltas;
+
+        return $this;
+    }
+
+    /**
+     * Get demandasNoResueltas
+     *
+     * @return integer
+     */
+    public function getDemandasNoResueltas()
+    {
+        return $this->demandasNoResueltas;
+    }
+}
+

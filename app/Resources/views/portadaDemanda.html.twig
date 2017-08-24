@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block menuLateral %}
+  <li class="header">Demandas</li>
+    <li class="treeview">
+      <a href="{{ path('mostrarDemandas', {'limpiarCriteriosBusquedas': "si"}) }}">
+        <i class="fa fa-th"></i>
+        <span>Mostrar todas las demandas</span>
+      </a>
+    </li>
+    <li class="treeview">
+      <a href="{{ path('addDemanda') }}">
+		<i class="fa fa-plus" aria-hidden="true"></i>
+        <span>Añadir Demandas</span>
+      </a>
+    </li>
+
+    {{ render(controller('DemandaBundle:Default:menu')) }}
+
+  </li>
+{% endblock %}

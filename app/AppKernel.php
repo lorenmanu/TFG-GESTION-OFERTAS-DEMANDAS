@@ -20,7 +20,6 @@ class AppKernel extends Kernel
             // You need to add this dependency to make media functional
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new OfertaBundle\OfertaBundle(),
-            new DemandaBundle\DemandaBundle(),
             new DisciplinaBundle\DisciplinaBundle(),
             new AreaBundle\AreaBundle(),
             new RamaBundle\RamaBundle(),
@@ -30,10 +29,19 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new UserBundle\UserBundle(),
             new Ob\HighchartsBundle\ObHighchartsBundle(),
-
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
-            new Sonata\AdminBundle\SonataAdminBundle()
+            new VisitasDiaBundle\VisitasDiaBundle(),
+            new VisitasMesBundle\VisitasMesBundle(),
+            new VisitasAnioBundle\VisitasAnioBundle(),
+            new RegistroOfertasDemandasBundle\RegistroOfertasDemandasBundle(),
+            new RegistroVisitasUsuarioBundle\RegistroVisitasUsuarioBundle(),
+            new RegistroVisitasOfertaBundle\RegistroVisitasOfertaBundle(),
+            new TipoBundle\TipoBundle(),
+            new PalabrasClaveOfertaBundle\PalabrasClaveOfertaBundle(),
+            new DemandaBundle\DemandaBundle(),
+            new RegistroVisitasDemandaBundle\RegistroVisitasDemandaBundle(),
+            new PalabrasClaveDemandaBundle\PalabrasClaveDemandaBundle(),
+            new PruebaBundle\PruebaBundle(),
+            new Symfony\Bundle\AsseticBundle\AsseticBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'), true)) {
@@ -41,6 +49,7 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
+            $bundles[] = new Remg\GeneratorBundle\RemgGeneratorBundle();
         }
 
         return $bundles;

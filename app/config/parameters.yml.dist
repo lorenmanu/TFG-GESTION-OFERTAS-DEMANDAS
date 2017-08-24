@@ -1,5 +1,15 @@
 # This file is a "template" of what your parameters.yml file should look like
 # Set parameters here that may be different on each deployment target of the app, e.g. development, staging, production.
 # http://symfony.com/doc/current/best_practices/configuration.html#infrastructure-related-configuration
+# This file is auto-generated during the composer install
 parameters:
-    database_url: ~
+    database_driver: pdo_mysql
+    database_host: localhost
+    database_port:
+    database_name: new
+    database_memory: true
+    database_user: root
+    database_password: fermina7
+    secret: ThisTokenIsNotSoSecretChangeIt
+    mailer_user: lorenrr1@gmail.com
+    mailer_password: 653057946 75139515Xlrr

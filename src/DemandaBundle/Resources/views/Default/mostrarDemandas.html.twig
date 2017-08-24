@@ -1,0 +1,350 @@
+{% extends 'portadaDemanda.html.twig' %}
+
+
+{% block cuerpo %}
+
+{% if  app.request.query.get('mensaje') %}
+  <script>
+    // This would automatically run when page loads.
+    $( document ).ready(function() {
+      $("#mensajeError").modal('show');
+    });
+  </script>
+{% endif %}
+
+    <div class="row">
+      {% if app.session is defined %}
+          <div class="col-md-12">
+            <h3 class="h3Busqueda">
+              <small>{{ app.session.get('seccion') }}</small>
+            </h3>
+          </div>
+          <div class="col-md-12">
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <h3 class="h3Busqueda">
+              <small>{{ app.session.get('tipoDemanda') }}</small>
+            </h3>
+          </div>
+          <div class="col-md-12">
+            <hr class="hrStrong">
+          </div>
+      {% endif %}
+        <div clas="row">
+          <div class="col-md-12">
+            <hr>
+          </div>
+          <div class="col-md-12">
+            <div class="input-group" id="custom-search-input">
+                <input type="text" autocomplete="off" id="search" class="form-control input-lg" placeholder="Buscar...">
+            </div>
+          </div>
+          <div class="col-md-12">
+            <hr>
+          </div>
+        </div>
+        <div clas="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <button class="btn-success btnPalabrasClave pull-right btn" type="button" id="btnPalabrasClave" data-toggle="modal" data-target="#palabrasClave"> Avisarme
+          </button>
+          <button class="btn-danger btnPalabrasClave pull-left btn" type="button" id="btnNoPalabrasClave" data-toggle="modal" data-target="#noPalabrasClave"> Dejar de avisarme
+          </button>
+        </div>
+    </div>
+
+    <!-- the div that represents the modal dialog -->
+    <div class="modal fade" id="noPalabrasClave" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <div class="panel panel-default" id="modalCabecera">
+                  <div class="panel-heading">
+                    <div class="row">
+                      <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                        <h2>
+                          ¿ No desea nuevos avisos ?
+                        </h2>
+                      </div>
+                      <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <h4>
+                          <a id="linkCerrar" href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                        </h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-body">
+                <br>
+                <br>
+                <div class="row">
+                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                      <a href="{{ path('eliminarPalabrasClaveDemanda') }}">
+                        <button type="button" id="submitForm" class="btn btn-success pull-left">Si</button>
+                      </a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <button type="button" id="submitForm" class="btn btn-danger pull-right" data-dismiss="modal">No</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <br>
+              <div class="modal-footer">
+
+              </div>
+           </div>
+       </div>
+   </div>
+
+
+
+    <div class="modal fade modal-diag footer-to-bottom block-center" id="palabrasClave" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+          <div class="panel panel-default" id="modalCabecera">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <h2>
+                    Añadir Aviso
+                  </h2>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <h4>
+                    <a id="linkCerrar" href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+
+          <div class="container-fluid text-center">
+            <br>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="well">
+                  <p id="pMenuInf">
+                    Introduzca las palabras clave que debe tener la demanda nueva que se añada para que le avisemos.
+                    Las palabras clave no deberán tener entre ellas ningún caracter, solamente espacios en blanco,
+                    ejemplo:
+                    <br>
+                    <hr>
+                    <h3>investigación departamento facultad</h3>
+                    <hr>
+                    <br>
+                  </p>
+                </div>
+              </div>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                {% if formPalabrasClaveDemanda is defined %}
+                  {% form_theme formPalabrasClaveDemanda 'bootstrap_3_layout.html.twig' %}
+
+                  {{ form_start(formPalabrasClaveDemanda, {'action': path('mostrarDemandas'), 'method': 'POST'}) }}
+
+                  {{ form_label(formPalabrasClaveDemanda.palabrasClave) }}
+                  {{ form_widget(formPalabrasClaveDemanda.palabrasClave) }}
+                {% endif %}
+              </div>
+
+            </div>
+
+
+        </div>
+
+        <div class="modal-footer">
+          <div class="container-fluid">
+            {{ form_end(formPalabrasClaveDemanda) }}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+   </div>
+
+
+
+    {% for entry in pagination  %}
+      <div class="row">
+        <div class="row rowItem"">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h3>{{ entry.nombre }}</h3>
+            </div>
+
+            <h4>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> Categoria:
+                {% if entry.area.nombre is defined %}
+                  {{ entry.area.nombre }}
+                {% endif %}
+                {% if entry.rama.nombre is defined %}
+                  /{{ entry.rama.nombre }}
+                {% endif %}
+                {% if entry.disciplina.nombre is defined %}
+                  /{{ entry.disciplina.nombre }}
+                {% endif %}
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> Tipo:
+                {% if entry.tipo.nombre is defined %}
+                  {{ entry.tipo.nombre }}
+                {% endif %}
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> Autor:
+                {{ entry.autor }}
+            </div>
+            </h4>
+        </div>
+
+          <div class="row rowItem">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+              <img class="img_show" src="{{ asset('uploads/brochures/demandas/') }}{{ entry.getBrochure() }}" alt="" />
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6 divDes">
+              <article class="descripcionItems">
+                <p>
+                  {{ entry.descripcion }}
+                  </p>
+               </article>
+            </div>
+          </div>
+
+          <div class="row rowItem">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+              <div class="row">
+                <ul class="list-group ulInfo">
+                  <li class="list-group-item list-group-item-success liInfo">Fecha Inicio: {{ entry.fechaInicio|date('Y-m-d') }}</li>
+                  <li class="list-group-item list-group-item-info liInfo">Fecha Fin: {{ entry.fechaFin|date('Y-m-d') }}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6 divInfoItem1">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divInfoItem1">
+                  <a class="btnItem btn btn-blog pull-right marginBottom10" href="{{ path('mostrarDemanda', {'idDemanda': entry.id}) }}" >Ver</a>
+                </div>
+
+                {% if app.security.getToken().getUser().roles|first == 'ROLE_SUPER_ADMIN' or app.security.getToken().getUser().getUsername()  == entry.getAutor() %}
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divInfoItem1">
+                    <a id="linkAdmin" class="btnItem btn btn-blog pull-right marginBottom10" href="{{ path('editDemanda', {'idDemanda': entry.id}) }}"  >Editar</a>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divInfoItem1">
+                    <a id="linkAdmin" class="btnItem btn btn-blog pull-right marginBottom10" data-toggle="modal"  data-target="#isResolve_dialog" >Eliminar</a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+            <!-- the div that represents the modal dialog -->
+            <div class="modal fade" id="isResolve_dialog" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="panel panel-default" id="modalCabecera">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                <h2>
+                                  ¿ Desea eliminar la demanda ?
+                                </h2>
+                              </div>
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <h4>
+                                  <a id="linkCerrar" href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                                </h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-body">
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <a href="{{ path('eliminarDemanda', {'idDemanda': entry.id, 'resolve': "si"}) }}">
+                                <button type="button" id="submitForm" class="btn btn-success pull-left">Si</button>
+                              </a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <a href="{{ path('eliminarDemanda', {'idDemanda': entry.id, 'resolve': "no"}) }}">
+                                <button type="button" id="submitForm" class="btn btn-danger pull-right">No</button>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        <br>
+                        <br>
+                      <div class="modal-footer">
+
+                      </div>
+                   </div>
+               </div>
+           </div>
+
+
+      </div>
+  {% endfor %}
+  <div id="paginacion">
+    {% if pagination is defined %}
+      {{ knp_pagination_render(pagination) }}
+    {% endif %}
+  </div>
+
+  {% if  app.request.query.get('mensaje')  %}
+    <div class="modal fade" id="mensajeError" role="dialog">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <h4 class="modal-title">¡Atención!</h4>
+          </div>
+          <div class="modal-body">
+            <p> No se puede añadir, consulte al administrador del sistema. </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-success pull-right" data-dismiss="modal">Cerrar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#search").autocomplete({
+        source: '{{ path("demanda_search") }}',
+        focus: function( event, ui ) {
+                //$( "#search" ).val( ui.item.title ); // uncomment this line if you want to select value to search box
+                return false;
+              },
+        appendTo: '#div',
+        open: function() { $('#div .ui-menu').width(300) },
+            maxShowItems: 0, // Make list height fit to 5 items when items are over 5.
+            select: function( event, ui ) {
+              window.location.href = ui.item.url;;
+            }
+          }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+        var inner_html = '<div class="itemContent"><a id="linkElement" href="' + item.path +  '" ><h4>' + item.title + '</h4><br><div class="row"><div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><img class="img_show" src={{ asset('uploads/brochures/demandas') }}/' + item.image + '/></div><div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><article class="descripcion"><p>' + item.description + '</p></article></div></a></div><hr id="searchSpace">';
+        $('ui-id-1').attr('id', 'newID');
+        return $( "<li></li>" )
+        .data( "item.autocomplete", item )
+        .append(inner_html)
+        .appendTo( ul ).css({'width': $('#search').width(), height: "18%" });
+      };
+    });
+
+  </script>
+
+
+{% endblock %}

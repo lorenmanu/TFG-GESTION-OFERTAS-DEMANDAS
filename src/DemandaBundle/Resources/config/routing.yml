@@ -1,3 +1,38 @@
-demanda_homepage:
-    path:     /
-    defaults: { _controller: DemandaBundle:Default:index }
+
+addDemanda:
+    path:     /addDemanda/
+    defaults: { _controller: DemandaBundle:Default:subirDemanda }
+
+mostrarDemandas:
+    path:     /mostrarDemandas/
+    defaults: { _controller: DemandaBundle:Default:mostrarDemandas }
+
+mostrarDemanda:
+    path:     /mostrarDemanda/
+    defaults: { _controller: DemandaBundle:Default:mostrarDemanda }
+
+
+demanda_search:
+    path:     /search_demanda/
+    defaults: { _controller: DemandaBundle:Default:searchDemanda }
+
+send_emailDemanda:
+    path:     /send_email/
+    defaults: { _controller: DemandaBundle:Default:sendEmail }
+
+editDemanda:
+    path:     /editDemanda/
+    defaults: { _controller: DemandaBundle:Default:editDemanda }
+
+eliminarDemanda:
+    path:     /deleteDemanda/
+    defaults: { _controller: DemandaBundle:Default:eliminarDemanda }
+
+
+addOferta:
+    path:     /addDemanda/
+    defaults: { _controller: DemandaBundle:Default:subirDemanda }
+
+sumarVisitas:
+    path:     /sumarVisitas/
+    defaults: { _controller: DemandaBundle:Default:sumarVisitasDemanda }

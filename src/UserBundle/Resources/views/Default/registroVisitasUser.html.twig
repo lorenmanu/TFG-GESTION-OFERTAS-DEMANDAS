@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+
+{% block cuerpo %}
+
+    <div class="jumbotron">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3 id="cabeceraBienvenida"> Registro Visitas Usuario: {{ user.getName() }}</h3>
+          <!-- Button trigger modal -->
+        </div>
+      </div>
+      <div class="row">
+        {% if app.security.getToken().getUser().roles|first == 'ROLE_SUPER_ADMIN' and user.roles|first != 'ROLE_SUPER_ADMIN' %}
+          <div class="col-xs-12 col-sm-7 col-md-6 col-lg-6 text-center">
+            <div class="btn-group btn" style="padding: 0px">
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Seleccione el año para ver el número de visitas. <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  {% for anio in anios  %}
+                    <li><a href="{{ path('registroVisitasUser', {'idAnio': anio.id, 'userId': user.getId() }) }}">Visitas Año {{ anio.getAnio() }}. Total: {{ anio.getVisitas() }} visitas. </a></li>
+                  {% endfor %}
+                </ul>
+             </div>
+          </div>
+          <div class="col-xs-12 col-sm-5 col-md-6 col-lg-6 text-center">
+            <div class="btn btn-group" style="padding: 0px; margin-top: 1%">
+              <a id="linkAdmin" href="{{ path('perfilUser', {'userId': user.getId() }) }}"><button type="button" class="btn btn-primary dropdown-toggle"> Ir al perfil de {{ user.getName() }} </button> </a>
+            </div>
+          </div>
+        {% else %}
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <div class="btn-group btn" style="padding: 0px">
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">Seleccione el año para ver el número de visitas. <span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  {% for anio in anios  %}
+                    <li><a href="{{ path('registroVisitasUser', {'idAnio': anio.id, 'userId': user.getId() }) }}">Visitas Año {{ anio.getAnio() }}. Total: {{ anio.getVisitas() }} visitas. </a></li>
+                  {% endfor %}
+                </ul>
+            </div>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+
+
+
+
+    <!-- Load jQuery from Google's CDN if needed -->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script type="text/javascript">
+      {{ chart(chart, 'mootools')  }}
+    </script>
+
+    <hr>
+
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div  id="linechart"></div>
+    </div>
+
+
+
+
+{% endblock %}

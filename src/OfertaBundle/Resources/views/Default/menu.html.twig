@@ -1,23 +1,55 @@
-{% if areas is defined %}
-	{% for area in areas  %}
-		<ul>
-			<li class="has-sub"> <a href="{{ path('mostrarOfertas', {'area_id': area.id}) }}">{{ area.getNombre() }}</a><ul>
-				{% for rama in area.getRamas()  %}
-					<li class="has-sub"> 
-						<a href="{{ path('mostrarOfertas', { 'area_id': area.id ,'rama_id': rama.id}) }}">{{ rama.getNombre() }}
-						</a>
-						<ul>
-							{% for disciplina in rama.getDisciplinas()  %}
-								<li class="has-sub">
-									<a href="{{ path('mostrarOfertas', {'area_id': area.id,'rama_id': rama.id, 'disciplina_id': disciplina.id}) }}">{{ disciplina.getNombre() }}
-									</a>
-						         </li>
-							{% endfor %}
-						</ul>
-				    </li>
-				{% endfor %}
-			</ul>
-			</li>
-		</ul>
-	{% endfor %}
-{% endif %}
+    <li class="treeview">
+      <a href="#">
+        <i class="fa fa-share"></i> <span>¿ Dónde buscar ?</span>
+        <i class="fa fa-angle-left pull-right"></i>
+      </a>
+      <ul class="treeview-menu">
+        <li class="treeview">
+          <a href="#">
+            <i class="fa fa-list" aria-hidden="true"></i><span>Categorías</span><i class="fa fa-angle-left pull-right"></i>
+          </a>
+          {% if  areas is defined and tipos is defined %}
+            <ul class="treeview-menu">
+              {% for area in areas %}
+                <li id="liArea">
+                  <i class="fa fa-circle-o" id="circleArea"></i>
+                  <a id="enlace" href="{{ path('mostrarOfertas', {'area_id': area.id}) }}"> {{ area.getNombre() }}</a>
+                  <a id="mostrarOpciones"><i id="flecha" class="fa fa-angle-left pull-right"> </i></a>
+                  <ul class="treeview-menu">
+                    {% for rama in area.getRamas()  %}
+                      <li id="liArea">
+                        <i class="fa fa-circle-o" id="circleArea"></i>
+                        <a id="enlace" href="{{ path('mostrarOfertas', { 'area_id': area.id ,'rama_id': rama.id}) }}"> {{ rama.getNombre() }}</a>
+                        {% if rama.getDisciplinas()|length > 0 %}
+                          <a id="mostrarOpciones"><i id="flecha" class="fa fa-angle-left pull-right"> </i></a>
+                        {% else %}
+                          <a id="mostrarOpciones"></a>
+                        {% endif %}
+                        <ul class="treeview-menu">
+                          {% for disciplina in rama.getDisciplinas()  %}
+                            <li id="liArea">
+                              <a href="{{ path('mostrarOfertas', {'area_id': area.id,'rama_id': rama.id, 'disciplina_id': disciplina.id}) }}"><i class="fa fa-circle-o"></i> {{ disciplina.getNombre() }} </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+              {% endfor %}
+            </ul>
+          {% endif %}
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-hand-o-right" aria-hidden="true"></i><span>Tipo</span> <i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="treeview-menu">
+              {% for tipo in tipos %}
+                <li><a href="{{ path('mostrarOfertas', {'tipo': tipo.id}) }}"><i class="fa fa-arrow-right" aria-hidden="true"></i>
+ {{ tipo.getNombre() }} </a></li>
+              {% endfor %}
+            </ul>
+          </li>
+        </li>
+      </ul>
+    </li>

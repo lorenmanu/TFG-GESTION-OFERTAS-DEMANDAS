@@ -16,3 +16,47 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+fos_user_registration_confirmed:
+    pattern: /registration/confirmed
+    defaults: { _controller: UserBundle:Default:indexUser }
+
+deleteUser:
+    path:     /admin/removeUser/
+    defaults: { _controller: UserBundle:Default:removeUser }
+
+editUsers:
+    path:     /admin/editUsers/
+    defaults: { _controller: UserBundle:Default:editUsers }
+
+perfilUser:
+    path:     /admin/perfilUser/
+    defaults: { _controller: UserBundle:Default:perfilUser }
+
+registroVisitasUser:
+    path:     /registroVisitasUsers/
+    defaults: { _controller: UserBundle:Default:registroVisitasUser }
+
+addUser:
+    path:     /addUser/
+    defaults: { _controller: UserBundle:Default:addUser }
+
+select_tipo:
+    path:     /admin/selectTipo/
+    defaults: { _controller: TipoBundle:Default:selectTipo }
+
+select_tipo:
+    path:     /admin/selectTipo/
+    defaults: { _controller: TipoBundle:Default:selectTipo }
+
+registroOfertasDemandas:
+      path:     /registroOfertasDemandas
+      defaults: { _controller: UserBundle:Default:registroOfertasDemandas }
+
+mostrarOfertasUser:
+      path:     /admin/mostrarOfertasUser
+      defaults: { _controller: UserBundle:Default:mostrarOfertasUser }
+
+mostrarDemandasUser:
+      path:     /admin/mostrarDemandasUser
+      defaults: { _controller: UserBundle:Default:mostrarDemandasUser }

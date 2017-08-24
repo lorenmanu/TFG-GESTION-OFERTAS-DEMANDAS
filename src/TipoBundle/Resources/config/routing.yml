@@ -1,0 +1,15 @@
+addTipo:
+    path:     /admin/tipos/addTipo/
+    defaults: { _controller: TipoBundle:Default:addTipo }
+
+editTipo:
+    path:     /admin/tipos/editarTipo/
+    defaults: { _controller: TipoBundle:Default:editarTipo }
+
+select_tipo:
+    path:     /admin/selectTipo/
+    defaults: { _controller: TipoBundle:Default:selectTipo }
+
+deleteTipo:
+    path:     /admin/tipos/deleteTipo/
+    defaults: { _controller:TipoBundle:Default:deleteTipo }

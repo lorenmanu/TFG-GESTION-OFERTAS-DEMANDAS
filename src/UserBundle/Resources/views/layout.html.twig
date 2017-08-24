@@ -1,28 +1,207 @@
-{% extends 'base.html.twig.php' %}
+{% extends 'base.html.twig' %}
+{% block cuerpo %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/modalMostrarOfertas.css') }}" media="all" />
+    <div class="row">
 
-{% block side %}
- 
-    <form action="{{ path("fos_user_security_check") }}" method="post" class="form-signin">
-            <input type="hidden" name="_csrf_token" value="{{ fos_csrf_provider.refreshToken('authenticate') }}" />
-            {% if error %}
-                <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-            {% endif %}
-                <div class="form-group">
-                    <label for="username">{{ 'security.login.username'|trans }}</label>
-                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" />
+        <div class="col-xs-5 col-sm-9 col-md-9 col-lg-9">
+          <h2>LOGIN</h2>
+        </div>
+        <div class="col-xs-7 col-sm-3 col-md-3 col-lg-3">
+          <button type="button" class="btn-link" data-toggle="modal" data-target="#modalIntro">
+            <h3>Información</h3>
+          </button>
+        </div>
+
+    </div>
+    <div class="row">
+      <hr>
+      <div class="col-sm-12">
+      {% if error %}
+        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+      {% endif %}
+
+          <form class="form-signin form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+            <div class="form-group">
+              <label for="username" class="col-sm-2 control-label" >Usuario:</label>
+              <div class="col-xs-12 col-sm-8 col-md-8">
+                <input type="email" id="username" name="_username" value="{{ last_username }}" class="form-control" required="required" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="col-sm-2 control-label" >Clave:</label>
+              <div class="col-xs-12 col-sm-8 col-md-8">
+                <input type="password" id="password" name="_password" required="required" class="form-control" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password" class="col-sm-2 control-label" >Recordar</label>
+              <div class="col-xs-12 col-sm-6 col-md-8">
+                    <input type="checkbox" value="remember-me" />
                 </div>
-                <div class="form-group">
-                    <label for="password">{{ 'security.login.password'|trans }}</label>
-                    <input type="password" id="password" name="_password" required="required" />
-                </div>
-                <div class="form-group">
-                    <label id="remLabel" for="remember_me">Remember me</label>
-                    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
-                </div>
-                <input type="submit" id="_submit" name="_submit" value="Login" />
-                <a id="link_help" href="{{ path('fos_user_registration_register') }}">Register</a> 
-                <a id="link_help" href="{{ path('fos_user_change_password') }}">Forgot Password</a>
-       
-    </form>
+            </div>
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                  <label>
+                    <input type="submit" class="btn btn-lg btn-primary btn-block " id="_submit" name="_submit" value="Login" />
+                  </label>
+               </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <a id="link_help" href="/app_dev.php/register">Register</a>
+              </div>
+            </div>
+
+
+        </form>
+      </div>
+
+
+
+
+
+
+    </div>
+
+  </div>
+
+  <div class="modal fade modal-fullscreen footer-to-bottom" id="modalIntro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+      <div class="modal-header">
+        <div class="panel panel-default" id="modalCabecera">
+          <div class="panel-heading">
+            <div class="row">
+              <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                <h2>
+                  Información del sistema
+                </h2>
+              </div>
+              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                <h4>
+                  <a id="linkCerrar" href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                </h4>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-body">
+
+        <div class="container-fluid text-center">
+          <br>
+          <div class="row">
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+              <h3> Ofertas </h3>
+            </div>
+
+            <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+              <h3> <span class="glyphicon glyphicon-import" aria-hidden="true"></span> </h3>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+              <div class="well">
+                <p>
+                  Aquí podrá indicar que tiene una herramienta y la ofrece para
+                  que los usuarios del sistema la puedan usar si lo precisan.
+                  Para añadir una nueva oferta, deberá rellenar un formulario indicando:
+                  el nombre de la oferta, descripción, condiciones, fecha de inicio, fecha fin, contacto, una imagen,
+                  el area, rama y disciplina al cual pertenecen y por último el tipo que es.
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+          <hr>
+
+          <div class="row">
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+              <h3> Demandas </h3>
+            </div>
+
+            <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+              <h3> <span class=" glyphicon glyphicon-export" aria-hidden="true"></span> </h3>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+              <div class="well">
+              <p>
+                Aquí podrá indicar que solicita una herramienta y quiere
+                que los usuarios del sistema le ayuden a encontrarla si pueden.
+                Para añadir una nueva demanda, al igual que con la oferta, deberá rellenar un formulario indicando:
+                el nombre de la demanda ,descripción, condiciones, fecha de inicio, fecha fin, contacto, una imagen,
+                el area, rama y disciplina al cual pertenecen  y por último el tipo que es.
+              </p>
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="row">
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+              <h3> Busqueda </h3>
+            </div>
+
+            <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+              <h3> <span class="glyphicon glyphicon-search" aria-hidden="true"></span> </h3>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+              <div class="well">
+                <p>
+                  Se proporciona un sistema de búsqueda, el cual permitirá buscar ofertas y demandas según su tipo,
+                  área, rama y disciplina al cual pertenece, además de palabras clave en el campo descripción.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        <hr>
+
+          <div class="row">
+            <div class="col-xs-6 col-sm-2 col-md-2 col-lg-2">
+              <h3> Areas </h3>
+            </div>
+
+            <div class="col-xs-6 col-sm-1 col-md-1 col-lg-1">
+              <h3> <span class="glyphicon glyphicon-th-list" aria-hidden="true"></span> </h3>
+            </div>
+
+            <div class="col-xs-12 col-sm-6 col-md-8 col-lg-8">
+              <div class="well">
+                <p>
+                Cada oferta o demanda pertenecerá a una área, rama y disciplina. Esto permitirá filtrar los resultados de las búsquedas en base a
+                 estos criterios.
+                </p>
+              </div>
+            </div>
+          </div>
+
+
+        <hr>
+
+
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <div class="container-fluid">
+          <button type="button" class="btn btn-primary btn-lg pull-right" data-dismiss="modal" >Cerrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
 
 {% endblock %}

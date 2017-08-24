@@ -2,6 +2,15 @@ addRama:
     path:     /ramas/addRama/
     defaults: { _controller: RamaBundle:Default:addRama }
 
-mostrarRamas:
-    path:     /ramas/mostrarRamas/
-    defaults: { _controller: RamaBundle:Default:mostrarRamas }
+
+editRama:
+    path:     /ramas/editarRama/
+    defaults: { _controller: RamaBundle:Default:editarRama }
+
+select_rama:
+    path:     /selectRama/
+    defaults: { _controller: RamaBundle:Default:selectRama }
+
+deleteRama:
+    path:     /ramas/deleteRama/
+    defaults: { _controller:RamaBundle:Default:deleteRama }

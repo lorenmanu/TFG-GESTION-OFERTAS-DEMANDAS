@@ -1,7 +1,12 @@
 # This file is auto-generated during the composer install
 parameters:
-    mailer_user: lorenrr1@gmail.com
-    mailer_password: 75139515Xlrr
-    database_url: ~
-    monolog_action_level: error
+    database_driver: pdo_pgsql
+    database_host: ec2-54-163-227-202.compute-1.amazonaws.com
+    database_port: 5432
+    database_name: dfc9mmob5velaq
+    database_memory: true
+    database_user: '%database.user%'
+    database_password: '%database.password%'
     secret: ThisTokenIsNotSoSecretChangeIt
+    mailer_user: lorenrr1@gmail.com
+    mailer_password: 653057946 75139515Xlrr

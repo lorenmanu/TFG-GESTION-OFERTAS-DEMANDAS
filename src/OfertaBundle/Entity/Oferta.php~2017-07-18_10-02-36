@@ -1,0 +1,640 @@
+<?php
+
+namespace OfertaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Oferta
+ *
+ * @ORM\Table(name="Oferta")
+ * @ORM\Entity
+ */
+class Oferta
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
+     */
+    private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autor", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $autor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condiciones", type="text", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $condiciones;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaInicio", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $fechaInicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaFin", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $fechaFin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contacto", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $contacto;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="brochure", type="string", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $brochure;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="visitas", type="integer", precision=0, scale=0, nullable=true, unique=false)
+     */
+    private $visitas;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="ComentarioBundle\Entity\Comentario", inversedBy="")
+     * @ORM\JoinTable(name="oferta_comentario",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE")
+     *   }
+     * )
+     */
+    private $comentarios;
+
+    /**
+     * @var \AreaBundle\Entity\Area
+     *
+     * @ORM\ManyToOne(targetEntity="AreaBundle\Entity\Area", inversedBy="ofertas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="area_id", referencedColumnName="id")
+     * })
+     */
+    private $area;
+
+    /**
+     * @var \RamaBundle\Entity\Rama
+     *
+     * @ORM\ManyToOne(targetEntity="RamaBundle\Entity\Rama", inversedBy="ofertas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="rama_id", referencedColumnName="id")
+     * })
+     */
+    private $rama;
+
+    /**
+     * @var \DisciplinaBundle\Entity\Disciplina
+     *
+     * @ORM\ManyToOne(targetEntity="DisciplinaBundle\Entity\Disciplina", inversedBy="ofertas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="disciplina_id", referencedColumnName="id")
+     * })
+     */
+    private $disciplina;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="VisitasAnioBundle\Entity\VisitasAnio")
+     * @ORM\JoinTable(name="oferta_visitasanio",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="visitasanio_id", referencedColumnName="id", unique=true, nullable=false)
+     *   }
+     * )
+     */
+    private $visitasAnio;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="VisitasMesBundle\Entity\VisitasMes")
+     * @ORM\JoinTable(name="oferta_visitasmes",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="visitasmes_id", referencedColumnName="id", unique=true, nullable=false)
+     *   }
+     * )
+     */
+    private $visitasMes;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="VisitasDiaBundle\Entity\VisitasDia")
+     * @ORM\JoinTable(name="oferta_visitasdia",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="visitasdia_id", referencedColumnName="id", unique=true, nullable=false)
+     *   }
+     * )
+     */
+    private $visitasDia;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->visitasAnio = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->visitasMes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->visitasDia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Oferta
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set autor
+     *
+     * @param string $autor
+     *
+     * @return Oferta
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor
+     *
+     * @return string
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     *
+     * @return Oferta
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set condiciones
+     *
+     * @param string $condiciones
+     *
+     * @return Oferta
+     */
+    public function setCondiciones($condiciones)
+    {
+        $this->condiciones = $condiciones;
+
+        return $this;
+    }
+
+    /**
+     * Get condiciones
+     *
+     * @return string
+     */
+    public function getCondiciones()
+    {
+        return $this->condiciones;
+    }
+
+    /**
+     * Set fechaInicio
+     *
+     * @param \DateTime $fechaInicio
+     *
+     * @return Oferta
+     */
+    public function setFechaInicio($fechaInicio)
+    {
+        $this->fechaInicio = $fechaInicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaInicio
+     *
+     * @return \DateTime
+     */
+    public function getFechaInicio()
+    {
+        return $this->fechaInicio;
+    }
+
+    /**
+     * Set fechaFin
+     *
+     * @param \DateTime $fechaFin
+     *
+     * @return Oferta
+     */
+    public function setFechaFin($fechaFin)
+    {
+        $this->fechaFin = $fechaFin;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaFin
+     *
+     * @return \DateTime
+     */
+    public function getFechaFin()
+    {
+        return $this->fechaFin;
+    }
+
+    /**
+     * Set contacto
+     *
+     * @param string $contacto
+     *
+     * @return Oferta
+     */
+    public function setContacto($contacto)
+    {
+        $this->contacto = $contacto;
+
+        return $this;
+    }
+
+    /**
+     * Get contacto
+     *
+     * @return string
+     */
+    public function getContacto()
+    {
+        return $this->contacto;
+    }
+
+    /**
+     * Set brochure
+     *
+     * @param string $brochure
+     *
+     * @return Oferta
+     */
+    public function setBrochure($brochure)
+    {
+        $this->brochure = $brochure;
+
+        return $this;
+    }
+
+    /**
+     * Get brochure
+     *
+     * @return string
+     */
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
+
+    /**
+     * Set visitas
+     *
+     * @param integer $visitas
+     *
+     * @return Oferta
+     */
+    public function setVisitas($visitas)
+    {
+        $this->visitas = $visitas;
+
+        return $this;
+    }
+
+    /**
+     * Get visitas
+     *
+     * @return integer
+     */
+    public function getVisitas()
+    {
+        return $this->visitas;
+    }
+
+    /**
+     * Add comentario
+     *
+     * @param \ComentarioBundle\Entity\Comentario $comentario
+     *
+     * @return Oferta
+     */
+    public function addComentario(\ComentarioBundle\Entity\Comentario $comentario)
+    {
+        $this->comentarios[] = $comentario;
+
+        return $this;
+    }
+
+    /**
+     * Remove comentario
+     *
+     * @param \ComentarioBundle\Entity\Comentario $comentario
+     */
+    public function removeComentario(\ComentarioBundle\Entity\Comentario $comentario)
+    {
+        $this->comentarios->removeElement($comentario);
+    }
+
+    /**
+     * Get comentarios
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+
+    /**
+     * Set area
+     *
+     * @param \AreaBundle\Entity\Area $area
+     *
+     * @return Oferta
+     */
+    public function setArea($area)
+    {
+        if( !($area instanceof \Doctrine\Common\Collections\ArrayCollection) ){
+            $this->area = $area;
+        }
+        else{
+              $this->area = $area->get(0);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get area
+     *
+     * @return \AreaBundle\Entity\Area
+     */
+    public function getArea()
+    {
+        return $this->area;
+    }
+
+    /**
+     * Set rama
+     *
+     * @param \RamaBundle\Entity\Rama $rama
+     *
+     * @return Oferta
+     */
+    public function setRama($rama = null)
+    {
+        if( !($rama instanceof \Doctrine\Common\Collections\ArrayCollection) ){
+            $this->rama = $rama;
+        }
+        else{
+              $this->rama = $rama->get(0);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Get rama
+     *
+     * @return \RamaBundle\Entity\Rama
+     */
+    public function getRama()
+    {
+        return $this->rama;
+    }
+
+    /**
+     * Set disciplina
+     *
+     * @param \DisciplinaBundle\Entity\Disciplina $disciplina
+     *
+     * @return Oferta
+     */
+    public function setDisciplina($disciplina = null)
+    {
+        if( +
+
+            !($disciplina instanceof\Doctrine\Common\Collections\ArrayCollection) ){
+            $this->disciplina = $disciplina;
+        }
+        else{
+              $this->disciplina = $disciplina->get(0);
+        }
+        return $this;
+    }
+
+
+    /**
+     * Get disciplina
+     *
+     * @return \DisciplinaBundle\Entity\Disciplina
+     */
+    public function getDisciplina()
+    {
+        return $this->disciplina;
+    }
+
+    /**
+     * Add visitasAnio
+     *
+     * @param \VisitasAnioBundle\Entity\VisitasAnio $visitasAnio
+     *
+     * @return Oferta
+     */
+    public function addVisitasAnio(\VisitasAnioBundle\Entity\VisitasAnio $visitasAnio)
+    {
+        $this->visitasAnio[] = $visitasAnio;
+
+        return $this;
+    }
+
+    /**
+     * Remove visitasAnio
+     *
+     * @param \VisitasAnioBundle\Entity\VisitasAnio $visitasAnio
+     */
+    public function removeVisitasAnio(\VisitasAnioBundle\Entity\VisitasAnio $visitasAnio)
+    {
+        $this->visitasAnio->removeElement($visitasAnio);
+    }
+
+    /**
+     * Get visitasAnio
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVisitasAnio()
+    {
+        return $this->visitasAnio;
+    }
+
+    /**
+     * Add visitasMe
+     *
+     * @param \VisitasMesBundle\Entity\VisitasMes $visitasMe
+     *
+     * @return Oferta
+     */
+    public function addVisitasMe(\VisitasMesBundle\Entity\VisitasMes $visitasMe)
+    {
+        $this->visitasMes[] = $visitasMe;
+
+        return $this;
+    }
+
+    /**
+     * Remove visitasMe
+     *
+     * @param \VisitasMesBundle\Entity\VisitasMes $visitasMe
+     */
+    public function removeVisitasMe(\VisitasMesBundle\Entity\VisitasMes $visitasMe)
+    {
+        $this->visitasMes->removeElement($visitasMe);
+    }
+
+    /**
+     * Get visitasMes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVisitasMes()
+    {
+        return $this->visitasMes;
+    }
+
+    /**
+     * Add visitasDium
+     *
+     * @param \VisitasDiaBundle\Entity\VisitasDia $visitasDium
+     *
+     * @return Oferta
+     */
+    public function addVisitasDium(\VisitasDiaBundle\Entity\VisitasDia $visitasDium)
+    {
+        $this->visitasDia[] = $visitasDium;
+
+        return $this;
+    }
+
+    /**
+     * Remove visitasDium
+     *
+     * @param \VisitasDiaBundle\Entity\VisitasDia $visitasDium
+     */
+    public function removeVisitasDium(\VisitasDiaBundle\Entity\VisitasDia $visitasDium)
+    {
+        $this->visitasDia->removeElement($visitasDium);
+    }
+
+    /**
+     * Get visitasDia
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getVisitasDia()
+    {
+        return $this->visitasDia;
+    }
+}
+

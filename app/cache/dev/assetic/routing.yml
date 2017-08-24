@@ -1,0 +1,5 @@
+_assetic:
+    resource: .
+    type: assetic
+_app:
+    resource: /home/ubuntu/Escritorio/todo/TFG-LRR2/app/config/routing_dev.yml

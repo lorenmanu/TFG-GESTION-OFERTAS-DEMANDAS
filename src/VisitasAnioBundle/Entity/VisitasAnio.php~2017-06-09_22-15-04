@@ -1,0 +1,66 @@
+<?php
+
+namespace VisitasAnioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * VisitasAnio
+ *
+ * @ORM\Table(name="VisitasAnio")
+ * @ORM\Entity
+ */
+class VisitasAnio
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="anio", type="integer", nullable=false, unique=false)
+     */
+    private $anio;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set anio
+     *
+     * @param integer $anio
+     *
+     * @return VisitasAnio
+     */
+    public function setAnio($anio)
+    {
+        $this->anio = $anio;
+
+        return $this;
+    }
+
+    /**
+     * Get anio
+     *
+     * @return integer
+     */
+    public function getAnio()
+    {
+        return $this->anio;
+    }
+}
+

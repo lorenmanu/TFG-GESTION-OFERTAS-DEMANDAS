@@ -1,0 +1,3 @@
+visitas_mes_homepage:
+    path:     /
+    defaults: { _controller: VisitasMesBundle:Default:index }

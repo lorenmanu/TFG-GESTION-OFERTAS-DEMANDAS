@@ -1,56 +1,5 @@
-
-{% trans_default_domain 'UserBundle' %}
-{% extends 'base.html.twig.php' %}
-
-{% block side -%}
-                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-                                Bienvenido {{ app.user.username }} 
-                            {% else %}
+{% extends "@FOSUser/layout.html.twig" %}
 
 {% block fos_user_content %}
-<form action="{{ path("fos_user_registration_register") }}" {{ form_enctype(form) }} method="POST" class="form-horizontal fos_user_registration_register" role="form">
-    {{ form_errors(form) }}
-    <div class="form-group{% if form.email.vars.errors[0].message is defined %} has-error{% endif %}">
-        {{ form_label(form.email) }}
-            {{ form_widget(form.email) }}
-            {% if form.email.vars.errors[0].message is defined %}
-            <span class="help-block">
-                {{ form.email.vars.errors[0].message }}
-            </span>
-            {% endif %}
-    </div>
-    <div class="form-group{% if form.username.vars.errors[0].message is defined %} has-error{% endif %}">
-        {{ form_label(form.username) }}
-            {{ form_widget(form.username) }}
-            {% if form.username.vars.errors[0].message is defined %}
-            <span class="help-block">
-                {{ form.username.vars.errors[0].message }}
-            </span>
-            {% endif %}
-    </div>
-    <div class="form-group{% if form.plainPassword.first.vars.errors[0].message is defined %} has-error{% endif %}">
-        {{ form_label(form.plainPassword.first) }}
-            {{ form_widget(form.plainPassword.first) }}
-            {% if form.plainPassword.first.vars.errors[0].message is defined %}
-            <span class="help-block">
-                {{ form.plainPassword.first.vars.errors[0].message }}
-            </span>
-            {% endif %}
-    </div>
-    <div class="form-group{% if form.plainPassword.second.vars.errors[0].message is defined %} has-error{% endif %}">
-        {{ form_label(form.plainPassword.second) }}
-            {{ form_widget(form.plainPassword.second) }}
-            {% if form.plainPassword.second.vars.errors[0].message is defined %}
-            <span class="help-block">
-                {{ form.plainPassword.second.vars.errors[0].message }}
-            </span>
-            {% endif %}
-    </div>
-    <input type="submit" class="login login-submit" id="_submit" name="_submit" value="Registrar" />
-    <a id="link_help" href="/app_dev.php/login">Login</a>
-{{ form_end(form) }}
+{% include "@FOSUser/Registration/register_content.html.twig" %}
 {% endblock fos_user_content %}
-
-
-                            {% endif %}
-{% endblock %}

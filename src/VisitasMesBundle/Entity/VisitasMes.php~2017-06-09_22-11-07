@@ -1,0 +1,66 @@
+<?php
+
+namespace VisitasMesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * VisitasMes
+ *
+ * @ORM\Table(name="VisitasMes")
+ * @ORM\Entity
+ */
+class VisitasMes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mes", type="integer", nullable=false, unique=false)
+     */
+    private $mes;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set mes
+     *
+     * @param integer $mes
+     *
+     * @return VisitasMes
+     */
+    public function setMes($mes)
+    {
+        $this->mes = $mes;
+
+        return $this;
+    }
+
+    /**
+     * Get mes
+     *
+     * @return integer
+     */
+    public function getMes()
+    {
+        return $this->mes;
+    }
+}
+

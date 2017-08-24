@@ -29,8 +29,8 @@ class ComentarioType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-        ->add('contenido','text')
-        ->add('saveAndAdd','submit');
+        ->add('contenido','text',array('label' => 'Escribir Comentario', 'attr' => array('float' => 'left')))
+        ->add('saveAndAdd','submit',array('label' => 'Añadir', 'attr' => array('class' => 'btn btn-success')));
 
         // Añadimos un EventListener que actualizará el campo state
         // para que sus opciones correspondan

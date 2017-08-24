@@ -1,0 +1,100 @@
+{% trans_default_domain 'UserBundle' %}
+{% extends 'base.html.twig' %}
+{% block cuerpo %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<script src="{{ asset('js/validarCorreo.js') }}" type='text/javascript'></script>
+
+
+    <h2>REGISTRAR</h2>
+    <hr>
+
+    <div class="row">
+      <div class="col-sm-12">
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+        Bienvenido {{ app.user.username }}
+    {% else %}
+    {% block fos_user_content %}
+        <form class="form-signin form-horizontal" action="{{ path("addUser") }}" {{ form_enctype(form) }} method="POST" class="form-horizontal fos_user_registration_register" role="form" onsubmit="return validarCorreo()">
+
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label" >Usuario:</label>
+                    <div class="col-xs-12 col-sm-6 col-md-8">
+                        {{ form_widget(form.username, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    {% if form.username.vars.errors[1].message is defined %}
+                        <span class="help-block">
+                            {{ form.username.vars.errors[1].message|trans  }}
+                        </span>
+                    {% endif %}
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label" >Email:</label>
+                    <div class="col-xs-12 col-sm-6 col-md-8">
+                        {{ form_widget(form.email, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    <span class="help-block" id="errorEmail">
+                    {% if form.email.vars.errors[1].message is defined %}
+                            {{ form.email.vars.errors[1].message|trans  }}
+                    {% endif %}
+                    </span>
+                </div>
+
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label" >Contraseña:</label>
+                    <div class="col-xs-12 col-sm-6 col-md-8">
+                        {{ form_widget(form.plainPassword.first, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    {% if form.plainPassword.first.vars.errors[0].message is defined %}
+                        <span class="help-block">
+                            {{ form.plainPassword.first.vars.errors[0].message|trans  }}
+                        </span>
+                    {% endif %}
+                </div>
+
+
+                <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label" > Repite contraseña:</label>
+                    <div class="col-xs-12 col-sm-6 col-md-8">
+                        {{ form_widget(form.plainPassword.second, { 'attr': {'class': 'form-control'} }) }}
+                    </div>
+                    {% if form.plainPassword.second.vars.errors[0].message is defined %}
+                        <span class="help-block">
+                            {{ form.plainPassword.second.errors[0].message|trans }}
+                        </span>
+                    {% endif %}
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <label>
+                            <input type="submit" class="btn btn-lg btn-primary btn-block" id="_submit" name="_submit" value="Registrar" />
+                        </label>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                    <a id="link_help" href="/app_dev.php/login">Login</a>
+                </div>
+                </div>
+
+
+                {{ form_end(form) }}
+                {{ form_end(form) }}
+    {% endblock fos_user_content %}
+
+        </div>
+
+  </div>
+
+
+    {% endif %}
+   </div>
+  </div>
+  {% endblock %}

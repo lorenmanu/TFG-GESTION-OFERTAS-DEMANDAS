@@ -1,45 +1,47 @@
-{% extends 'base.html.twig.php' %}
+{% extends 'base.html.twig' %}
+{% block cuerpo %}
 
-{% block stylesheets %}
-    <link href="{{ asset('css/ui-lightness/jquery-ui-1.8.16.custom.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/uploadify/uploadify.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/jcrop/jquery.Jcrop.css') }}" rel="stylesheet" />
-    <link href="{{ asset('css/tokeninput/token-input-facebook.css') }}" rel="stylesheet" />
-{% endblock %}
-
-{% block javascripts %}
-    <script src="{{ asset('js/jquery-1.7.min.js') }}"></script>
-    <script src="{{ asset('js/jquery-ui-1.8.16.custom.min.js') }}"></script>
-    <script src="{{ asset('tinymce/tiny_mce.js') }}"></script>
-    <script src="{{ asset('js/i18n/jquery-ui-i18n.js') }}"></script>
-
-    <script src="{{ asset('js/uploadify/jquery.uploadify.v2.1.4.min.js') }}"></script>
-    <script src="{{ asset('js/uploadify/swfobject.js') }}"></script>
-
-    <script src="{{ asset('js/jquery.Jcrop.min.js') }}"></script>
-
-    <script src="{{ asset('js/jquery/jquery.tokeninput.js') }}"></script> <!-- You have to apply the fix https://github.com/loopj/jquery-tokeninput/pull/172/files for tokeninput to get it work!! -->
-
-{% endblock %}
-
-{% block side %}
-
-        <p> Editar areas </p>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-8">
+          <h2>
+            Añadir Area
+          </h2>
+        </div>
+        <div class="col-xs-6 col-md-4">
+          <a class="col-xs-6" href="{{ path('editarMenu') }}" >
+            <button class="btn btn-danger pull-right" type="button" id="btn_atras"><i class="icon-white icon-remove"></i>
+                <i class="fa fa-reply"></i>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+      <div class="panel-body">
 
         {% form_theme form 'bootstrap_3_layout.html.twig' %}
 
            {{ form_start(form, {'action': path('addArea'), 'method': 'POST'}) }}
 
-           {{ form_label(form.nombre) }}
-           {{ form_widget(form.nombre, { 'attr': {'class': 'nombre'} }) }}
+              <br>
+              <div class="form-group">
+                {{ form_label(form.nombre) }}
+                {{ form_widget(form.nombre) }}
+              <div>
 
-           {{ form_label(form.ramas) }}
-           {{ form_widget(form.ramas, { 'separator': '=====' }) }}
+              <br>
+              <div class="form-group">
+                {{ form_label(form.ramas) }}
+                <br>
+                {{ form_widget(form.ramas, { 'attr': {'class': 'selectpicker','data-live-search': 'true'} }) }}
+              </div>
 
-
-
-           {{ form_widget(form) }}
-           {{ form_errors(form) }}
+              <br>
+              <div class="form-group">
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+              </div>
 
 
 
@@ -48,6 +50,8 @@
 
 
 
+     </div>
+    </div>
+  </div>
 
-
-  {% endblock %}
+{% endblock %}

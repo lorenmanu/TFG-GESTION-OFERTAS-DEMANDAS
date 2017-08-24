@@ -1,62 +1,106 @@
-{% extends 'base.html.twig.php' %}
-{% block side %}
+{% extends 'portadaOferta.html.twig' %}
 
-        {% form_theme formOferta 'bootstrap_3_layout.html.twig' %}
-            {{ form_errors(formOferta.nombre) }}
+{% block cuerpo %}
 
-           {{ form_start(formOferta, {'action': path('addOferta'), 'method': 'POST', 'multipart': 'true'}) }}
 
-           {{ form_label(formOferta.nombre) }}
-           {{ form_widget(formOferta.nombre, { 'attr': {'class': 'nombre'} }) }}
+        <div class="panel panel-default">
+          <div class="panel-heading"><h1>Añadir Oferta</h1></div>
+          <div class="panel-body">
+            {% form_theme formOferta 'bootstrap_3_layout.html.twig' %}
 
-           {{ form_errors(formOferta.descripcion) }}
-           {{ form_label(formOferta.descripcion) }}
-           {{ form_widget(formOferta.descripcion, { 'attr': {'class': 'descripcion'} }) }}
+              {{ form_start(formOferta, {'action': path('addOferta'), 'method': 'POST', 'multipart': 'true'}) }}
 
-           {{ form_label(formOferta.condiciones) }}
-           {{ form_widget(formOferta.condiciones, { 'attr': {'class': 'condiciones'} }) }}
+              <div class="form-group">
+                {{ form_label(formOferta.nombre) }}
+                {{ form_errors(formOferta.nombre) }}
+                {{ form_widget(formOferta.nombre, { 'attr': {'class': 'nombre'} }) }}
+              </div>
 
-           {{ form_label(formOferta.fechaInicio) }}
-           {{ form_widget(formOferta.fechaInicio, { 'attr': {'class': 'datepicker'} }) }}
+              <div class="form-group">
+                {{ form_label(formOferta.descripcion) }}
+                {{ form_errors(formOferta.descripcion) }}
+                {{ form_widget(formOferta.descripcion, { 'attr': {'class': 'descripcion'} }) }}
+              </div>
 
-           {{ form_label(formOferta.fechaFin) }}
-           {{ form_widget(formOferta.fechaFin, { 'attr': {'class': 'datepicker'} }) }}
+              <div class="form-group">
+                {{ form_label(formOferta.condiciones) }}
+                {{ form_errors(formOferta.condiciones) }}
+                {{ form_widget(formOferta.condiciones, { 'attr': {'class': 'condiciones'} }) }}
+              </div>
 
-           {{ form_errors(formOferta.contacto) }}
-           {{ form_label(formOferta.contacto) }}
-           {{ form_widget(formOferta.contacto, { 'attr': {'class': 'contacto'} }) }}
+              <div class='col-md-6'>
+                <div class="form-group">
+                  {{ form_label(formOferta.fechaInicio) }}
+                  {{ form_widget(formOferta.fechaInicio, { 'attr': {'class': 'datepicker'} }) }}
+                </div>
+              </div>
 
-           <div>
-              {{ form_label(formOferta.brochure) }}
-              {{ form_widget(formOferta.brochure, { 'attr': {'class': 'file2'} }) }}
-            </div>
-           
-           {% block area %}
+              <div class='col-md-6'>
+                <div class="form-group">
+                  {{ form_label(formOferta.fechaFin) }}
+                  {{ form_widget(formOferta.fechaFin, { 'attr': {'class': 'datepicker'} }) }}
+                </div>
+              </div>
 
-           {% endblock %}
-           {{ form_label(formOferta.area) }}
-           {{ form_widget(formOferta.area) }}
-           {{ form_label(formOferta.rama) }}
-           {{ form_widget(formOferta.rama) }}
-           {{ form_label(formOferta.disciplina) }}
-           {{ form_widget(formOferta.disciplina) }}
-           {{ form_end(formOferta) }}
+              <div class="form-group">
+                {{ form_errors(formOferta.contacto) }}
+                {{ form_label(formOferta.contacto) }}
+                {{ form_widget(formOferta.contacto, { 'attr': {'class': 'contacto'} }) }}
+              </div>
 
-  
-          <script>
-              $("#form_area").change(function() {
+              <div class="form-group">
+                {{ form_label(formOferta.brochure) }}
+                {{ form_widget(formOferta.brochure, { 'attr': {'class': 'file2'} }) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(formOferta.area) }}
+                {{ form_errors(formOferta.area) }}
+                {{ form_widget(formOferta.area, { 'attr': {'data-max-options': '1'} }) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(formOferta.rama) }}
+                {{ form_errors(formOferta.rama) }}
+                {{ form_widget(formOferta.rama, { 'attr': {'data-max-options': '1'} }) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(formOferta.disciplina) }}
+                {{ form_errors(formOferta.disciplina) }}
+                {{ form_widget(formOferta.disciplina, { 'attr': {'data-max-options': '1'} }) }}
+              </div>
+
+             <div class="form-group">
+                {{ form_label(formOferta.tipo) }}
+                {{ form_errors(formOferta.tipo) }}
+                {{ form_widget(formOferta.tipo, { 'attr': {'data-max-options': '1'} }) }}
+              </div>
+
+              <br>
+              <br>
+
+              {{ form_end(formOferta) }}
+
+              <br>
+              <br>
+              <br>
+              <br>
+
+
+              <script>
+                $("#form_area").change(function() {
                   var data = {
                     area_id: $(this).val()
                   };
-                  alert(data[0])
                   $.ajax({
                       type: 'post',
-                      url: '{{ path("select_ramas") }}',
+                      url: '{{ path("select_rama") }}',
                       data: data,
                       success: function(data,url) {
                           var $rama_selector = $('#form_rama');
-                          alert(data);
-
+                          var $disciplina_selector = $('#form_disciplina');
+                          $disciplina_selector.html('<option value= > </option>');
                           $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
                           for (var i = 2, total = data.length; i < total;) {
                               $rama_selector.append('<option value="' + data[i] + '">' + data[i+1] + '</option>');
@@ -65,21 +109,17 @@
 
                       }
                   });
-              });
-          </script>
-          <script>
-          $("#form_rama").change(function() {
-              var data = {
-                rama_id: $(this).val()
-              };
-              alert(data[0])
-              $.ajax({
+                });
+                $("#form_rama").change(function() {
+                var data = {
+                  rama_id: $(this).val()
+                };
+                $.ajax({
                   type: 'post',
-                  url: '{{ path("select_disciplinas") }}',
+                  url: '{{ path("select_disciplina") }}',
                   data: data,
                   success: function(data,url) {
                       var $rama_selector = $('#form_disciplina');
-                      alert(data);
 
                       $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
                       for (var i = 2, total = data.length; i < total;) {
@@ -87,11 +127,22 @@
                           i=i+2;
                       }
                   }
+                });
               });
-          });
-      </script>
 
+              var $disciplina_selector = $('#form_disciplina');
+              $disciplina_selector.html('<option value= > </option>');
+            </script>
 
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
 
- 
-  {% endblock %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+            <script src="{{ asset('js/selectFecha.js') }}"></script>
+
+        </div>
+      </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    registro_visitas_demanda.example:
+#        class: RegistroVisitasDemandaBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

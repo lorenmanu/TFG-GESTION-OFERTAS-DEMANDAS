@@ -1,16 +1,19 @@
 <?php
 
 namespace OfertaBundle\Entity;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Oferta
  *
- * @ORM\Table(name="oferta")
+ * @ORM\Table(name="Oferta")
  * @ORM\Entity
+ * @UniqueEntity(
+*     fields="nombre",
+*     message="El nombre ya existe."
+* )
  */
 class Oferta
 {
@@ -27,10 +30,15 @@ class Oferta
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
-     * @Assert\Length(min="5", minMessage="El nombre tirne que tener como minimo 5 caracteres-")
-     * @Assert\Length(max="10", maxMessage="El nombre tiene que tener como max10 caracteres-")
      */
     private $nombre;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="autor", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $autor;
 
     /**
      * @var string
@@ -64,27 +72,15 @@ class Oferta
      * @var string
      *
      * @ORM\Column(name="contacto", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
-     * @Assert\Email(
-     *     message = "El correo no es valido"
-     * )
      */
     private $contacto;
 
-
     /**
-     * @ORM\Column(type="string")
+     * @var string
      *
-     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
-     * @Assert\File(mimeTypes={ "image/jpeg" })
+     * @ORM\Column(name="brochure", type="string", precision=0, scale=0, nullable=false, unique=false)
      */
     private $brochure;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="visitas", type="integer", precision=0, scale=0, nullable=false, unique=false)
-     */
-    private $visitas;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -95,7 +91,7 @@ class Oferta
      *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE")
+     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE",unique=true)
      *   }
      * )
      */
@@ -104,7 +100,7 @@ class Oferta
     /**
      * @var \AreaBundle\Entity\Area
      *
-     * @ORM\ManyToOne(targetEntity="AreaBundle\Entity\Area", inversedBy="ofertas")
+     * @ORM\ManyToOne(targetEntity="AreaBundle\Entity\Area")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="area_id", referencedColumnName="id")
      * })
@@ -114,7 +110,7 @@ class Oferta
     /**
      * @var \RamaBundle\Entity\Rama
      *
-     * @ORM\ManyToOne(targetEntity="RamaBundle\Entity\Rama", inversedBy="ofertas")
+     * @ORM\ManyToOne(targetEntity="RamaBundle\Entity\Rama")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="rama_id", referencedColumnName="id")
      * })
@@ -124,7 +120,7 @@ class Oferta
     /**
      * @var \DisciplinaBundle\Entity\Disciplina
      *
-     * @ORM\ManyToOne(targetEntity="DisciplinaBundle\Entity\Disciplina", inversedBy="ofertas")
+     * @ORM\ManyToOne(targetEntity="DisciplinaBundle\Entity\Disciplina")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="disciplina_id", referencedColumnName="id")
      * })
@@ -132,12 +128,21 @@ class Oferta
     private $disciplina;
 
     /**
+     * @var \TipoBundle\Entity\Tipo
+     *
+     * @ORM\ManyToOne(targetEntity="TipoBundle\Entity\Tipo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_id", referencedColumnName="id")
+     * })
+     */
+    private $tipo;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->visitas = 0;
     }
 
     /**
@@ -172,6 +177,30 @@ class Oferta
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+    /**
+     * Set autor
+     *
+     * @param string $autor
+     *
+     * @return Oferta
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor
+     *
+     * @return string
+     */
+    public function getAutor()
+    {
+        return $this->autor;
     }
 
     /**
@@ -319,30 +348,6 @@ class Oferta
     }
 
     /**
-     * Set visitas
-     *
-     * @param integer $visitas
-     *
-     * @return Oferta
-     */
-    public function setVisitas($visitas)
-    {
-        $this->visitas = $visitas;
-
-        return $this;
-    }
-
-    /**
-     * Get visitas
-     *
-     * @return integer
-     */
-    public function getVisitas()
-    {
-        return $this->visitas;
-    }
-
-    /**
      * Add comentario
      *
      * @param \ComentarioBundle\Entity\Comentario $comentario
@@ -383,9 +388,14 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setArea($areas = null)
+    public function setArea($area)
     {
-        $this->area = $areas->get(0);
+        if( !($area instanceof \Doctrine\Common\Collections\ArrayCollection) ){
+            $this->area = $area;
+        }
+        else{
+              $this->area = $area->get(0);
+        }
 
         return $this;
     }
@@ -397,8 +407,8 @@ class Oferta
      */
     public function getArea()
     {
+
         return $this->area;
-        $array=new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -408,9 +418,14 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setRama($ramas = null)
+    public function setRama($rama = null)
     {
-        $this->rama = $ramas->get(0);
+        if( !($rama instanceof \Doctrine\Common\Collections\ArrayCollection) ){
+            $this->rama = $rama;
+        }
+        else{
+              $this->rama = $rama->get(0);
+        }
 
         return $this;
     }
@@ -422,7 +437,7 @@ class Oferta
      */
     public function getRama()
     {
-        return $this->rama;
+      return $this->rama;
     }
 
     /**
@@ -432,10 +447,16 @@ class Oferta
      *
      * @return Oferta
      */
-    public function setDisciplina($disciplinas = null)
+    public function setDisciplina($disciplina = null)
     {
-        $this->disciplina = $disciplinas->get(0);
+        if( +
 
+            !($disciplina instanceof\Doctrine\Common\Collections\ArrayCollection) ){
+            $this->disciplina = $disciplina;
+        }
+        else{
+              $this->disciplina = $disciplina->get(0);
+        }
         return $this;
     }
 
@@ -446,10 +467,31 @@ class Oferta
      */
     public function getDisciplina()
     {
-        return $this->disciplina;
+
+      return $this->disciplina;
     }
-    public function __toString(){
-      return $this->getNombre();
+
+
+    public function setTipo($tipo = null)
+    {
+        if( +
+
+            !($tipo instanceof\Doctrine\Common\Collections\ArrayCollection) ){
+            $this->tipo = $tipo;
+        }
+        else{
+              $this->tipo = $tipo->get(0);
+        }
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return \TipoBundle\Entity\Tipo
+     */
+    public function getTipo()
+    {
+      return $this->tipo;
     }
 }
-

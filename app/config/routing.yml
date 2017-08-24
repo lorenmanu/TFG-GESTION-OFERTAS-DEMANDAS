@@ -1,15 +1,66 @@
-
 homepage:
-    pattern:   /
-    defaults:  { _controller: FOSUserBundle:Security:login }
-    
-user:
-    resource: "@UserBundle/Resources/config/routing.yml"
+    path: /
+    defaults: { _controller: UserBundle:Default:indexUser }
+
+registro_visitas_demanda:
+    resource: "@RegistroVisitasDemandaBundle/Controller/"
+    type:     annotation
     prefix:   /
+
+demanda:
+    resource: "@DemandaBundle/Resources/config/routing.yml"
+    prefix:   /demandas
+
+
+palabras_clave_oferta:
+    resource: "@PalabrasClaveOfertaBundle/Resources/config/routing.yml"
+    prefix:   /palabrasClaveOferta
+
+palabras_clave_demanda:
+    resource: "@PalabrasClaveDemandaBundle/Resources/config/routing.yml"
+    prefix:   /palabrasClaveDemanda
 
 comentario:
     resource: "@ComentarioBundle/Resources/config/routing.yml"
     prefix:   /
+
+tipo:
+    resource: "@TipoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+
+registro_visitas_oferta:
+    resource: "@RegistroVisitasOfertaBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+registro_visitas_usuario:
+    resource: "@RegistroVisitasUsuarioBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+registro_ofertas_demandas:
+    resource: "@RegistroOfertasDemandasBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+visitas_anio:
+    resource: "@VisitasAnioBundle/Resources/config/routing.yml"
+    prefix:   /
+
+visitas_mes:
+    resource: "@VisitasMesBundle/Resources/config/routing.yml"
+    prefix:   /
+
+visitas_dia:
+    resource: "@VisitasDiaBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+    requirements:
+        _locale:  en|es
 
 disciplina:
     resource: "@DisciplinaBundle/Resources/config/routing.yml"
@@ -23,19 +74,6 @@ area:
     resource: "@AreaBundle/Resources/config/routing.yml"
     prefix:   /
 
-demanda:
-    resource: "@DemandaBundle/Resources/config/routing.yml"
-    prefix:   /
-
 oferta:
     resource: "@OfertaBundle/Resources/config/routing.yml"
-    prefix:   /
-
-admin:
-    resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
-    prefix: /admin
-
-_sonata_admin:
-    resource: .
-    type: sonata_admin
-    prefix: /admin
+    prefix:   /ofertas

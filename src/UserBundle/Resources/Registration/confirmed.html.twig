@@ -1,0 +1,10 @@
+{% trans_default_domain 'UserBundle' %}
+{% extends 'base.html.twig.php' %}
+
+{% block side -%}
+{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            					Bienvenido {{ app.user.username }} 
+{% else %}
+	Necesita loguearse 
+{% endif %}
+{% endblock %}

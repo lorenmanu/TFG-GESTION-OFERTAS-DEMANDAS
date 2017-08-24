@@ -1,0 +1,218 @@
+{% extends 'portadaDemanda.html.twig' %}
+
+{% block cuerpo %}
+
+        <div class="row">
+
+            <div class="col-md-3">
+                <div class="list-group">
+                    <h3><small> Nombre Demanda: {{ demanda.getNombre() }} </small></h3>
+                    {% if app.security.getToken().getUser().roles|first == 'ROLE_SUPER_ADMIN' or app.security.getToken().getUser().getUsername()  == demanda.getAutor() %}
+                        <br>
+                        <hr>
+                        {% if app.security.getToken().getUser().getUsername()  == demanda.getAutor() %}
+                            <h3><small> Demanda de tu propiedad </small></h3>
+                        {% endif %}
+                        {% if app.security.getToken().getUser().roles|first  == 'ROLE_SUPER_ADMIN' %}
+                            <h3><small> Administrador del sistema </small></h3>
+                        {% endif %}
+                        <a id="linkAdmin" href="{{ path('editDemanda', {'idDemanda': demanda.id}) }}" class="list-group-item" >Editar</a>
+                        <a id="linkAdmin" data-toggle="modal"  data-target="#isResolve_dialog" class="list-group-item" >Eliminar</a>
+                        <br>
+                        <hr>
+                    {% else %}
+                      <hr>
+                        <h3><small> Demanda de {{ demanda.getAutor() }} </small></h3>
+                        <button type="button" class="btn btn-info btnContactar" data-toggle="modal" data-target="#contact_dialogAutor">Contactar</button>
+                      <hr>
+                    {% endif %}
+                    <ul class="list-group ulInfo">
+                      <li class="list-group-item list-group-item-success liInfo">Fecha Inicio: {{ demanda.fechaInicio|date('Y-m-d') }}</li>
+                      <li class="list-group-item list-group-item-info liInfo">Fecha Fin: {{ demanda.fechaFin|date('Y-m-d') }}</li>
+                    </ul>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+
+                <div class="thumbnail">
+                    <div class="row">
+                      <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4">
+                        <img class="imgItemPerfil" src="{{ asset('uploads/brochures/demandas') }}/{{ demanda.getBrochure() }}" alt="Example" />
+                      </div>
+                      <div class="col-xs-6 col-sm-8 col-md-8 col-lg-8">
+
+                        <article class="descripcionItem">
+                          <p>
+                            {{ demanda.getDescripcion() }}  {{ demanda.getId() }}
+                            </p>
+                         </article>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                      <div class="btn-group" style="padding: 0px; margin-top: 1%">
+                        <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Seleccione el año para ver el número de visitas. <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                          {% for anio in anios  %}
+                            <li><a href="{{ path('mostrarDemanda', {'idAnio': anio.id, 'idDemanda': demanda.getId() }) }}">Visitas Año {{ anio.getAnio() }}. Total: {{ anio.getVisitas() }} visitas. </a></li>
+                          {% endfor %}
+                        </ul>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <div class="row">
+                      <!-- Load jQuery from Google's CDN if needed -->
+                      <script src="https://code.highcharts.com/stock/highstock.src.js"></script>
+                      <script src="https://code.highcharts.com/modules/drilldown.src.js"></script>
+                      <script type="text/javascript">
+                        {{ chart(ob, 'mootools')  }}
+                      </script>
+
+                      <hr>
+
+                      <div class="col-md-12">
+                        <div  id="linechart" style="margin: 4px"></div>
+                      </div>
+                      <hr>
+
+
+                  </div>
+
+                </div>
+
+                <div class="well">
+
+                    <div class="text-right">
+                      {% if formComment is defined %}
+                        {% form_theme formComment 'bootstrap_3_layout.html.twig' %}
+
+                        {{ form_start(formComment, {method: 'POST'}) }}
+
+                        {{ form_widget(formComment) }}
+                        {{ form_errors(formComment) }}
+                        {{ form_end(formComment) }}
+                      {% endif %}
+
+                    </div>
+
+                    <hr>
+
+                    {% for comentario in demanda.getComentarios()  %}
+                      <div class="row">
+                        <div class="col-md-12">
+                            {{ comentario.getAutor() }}
+                            <span class="pull-right">{{ comentario.getFecha()|date('Y-m-d') }}</span>
+                            <p>{{ comentario.getContenido() }}</p>
+                            {% if app.security.getToken().getUser().roles|first == 'ROLE_SUPER_ADMIN' or app.security.getToken().getUser().getUsername()  == Demanda.getAutor() %}
+                              <button class="btn btn-danger pull-right" data-title="Delete" data-toggle="modal" data-target="#delete" ><span class="glyphicon glyphicon-trash"></span></button>
+                            {% endif %}
+                        </div>
+
+                        <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
+                           <div class="modal-dialog">
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                   <h4 class="modal-title custom_align" id="Heading">Eliminar comentario.</h4>
+                                </div>
+                               <div class="modal-body">
+                                 <div class="alert alert-danger">
+                                   <span class="glyphicon glyphicon-warning-sign">
+                                   </span> ¿ Desea eliminar el comentario ?</div>
+                                 </div>
+                                 <div class="modal-footer ">
+                                   <a href="{{ path('eliminarComentario', {'idComentario': comentario.id, 'tipoItem': 'Demanda', 'idItem': demanda.id }) }}" > <button type="button" class="btn btn-success" ><span class="glyphicon glyphicon-ok-sign"></span> Si </button></a>
+                                   <button type="button" class="btn btn-danger" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> No</button>
+                                 </div>
+                               </div>
+                             <!-- /.modal-content -->
+                           </div>
+                           <!-- /.modal-dialog -->
+                         </div>
+
+
+                      </div>
+                      <hr>
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- the div that represents the modal dialog -->
+          <div class="modal fade" id="contact_dialogAutor" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Escribe el mensaje.</h4>
+                    </div>
+
+                    <div class="modal-body">
+
+                        {% if formContactAutor is defined %}
+                            {% form_theme formContactAutor 'bootstrap_3_layout.html.twig' %}
+
+                            {{ form_start(formContactAutor, {'action': path('mostrarDemanda', {'id': demanda.id}), 'method': 'POST'}) }}
+
+                            {{ form_label(formContactAutor.mensaje) }}
+                            {{ form_widget(formContactAutor.mensaje) }}
+                            <br>
+                            {{ form_end(formContactAutor) }}
+                            <br>
+                        {% endif %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+          </div>
+
+
+        <!-- the div that represents the modal dialog -->
+        <div class="modal fade" id="isResolve_dialog" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title" style="text-align:center;">¿Se ha resuelto?</h4>
+                    </div>
+                    <div class="modal-body">
+                      <br>
+                      <br>
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <a href="{{ path('eliminarDemanda', {'idDemanda': demanda.id, 'resolve': "si"}) }}">
+                              <button type="button" id="submitForm" class="btn btn-success pull-left">Si</button>
+                            </a>
+                          </div>
+                          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                            <a href="{{ path('eliminarDemanda', {'idDemanda': demanda.id, 'resolve': "no"}) }}">
+                              <button type="button" id="submitForm" class="btn btn-danger pull-right">No</button>
+                            </a>
+                          </div>
+                       </div>
+                      </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="modal-footer">
+
+                    </div>
+               </div>
+           </div>
+       </div>
+
+
+  {% endblock %}

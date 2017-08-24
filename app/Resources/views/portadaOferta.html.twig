@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block menuLateral %}
+  <li class="header">OFERTAS</li>
+    <li class="treeview">
+      <a href="{{ path('mostrarOfertas', {'limpiarCriteriosBusquedas': "si"}) }}">
+        <i class="fa fa-th"></i>
+        <span>Mostrar todas las ofertas</span>
+      </a>
+    </li>
+    <li class="treeview">
+      <a href="{{ path('addOferta') }}">
+		<i class="fa fa-plus" aria-hidden="true"></i>
+        <span>Añadir Oferta</span>
+      </a>
+    </li>
+
+    {{ render(controller('OfertaBundle:Default:menu')) }}
+
+  </li>
+{% endblock %}

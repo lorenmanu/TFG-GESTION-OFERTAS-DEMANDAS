@@ -1,0 +1,106 @@
+<?php
+
+namespace VisitasMesBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * VisitasMes
+ *
+ * @ORM\Table(name="VisitasMes")
+ * @ORM\Entity
+ */
+class VisitasMes
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="mes", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $mes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="visitas", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $visitas;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->visitasDia = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set mes
+     *
+     * @param integer $mes
+     *
+     * @return VisitasMes
+     */
+    public function setMes($mes)
+    {
+        $this->mes = $mes;
+
+        return $this;
+    }
+
+    /**
+     * Get mes
+     *
+     * @return integer
+     */
+    public function getMes()
+    {
+        return $this->mes;
+    }
+
+    /**
+     * Set visitas
+     *
+     * @param integer $visitas
+     *
+     * @return VisitasMes
+     */
+    public function setVisitas($visitas)
+    {
+        $this->visitas = $visitas;
+
+        return $this;
+    }
+
+    /**
+     * Get visitas
+     *
+     * @return integer
+     */
+    public function getVisitas()
+    {
+        return $this->visitas;
+    }
+
+}
+

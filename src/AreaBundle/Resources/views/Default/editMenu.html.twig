@@ -1,68 +1,203 @@
-{% extends 'base.html.twig.php' %}
+{% extends 'base.html.twig' %}
+{% block cuerpo %}
+
+  {% if mensaje is defined %}
+    <script>
+      // This would automatically run when page loads.
+      $( document ).ready(function() {
+        $("#mensajeError").modal('show');
+      });
+    </script>
+  {% endif %}
+
+
+  <div class="row">
+    <div class="col-xs-10 col-sm-6 col-md-8">
+      <h2>
+        Editar Menú
+      </h2>
+    </div>
+    <div class="col-xs-2 col-md-4">
+      <button class="btn btn-info pull-right" type="button" id="btnInfoMenu" data-toggle="modal" data-target="#infMenuDiag"><i class="fa fa-question" aria-hidden="true"></i>
+      </button>
+    </div>
+    <br>
+    <br>
+    <br>
+    <hr id="hrStrong">
+  </div>
+
+    <div class="modal fade modal-diag footer-to-bottom block-center" id="infMenuDiag" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+          <div class="panel panel-default" id="modalCabecera">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <h2>
+                    Información del sistema
+                  </h2>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <h4>
+                    <a id="linkCerrar" href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+
+          <div class="container-fluid text-center">
+            <br>
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <img class="imgExplicacion" src="{{ asset('img/expliaciones/editarMenu.png') }}">
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="well">
+                  <p id="pMenuInf">
+                    Aquí podremos editar el menú que podemos ver en el apartado "¿ Dónde buscar ?" en
+                    la sección "Ofertas" o "Demandas". Para las áreas, ramas y disciplinas se ofrecen las siguientes opciones: <br>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Añadir área/rama/disciplina/tipo: se dirigirá a un formulario con los campos correspondientes para crear el nuevo elemento(área, rama, disciplina o tipo).<br>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Editar área/rama/disciplina/tipo: permite editar un área, rama, disciplina o tipo. Antes se debe seleccionar el elemento que se quiera editar en el menú desplegable.<br>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Elimnar área/rama/disciplina/tipo: elimina el área, rama, disciplina o tipo seleccionado previamente en el menú desplegable.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+
+        <div class="modal-footer">
+          <div class="container-fluid">
+            <button type="button" class="btn btn-primary btn-lg pull-right" data-dismiss="modal" >Cerrar</button>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+   </div>
 
 
 
-{% block side %}
+   <div class="row rowMenu">
+     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 colMenu">
+          <br>
+          <hr class="hrMenu">
+          <h4> Areas </h4>
+          <hr class="hrMenu">
 
-<div class="menu_item">
- <h4 id="categoria"> Areas </h4>
- <form action="/app_dev.php/areas/addArea/">
-    <input type="submit" class="menu-edit-option"  value="Añadir"/>
-</form> 
- <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="menu-edit-option"  value="Editar"/>
-</form>
- <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="menu-edit-option"  value="Eliminar"/>
-</form>
-  <select id="form_area" name="form[area][]" required="required" class="form-control" multiple="multiple">
-    {% for area in areas  %}
-    <option value={{ area.getId() }} >{{ area.getNombre() }}</option>
-    {% endfor %}
-   </select>
+          <ul class="nav nav-pills" style="width: 100%; height: 10%">
+            <li role="presentation" ><a href="{{ path('addArea') }}">Añadir Area</a></li>
+            <li role="presentation" ><a href="{{ path('editArea') }}">Editar Area</a></li>
+            <li id="deleteItem" role="presentation" ><a href="{{ path('deleteArea') }}">Eliminar Area</a></li>
+          </ul>
 
-</div>
+          <select id="form_area_menu" name="form[area][]" required="required" class="form-control" multiple="multiple" style="width: 100%; height: 70%">
+            {% if areas is defined %}
+              {% for area in areas %}
+                <option value={{ area.getId() }} >{{ area.getNombre() }}</option>
+              {% endfor %}
+            {% endif %}
+          </select>
+      </div>
+    </div>
 
-<div class="menu_item">
-<h4 id="categoria"> Ramas </h4>
- <form action="/app_dev.php/ramas/addRama/">
-    <input type="submit" class="menu-edit-option"  value="Añadir"/>
-</form> 
- <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="menu-edit-option"  value="Editar"/>
-</form>
- <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="menu-edit-option"  value="Eliminar"/>
-</form>
-  <select id="form_rama" name="form[rama][]" required="required" class="form-control" multiple="multiple"></select>
-</div>
+    <div class="row rowMenu">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 colMenu">
+          <br>
+          <hr class="hrMenu">
+          <h4> Ramas </h4>
+          <hr class="hrMenu">
+          <ul class="nav nav-pills" style="width: 100%; height: 10%" >
+            <li role="presentation" ><a href="{{ path('addRama') }}">Añadir Rama</a></li>
+            <li role="presentation" ><a href="{{ path('editRama') }}">Editar Rama</a></li>
+            <li id="deleteItem" role="presentation" ><a href="{{ path('deleteRama') }}">Eliminar Rama</a></li>
+          </ul>
 
-<div class="menu_item">
-<h4 id="categoria"> Disciplinas </h4>
- <form action="/app_dev.php/disciplinas/addDisciplina/">
-    <input type="submit" class="menu-edit-option"  value="Añadir"/>
-</form> 
- <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="menu-edit-option"  value="Editar"/>
-</form>
- <form action="/app_dev.php/areas/editarArea/">
-    <input type="submit" class="menu-edit-option"  value="Eliminar"/>
-</form>
-  <select id="form_disciplina" name="form[disciplina][]" required="required" class="form-control" multiple="multiple"></select>
-</div> 
+          <select id="form_rama_menu" name="form[rama][]" required="required" class="form-control" multiple="multiple" style="width: 100%; height: 70%"></select>
+      </div>
+    </div>
 
-          <script>
-              $("#form_area").change(function() {
-                  var data = {
-                    area_id: $(this).val()
-                  };
-                  alert(data[0])
-                  $.ajax({
-                      type: 'post',
-                      url: '{{ path("select_ramas") }}',
-                      data: data,
+    <div class="row rowMenu">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 colMenu">
+          <br>
+          <hr class="hrMenu">
+          <h4 > Disciplinas </h4>
+          <hr class="hrMenu">
+          <ul class="nav nav-pills" style="width: 100%; height: 10%">
+            <li role="presentation" ><a href="{{ path('addDisciplina') }}">Añadir Disciplina</a></li>
+            <li role="presentation" ><a href="{{ path('editDisciplina') }}">Editar Disciplina</a></li>
+            <li id="deleteItem" role="presentation" ><a href="{{ path('deleteDisciplina') }}">Eliminar Disciplina</a></li>
+          </ul>
+
+          <select id="form_disciplina_menu" name="form[disciplina][]" required="required" class="form-control" multiple="multiple" style="width: 100%; height: 70%"></select>
+       </div>
+    </div>
+
+    <div class="row rowMenu">
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 colMenu">
+          <br>
+          <hr class="hrMenu">
+          <h4> Tipos </h4>
+          <hr class="hrMenu">
+          <ul class="nav nav-pills" style="width: 100%; height: 10%">
+            <li role="presentation" ><a href="{{ path('addTipo') }}">Añadir Tipo</a></li>
+            <li role="presentation" ><a href="{{ path('editTipo') }}">Editar Tipo</a></li>
+            <li id="deleteItem" role="presentation" ><a href="{{ path('deleteTipo') }}">Eliminar Tipo</a></li>
+          </ul>
+
+          <select id="form_tipo_menu" name="form[tipo][]" required="required" class="form-control" multiple="multiple" style="width: 100%; height: 70%">
+            {% if  tipos is defined %}
+              {% for tipo in tipos %}
+                <option value={{ tipo.getId() }} >{{ tipo.getNombre() }}</option>
+              {% endfor %}
+            {% endif %}
+          </select>
+      </div>
+    </div>
+
+
+
+
+        {% if mensaje is defined %}
+          <div class="modal fade" id="mensajeError" role="dialog">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  <h4 class="modal-title">¡Atención!</h4>
+                </div>
+                <div class="modal-body">
+                  {% if mensaje is defined %}
+                      <p> {{ mensaje }} </p>
+                  {% endif %}
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-success pull-right" data-dismiss="modal">Cerrar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        {% endif %}
+
+    <script>
+      $("#form_area_menu").change(function() {
+        var data = {
+          area_id: $(this).val()
+        };
+        alert(data[0])
+          $.ajax({
+            type: 'post',
+              url: '{{ path("select_rama") }}',
+                     data: data,
                       success: function(data,url) {
-                          var $rama_selector = $('#form_rama');
+                          var $rama_selector = $('#form_rama_menu');
                           alert(data);
 
                           $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
@@ -74,42 +209,54 @@
                       }
                   });
               });
-          </script>
-          <script>
-          $("#form_rama").change(function() {
-              var data = {
-                rama_id: $(this).val()
-              };
-              alert(data[0])
-              $.ajax({
-                  type: 'post',
-                  url: '{{ path("select_disciplinas") }}',
-                  data: data,
-                  success: function(data,url) {
-                      var $rama_selector = $('#form_disciplina');
-                      alert(data);
 
-                      $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
-                      for (var i = 2, total = data.length; i < total;) {
-                          $rama_selector.append('<option value="' + data[i] + '">' + data[i+1] + '</option>');
-                          i=i+2;
-                      }
-                  }
-              });
-          });
-          $("#form_disciplina").change(function() {
-              var data = {
-                disciplina_id: $(this).val()
-              };
-              alert(data[0])
-              $.ajax({
-                  type: 'post',
-                  url: '{{ path("select_disciplinas") }}',
+        $("#form_rama_menu").change(function() {
+            var data = {
+              rama_id: $(this).val()
+            };
+            alert(data[0])
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_disciplina") }}',
                   data: data,
-                  success: function(data,url) {
-                  }
-              });
+                success: function(data,url) {
+                    var $rama_selector = $('#form_disciplina_menu');
+                    alert(data);
+                    $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
+                    for (var i = 2, total = data.length; i < total;) {
+                       $rama_selector.append('<option value="' + data[i] + '">' + data[i+1] + '</option>');
+                        i=i+2;
+                    }
+                }
+            });
+        });
+        $("#form_disciplina_menu").change(function() {
+            var data = {
+              disciplina_id: $(this).val()
+            };
+            alert(data[0])
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_disciplina") }}',
+                data: data,
+                success: function(data,url) {
+            }
           });
-      </script>
+        });
+        $("#form_tipo_menu").change(function() {
+            var data = {
+              tipo_id: $(this).val()
+            };
+            alert(data[0])
+            $.ajax({
+                type: 'post',
+                url: '{{ path("select_tipo") }}',
+                data: data,
+                success: function(data,url) {
+            }
+          });
+        });
+    </script>
+
 
 {% endblock %}

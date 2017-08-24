@@ -65,7 +65,7 @@ class ChangePasswordController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isValid() && $form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             /** @var $userManager UserManagerInterface */
             $userManager = $this->get('fos_user.user_manager');
 
@@ -82,10 +82,6 @@ class ChangePasswordController extends Controller
             $dispatcher->dispatch(FOSUserEvents::CHANGE_PASSWORD_COMPLETED, new FilterUserResponseEvent($user, $request, $response));
 
             return $response;
-        }
-        else{
-            //dump("controller");
-            //exit;
         }
 
         return $this->render('@FOSUser/ChangePassword/change_password.html.twig', array(

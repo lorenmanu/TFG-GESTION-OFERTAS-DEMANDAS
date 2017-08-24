@@ -1,0 +1,142 @@
+{% extends 'base.html.twig' %}
+
+
+{% block cuerpo %}
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/modalMostrarOfertas.css') }}" media="all" />
+    <div class="jumbotron">
+      <div class="row">
+        <div class="row center-block">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <div class="row">
+              <div class="col-xs-12 col-sm-7 col-md-7 col-lg-7">
+                <h4 id="cabeceraBienvenida">  {{ app.security.getToken().getUser().getUsername() }} </h4>
+              </div>
+              <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5 text-center">
+                <div class="btn-group" style="padding: 0px">
+                  <button type="button" class="btn  btn-primary" data-toggle="modal" data-target="#modalIntro">
+                  ¿ Necesitas ayuda ?
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 text-center">
+            <div class="btn-group" style="padding: 0px; margin-top: 1%">
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">Seleccione el año para ver el número de visitas. <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                {% for anio in anios  %}
+                  <li><a href="{{ path('registroVisitasUser', {'idAnio': anio.id, 'userId':app.security.getToken().getUser().getId() }) }}">Visitas Año {{ anio.getAnio() }}. Total: {{ anio.getVisitas() }} visitas. </a></li>
+                {% endfor %}
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="row">
+          <!-- Load jQuery from Google's CDN if needed -->
+
+          <script src="https://code.highcharts.com/highcharts.js"></script>
+          <script src="https://code.highcharts.com/modules/drilldown.js"></script>
+          <script type="text/javascript">
+            {{ chart(chart, 'mootools')  }}
+          </script>
+          <hr>
+
+          <div class="col-md-12">
+            <div  id="linechart"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="modal fade modal-fullscreen footer-to-bottom" id="modalIntro" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+        <div class="modal-header">
+          <div class="panel panel-default" id="modalCabecera">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                  <h2>
+                    Ayuda Inicial
+                  </h2>
+                </div>
+                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                  <h4>
+                    <a id="linkCerrar" href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+
+          <div class="container-fluid text-center">
+            <br>
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <img class="imgExplicacion" src="{{ asset('img/expliaciones/explicacion_inicio1.png') }}">
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="well">
+                  <p>
+                    El menú de la izquierda es el que se le mostrará en la página de inicio. Las opciones afrecidas son:<br>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Inicio: nos dirigirá a la página de inicio.<br>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Secciones: menú desplegable que nos permitirá ver las ofertas y las demandas.<br>
+                    <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Logout: para cerrar la sesión.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+            <hr>
+
+            <div class="row">
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <img class="imgExplicacion" width="100" height="100" class="imgExplicacion" src="{{ asset('img/expliaciones/explicacion_inicio2.png') }}">
+              </div>
+
+              <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+                <div class="well">
+                  <p> Si pincha en "Secciones/Ofertas" o "Secciones/Demandas", se añadirá las siguientes opciones al menú:<br>
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Mostrar todas las ofertas/demandas: mostrará todas las ofertas sin ningún criterio de búsqueda.<br>
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Añadir Oferta/Demanda: nos dirigirá a un formulario para añadir una oferta o una demanda.<br>
+                  <i class="fa fa-long-arrow-right" aria-hidden="true"></i> ¿Dónde buscar? : permite filtrar las búsquedas según el tipo y el área.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+
+            <hr>
+
+
+          </div>
+
+
+        </div>
+        <div class="modal-footer">
+          <div class="container-fluid">
+            <button type="button" class="btn btn-primary btn-lg pull-right" data-dismiss="modal" >Cerrar</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+   </div>
+
+
+
+
+
+
+
+
+{% endblock %}

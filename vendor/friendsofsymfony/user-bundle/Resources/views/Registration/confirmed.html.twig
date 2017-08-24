@@ -1,10 +1,10 @@
-{% trans_default_domain 'UserBundle' %}
-{% extends 'base.html.twig.php' %}
+{% extends "@FOSUser/layout.html.twig" %}
 
-{% block side -%}
-{% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
-            					Bienvenido {{ app.user.username }} 
-{% else %}
-	Necesita loguearse 
-{% endif %}
-{% endblock %}
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    <p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+    {% if targetUrl %}
+    <p><a href="{{ targetUrl }}">{{ 'registration.back'|trans }}</a></p>
+    {% endif %}
+{% endblock fos_user_content %}

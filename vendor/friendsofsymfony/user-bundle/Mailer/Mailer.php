@@ -85,9 +85,9 @@ class Mailer implements MailerInterface
     }
 
     /**
-     * @param string $renderedTemplate
-     * @param string $fromEmail
-     * @param string $toEmail
+     * @param string       $renderedTemplate
+     * @param array|string $fromEmail
+     * @param array|string $toEmail
      */
     protected function sendEmailMessage($renderedTemplate, $fromEmail, $toEmail)
     {
@@ -96,7 +96,7 @@ class Mailer implements MailerInterface
         $subject = array_shift($renderedLines);
         $body = implode("\n", $renderedLines);
 
-        $message = \Swift_Message::newInstance()
+        $message = (new \Swift_Message())
             ->setSubject($subject)
             ->setFrom($fromEmail)
             ->setTo($toEmail)

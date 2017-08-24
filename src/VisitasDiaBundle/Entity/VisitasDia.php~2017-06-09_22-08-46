@@ -1,0 +1,66 @@
+<?php
+
+namespace VisitasDiaBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * VisitasDia
+ *
+ * @ORM\Table(name="VisitasDia")
+ * @ORM\Entity
+ */
+class VisitasDia
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dia", type="integer", nullable=false, unique=false)
+     */
+    private $dia;
+
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set dia
+     *
+     * @param integer $dia
+     *
+     * @return VisitasDia
+     */
+    public function setDia($dia)
+    {
+        $this->dia = $dia;
+
+        return $this;
+    }
+
+    /**
+     * Get dia
+     *
+     * @return integer
+     */
+    public function getDia()
+    {
+        return $this->dia;
+    }
+}
+

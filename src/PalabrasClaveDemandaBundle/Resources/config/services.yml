@@ -1,0 +1,4 @@
+services:
+#    palabras_clave_demanda.example:
+#        class: PalabrasClaveDemandaBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

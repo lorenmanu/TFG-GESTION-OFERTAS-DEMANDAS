@@ -1,0 +1,204 @@
+{% extends 'base.html.twig' %}
+{% block cuerpo %}
+
+
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <h3 id="cabeceraBienvenida"> Ofertas: {{ user.getName() }}</h3>
+      <!-- Button trigger modal -->
+    </div>
+  </div>
+  <div class="row">
+    {% if app.security.getToken().getUser().roles|first == 'ROLE_SUPER_ADMIN' and user.roles|first != 'ROLE_SUPER_ADMIN' %}
+      <div class="col-xs-9 col-sm-11 col-md-12 col-lg-12">
+        <div class="btn btn-group pull-right" style="padding: 0px; margin-top: 1%">
+          <a id="linkAdmin" href="{{ path('perfilUser', {'userId': user.getId() }) }}"><button type="button" class="btn btn-primary dropdown-toggle"> Ir al perfil de {{ user.getName() }} </button> </a>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+</div>
+
+
+
+
+    {% for entry in pagination  %}
+      <div class="row">
+      <div class="row rowItem">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+              <h3>{{ entry.nombre }}</h3>
+          </div>
+
+          <h4>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> Categoria:
+          {% if entry.area is defined %}
+            {% for area in entry.area %}
+              {% if area is null %}
+              {% else %}
+              {{ area.nombre }}
+              {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% if entry.rama is defined %}
+            {% for rama in entry.rama %}
+              {% if rama is null %}
+              {% else %}
+              {{ rama.nombre }}
+              {% endif %}
+            {% endfor %}
+            {% endif %}
+            {% if entry.disciplina is defined %}
+            {% for disciplina in entry.disciplina %}
+              {% if disciplina is null %}
+              {% else %}
+              {{ disciplina.nombre }}
+              {% endif %}
+            {% endfor %}
+            {% endif %}
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> Tipo:
+            {% if entry.tipo is defined %}
+            {% for tipo in entry.tipo %}
+              {% if tipo is null %}
+              {% else %}
+              {{ tipo.nombre }}
+              {% endif %}
+            {% endfor %}
+            {% endif %}
+          </div>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"> Autor:
+              {{ entry.autor }}
+          </div>
+          </h4>
+      </div>
+
+          <div class="row rowItem">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+              <img class="img_show" src="{{ asset('uploads/brochures/ofertas/') }}{{ entry.getBrochure() }}" alt="" />
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6 divDes">
+              <article class="descripcionItems">
+                <p>
+                  {{ entry.descripcion }}
+                  </p>
+               </article>
+            </div>
+          </div>
+
+          <div class="row rowItem">
+            <div class="col-lg-3 col-md-3 col-sm-4 col-xs-6">
+              <div class="row">
+                <ul class="list-group ulInfo">
+                  <li class="list-group-item list-group-item-success liInfo">Fecha Inicio: {{ entry.fechaInicio|date('Y-m-d') }}</li>
+                  <li class="list-group-item list-group-item-info liInfo">Fecha Fin: {{ entry.fechaFin|date('Y-m-d') }}</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-lg-9 col-md-9 col-sm-8 col-xs-6 divInfoItem1">
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divInfoItem1">
+                  <a class="btnItem btn btn-blog pull-right marginBottom10" href="{{ path('mostrarOferta', {'idOferta': entry.id}) }}" >Ver</a>
+                </div>
+
+                {% if app.security.getToken().getUser().roles|first == 'ROLE_SUPER_ADMIN' or app.security.getToken().getUser().getUsername()  == entry.getAutor() %}
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divInfoItem1">
+                    <a id="linkAdmin" class="btnItem btn btn-blog pull-right marginBottom10" href="{{ path('editOferta', {'idOferta': entry.id}) }}"  >Editar</a>
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divInfoItem1">
+                    <a id="linkAdmin" class="btnItem btn btn-blog pull-right marginBottom10" data-toggle="modal"  data-target="#isResolve_dialog" >Eliminar</a>
+                  </div>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+          <hr>
+
+            <!-- the div that represents the modal dialog -->
+            <div class="modal fade" id="isResolve_dialog" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <div class="panel panel-default" id="modalCabecera">
+                          <div class="panel-heading">
+                            <div class="row">
+                              <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                <h2>
+                                  ¿ Desea eliminar la oferta ?
+                                </h2>
+                              </div>
+                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                <h4>
+                                  <a id="linkCerrar" href="#" data-dismiss="modal" class="class pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                                </h4>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="modal-body">
+                        <br>
+                        <br>
+                        <div class="row">
+                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <a href="{{ path('eliminarOferta', {'idOferta': entry.id, 'resolve': "si"}) }}">
+                                <button type="button" id="submitForm" class="btn btn-success pull-left">Si</button>
+                              </a>
+                            </div>
+                            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                              <a href="{{ path('eliminarOferta', {'idOferta': entry.id, 'resolve': "no"}) }}">
+                                <button type="button" id="submitForm" class="btn btn-danger pull-right">No</button>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                        <br>
+                        <br>
+                      <div class="modal-footer">
+
+                      </div>
+                   </div>
+               </div>
+           </div>
+
+
+      </div>
+  {% endfor %}
+  <div id="paginacion">
+    {% if pagination is defined %}
+      {{ knp_pagination_render(pagination) }}
+    {% endif %}
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $("#search").autocomplete({
+        source: '{{ path("oferta_search") }}',
+        focus: function( event, ui ) {
+                //$( "#search" ).val( ui.item.title ); // uncomment this line if you want to select value to search box
+                return false;
+              },
+        appendTo: '#div',
+        open: function() { $('#div .ui-menu').width(300) },
+            maxShowItems: 0, // Make list height fit to 5 items when items are over 5.
+            select: function( event, ui ) {
+              window.location.href = ui.item.url;;
+            }
+          }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
+        var inner_html = '<div class="itemContent"><a id="linkElement" href="' + item.path +  '" ><h4>' + item.title + '</h4><br><div class="row"><div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><img class="img_show" src={{ asset('uploads/brochures/ofertas') }}/' + item.image + '/></div><div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><article class="descripcion"><p>' + item.description + '</p></article></div></a></div><hr id="searchSpace">';
+        $('ui-id-1').attr('id', 'newID');
+        return $( "<li></li>" )
+        .data( "item.autocomplete", item )
+        .append(inner_html)
+        .appendTo( ul ).css({'width': $('#search').width(), height: "18%" });
+      };
+    });
+
+  </script>
+
+
+{% endblock %}

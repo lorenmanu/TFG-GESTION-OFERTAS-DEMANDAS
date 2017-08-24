@@ -7,6 +7,74 @@ in 2.7 minor versions.
 To get the diff for a specific change, go to https://github.com/symfony/symfony/commit/XXX where XXX is the change hash
 To get the diff between two versions, go to https://github.com/symfony/symfony/compare/v2.7.0...v2.7.1
 
+* 2.7.32 (2017-07-17)
+
+ * security #23507 [Security] validate empty passwords again (xabbuh)
+ * bug #23526 [HttpFoundation] Set meta refresh time to 0 in RedirectResponse content (jnvsor)
+ * bug #23468 [DI] Handle root namespace in service definitions (ro0NL)
+ * bug #23256 [Security] Fix authentication.failure event not dispatched on AccountStatusException (chalasr)
+ * bug #23461 Use rawurlencode() to transform the Cookie into a string (javiereguiluz)
+ * bug #23459 [TwigBundle] allow to configure custom formats in XML configs (xabbuh)
+ * bug #23261 Fixed absolute url generation for query strings and hash urls (alexander-schranz)
+ * bug #23398 [Filesystem] Dont copy perms when origin is remote (nicolas-grekas)
+
+* 2.7.31 (2017-07-05)
+
+ * bug #23378 [FrameworkBundle] Do not remove files from assets dir (1ed)
+
+* 2.7.30 (2017-07-03)
+
+ * bug #23341 [DoctrineBridge][Security][Validator] do not validate empty values (xabbuh)
+ * bug #23274 Display a better error design when the toolbar cannot be displayed (yceruto)
+ * bug #23333 [PropertyAccess] Fix TypeError discard (dunglas)
+ * bug #23345 [Console] fix description of INF default values (xabbuh)
+ * bug #23279 Don't call count on non countable object (pierredup)
+ * bug #23283 [TwigBundle] add back exception check (xabbuh)
+ * bug #23268 Show exception is checked twice in ExceptionController of twig (gmponos)
+ * bug #23266 Display a better error message when the toolbar cannot be displayed (javiereguiluz)
+ * bug #23271 [FrameworkBundle] allow SSI fragments configuration in XML files (xabbuh)
+ * bug #23254 [Form][TwigBridge] render hidden _method field in form_rest() (xabbuh)
+ * bug #23250 [Translation] return fallback locales whenever possible (xabbuh)
+ * bug #22732 [Security] fix switch user _exit without having current token (dmaicher)
+ * bug #22730 [FrameworkBundle] Sessions: configurable "use_strict_mode" option for NativeSessionStorage (MacDada)
+ * bug #23195 [FrameworkBundle] [Command] Clean bundle directory, fixes #23177 (NicolasPion)
+ * bug #23052 [TwigBundle] Add Content-Type header for exception response (rchoquet)
+ * bug #23199 Reset redirectCount when throwing exception (hvanoch)
+ * bug #23186 [TwigBundle] Move template.xml loading to a compiler pass (ogizanagi)
+ * bug #23130 Keep s-maxage when expiry and validation are used in combination (mpdude)
+ * bug #23129 Fix two edge cases in ResponseCacheStrategy (mpdude)
+ * feature #22636 [Routing] Expose request in route conditions, if needed and possible (ro0NL)
+ * bug #22636 [Routing] Expose request in route conditions, if needed and possible (ro0NL)
+ * bug #23057 [Translation][FrameworkBundle] Fix resource loading order inconsistency reported in #23034 (mpdude)
+ * bug #23092 [Filesystem] added workaround in Filesystem::rename for PHP bug (VolCh)
+ * bug #23128 [HttpFoundation] fix for Support for new 7.1 session options (vincentaubert)
+ * bug #23176 [VarDumper] fixes (nicolas-grekas)
+ * bug #23086 [FrameworkBundle] Fix perf issue in CacheClearCommand::warmup() (nicolas-grekas)
+ * bug #23098 Cache ipCheck (2.7) (gonzalovilaseca)
+
+* 2.7.29 (2017-06-07)
+
+ * bug #23069 [SecurityBundle] Show unique Inherited roles in profile panel (yceruto)
+ * bug #23073 [TwigBridge] Fix namespaced classes (ogizanagi)
+ * bug #22936 [Form] Mix attr option between guessed options and user options (yceruto)
+ * bug #23024 [EventDispatcher] Fix ContainerAwareEventDispatcher::hasListeners(null) (nicolas-grekas)
+ * bug #22996 [Form] Fix \IntlDateFormatter timezone parameter usage to bypass PHP bug #66323 (romainneutron)
+ * bug #22994 Harden the debugging of Twig filters and functions (stof)
+
+* 2.7.28 (2017-05-29)
+
+ * bug #22847 [Console] ChoiceQuestion must have choices (ro0NL)
+ * bug #22900 [FrameworkBundle][Console] Fix the override of a command registered by the kernel (aaa2000)
+ * bug #22910 [Filesystem] improve error handling in lock() (xabbuh)
+ * bug #22718 [Console] Fixed different behaviour of key and value user inputs in multiple choice question (borNfreee)
+ * bug #22901 Fix missing abstract key in XmlDumper (weaverryan)
+ * bug #22817 [PhpUnitBridge] optional error handler arguments (xabbuh)
+ * bug #22647 [VarDumper] Fix dumping of non-nested stubs (nicolas-grekas)
+ * bug #22584 [Security] Avoid unnecessary route lookup for empty logout path (ro0NL)
+ * bug #22690 [Console] Fix errors not rethrown even if not handled by console.error listeners (chalasr)
+ * bug #22669 [FrameworkBundle] AbstractConfigCommand: do not try registering bundles twice (ogizanagi)
+ * bug #22676 [FrameworkBundle] Adding the extension XML (flug)
+
 * 2.7.27 (2017-05-01)
 
  * bug #22528 [Asset] Starting slash should indicate no basePath wanted (weaverryan)

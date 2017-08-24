@@ -1,11 +1,15 @@
 addArea:
-    path:     /areas/addArea/
+    path:     /admin/areas/addArea/
     defaults: { _controller:AreaBundle:Default:addArea }
 
 editarMenu:
-    path:     /areas/editarMenu/
+    path:     /admin/areas/editarMenu/
     defaults: { _controller:AreaBundle:Default:editarMenu }
 
-updateArea:
-    path:     /areas/editarArea/
+editArea:
+    path:     /admin/areas/editarArea/
     defaults: { _controller:AreaBundle:Default:editarArea }
+
+deleteArea:
+    path:     /admin/areas/deleteArea/
+    defaults: { _controller:AreaBundle:Default:deleteArea }

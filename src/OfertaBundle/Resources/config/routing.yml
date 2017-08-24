@@ -7,21 +7,9 @@ mostrarOfertas:
     path:     /mostrarOfertas/
     defaults: { _controller: OfertaBundle:Default:mostrarOfertas }
 
-showOferta:
-    path:     /showOferta/
-    defaults: { _controller: OfertaBundle:Default:showOferta }
-
-deleteComment:
-    path:     /deleteComment/
-    defaults: { _controller: OfertaBundle:Default:deleteComment }
-
-select_ramas:
-    path:     /selectRamas/
-    defaults: { _controller: OfertaBundle:Default:selectRamas }
-
-select_disciplinas:
-    path:     /selectDisciplinas/
-    defaults: { _controller: OfertaBundle:Default:selectDisciplinas }
+mostrarOferta:
+    path:     /mostrarOferta/
+    defaults: { _controller: OfertaBundle:Default:mostrarOferta }
 
 oferta_lista:
     path:     /area_lista/
@@ -31,11 +19,7 @@ oferta_search:
     path:     /search_oferta/
     defaults: { _controller: OfertaBundle:Default:searchOferta }
 
-oferta_search:
-    path:     /search_oferta/
-    defaults: { _controller: OfertaBundle:Default:searchOferta }
-
-send_email:
+send_emailOferta:
     path:     /send_email/
     defaults: { _controller: OfertaBundle:Default:sendEmail }
 
@@ -43,12 +27,15 @@ editOferta:
     path:     /editOferta/
     defaults: { _controller: OfertaBundle:Default:editOferta }
 
-deleteOferta:
+eliminarOferta:
     path:     /deleteOferta/
-    defaults: { _controller: OfertaBundle:Default:deleteOferta }
+    defaults: { _controller: OfertaBundle:Default:eliminarOferta }
 
 
-grafica_ofertas:
-    path:     /grafica_ofertas/
-    defaults: { _controller: OfertaBundle:Default:chart }
+addOferta:
+    path:     /addOferta/
+    defaults: { _controller: OfertaBundle:Default:subirOferta }
 
+sumarVisitas:
+    path:     /sumarVisitas/
+    defaults: { _controller: OfertaBundle:Default:sumarVisitasOferta }

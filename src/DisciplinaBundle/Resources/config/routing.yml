@@ -2,6 +2,14 @@ addDisciplina:
     path:     /disciplinas/addDisciplina/
     defaults: { _controller: DisciplinaBundle:Default:addDisciplina }
 
-mostrarDisciplinas:
-    path:     /disciplinas/mostrarDisciplinas/
-    defaults: { _controller: DisciplinaBundle:Default:mostrarDisciplinas }
+editDisciplina:
+    path:     /disciplinas/editarDisciplina/
+    defaults: { _controller: DisciplinaBundle:Default:editarDisciplina }
+
+select_disciplina:
+    path:     /selectDisciplina/
+    defaults: { _controller: DisciplinaBundle:Default:selectDisciplina }
+
+deleteDisciplina:
+    path:     /areas/deleteDisciplina/
+    defaults: { _controller:DisciplinaBundle:Default:deleteDisciplina }

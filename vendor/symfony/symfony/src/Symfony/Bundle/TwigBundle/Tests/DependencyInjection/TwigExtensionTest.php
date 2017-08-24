@@ -66,7 +66,7 @@ class TwigExtensionTest extends TestCase
         $container->loadFromExtension('twig', array());
         $this->compileContainer($container);
 
-        $this->assertEquals('Twig_Environment', $container->getParameter('twig.class'), '->load() loads the twig.xml file');
+        $this->assertEquals('Twig\Environment', $container->getParameter('twig.class'), '->load() loads the twig.xml file');
 
         $this->assertContains('form_div_layout.html.twig', $container->getParameter('twig.form.resources'), '->load() includes default template for form resources');
 
@@ -87,7 +87,7 @@ class TwigExtensionTest extends TestCase
         $this->loadFromFile($container, 'full', $format);
         $this->compileContainer($container);
 
-        $this->assertEquals('Twig_Environment', $container->getParameter('twig.class'), '->load() loads the twig.xml file');
+        $this->assertEquals('Twig\Environment', $container->getParameter('twig.class'), '->load() loads the twig.xml file');
 
         // Form resources
         $resources = $container->getParameter('twig.form.resources');
@@ -150,6 +150,26 @@ class TwigExtensionTest extends TestCase
         $this->assertEquals('name', $options['autoescape']);
     }
 
+    /**
+     * @dataProvider getFormats
+     */
+    public function testLoadCustomDateFormats($fileFormat)
+    {
+        $container = $this->createContainer();
+        $container->registerExtension(new TwigExtension());
+        $this->loadFromFile($container, 'formats', $fileFormat);
+        $this->compileContainer($container);
+
+        $environmentConfigurator = $container->getDefinition('twig.configurator.environment');
+
+        $this->assertSame('Y-m-d', $environmentConfigurator->getArgument(0));
+        $this->assertSame('%d', $environmentConfigurator->getArgument(1));
+        $this->assertSame('Europe/Berlin', $environmentConfigurator->getArgument(2));
+        $this->assertSame(2, $environmentConfigurator->getArgument(3));
+        $this->assertSame(',', $environmentConfigurator->getArgument(4));
+        $this->assertSame('.', $environmentConfigurator->getArgument(5));
+    }
+
     public function testGlobalsWithDifferentTypesAndValues()
     {
         $globals = array(
@@ -170,9 +190,10 @@ class TwigExtensionTest extends TestCase
 
         $calls = $container->getDefinition('twig')->getMethodCalls();
         foreach (array_slice($calls, 1) as $call) {
-            list($name, $value) = each($globals);
-            $this->assertEquals($name, $call[1][0]);
-            $this->assertSame($value, $call[1][1]);
+            $this->assertEquals(key($globals), $call[1][0]);
+            $this->assertSame(current($globals), $call[1][1]);
+
+            next($globals);
         }
     }
 

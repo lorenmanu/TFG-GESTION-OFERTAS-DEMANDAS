@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block cuerpo %}
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <div class="row">
+        <div class="col-xs-6 col-sm-6 col-md-8">
+          <h2>
+            Editar Tipo
+          </h2>
+        </div>
+        <div class="col-xs-6 col-md-4">
+          <a class="col-xs-6" href="{{ path('editarMenu') }}" >
+            <button class="btn btn-danger pull-right" type="button" id="btn_atras"><i class="icon-white icon-remove"></i>
+                <i class="fa fa-reply"></i> 
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+      <div class="panel-body">
+
+        {% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+           {{ form_start(form, {'action': path('editTipo'), 'method': 'POST'}) }}
+
+              <br>
+              <div class="form-group">
+                {{ form_label(form.nombre) }}
+                {{ form_widget(form.nombre) }}
+              <div>
+
+              <br>
+
+              <br>
+              <div class="form-group">
+                {{ form_widget(form) }}
+                {{ form_errors(form) }}
+              </div>
+
+
+
+           {{ form_rest(form) }}
+           {{ form_end(form) }}
+
+
+
+     </div>      
+    </div>
+  </div>
+
+{% endblock %}

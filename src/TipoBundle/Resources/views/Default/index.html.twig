@@ -1,0 +1,9 @@
+{% extends 'base.html.twig.php' %}
+
+{% block side %}
+                {% for disciplina in disciplinas  %}
+                  <p id="nombre"> {{ disciplina.getNombre() }} </p>
+                {% endfor %}
+
+
+{% endblock %}

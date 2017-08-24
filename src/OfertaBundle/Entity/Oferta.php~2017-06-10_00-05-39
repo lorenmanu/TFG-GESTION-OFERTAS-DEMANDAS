@@ -1,0 +1,485 @@
+<?php
+
+namespace OfertaBundle\Entity;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Oferta
+ *
+ * @ORM\Table(name="oferta")
+ * @ORM\Entity
+ */
+class Oferta
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
+     * @Assert\Length(min="5", minMessage="El nombre tirne que tener como minimo 5 caracteres-")
+     * @Assert\Length(max="10", maxMessage="El nombre tiene que tener como max10 caracteres-")
+     */
+    private $nombre;
+
+        /**
+     * @var string
+     *
+     * @ORM\Column(name="autor", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $autor;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="descripcion", type="text", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $descripcion;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="condiciones", type="text", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $condiciones;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaInicio", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $fechaInicio;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaFin", type="datetime", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $fechaFin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="contacto", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
+     * @Assert\Email(
+     *     message = "El correo no es valido"
+     * )
+     */
+    private $contacto;
+
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/jpeg","image/png" })
+     */
+    private $brochure;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="visitas", type="integer", precision=0, scale=0, nullable=false, unique=false)
+     */
+    private $visitas;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="ComentarioBundle\Entity\Comentario", inversedBy="")
+     * @ORM\JoinTable(name="oferta_comentario",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="oferta_id", referencedColumnName="id", onDelete="CASCADE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE")
+     *   }
+     * )
+     */
+    private $comentarios;
+
+    /**
+     * @var \AreaBundle\Entity\Area
+     *
+     * @ORM\ManyToOne(targetEntity="AreaBundle\Entity\Area", inversedBy="ofertas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="area_id", referencedColumnName="id")
+     * })
+     */
+    private $area;
+
+    /**
+     * @var \RamaBundle\Entity\Rama
+     *
+     * @ORM\ManyToOne(targetEntity="RamaBundle\Entity\Rama", inversedBy="ofertas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="rama_id", referencedColumnName="id")
+     * })
+     */
+    private $rama;
+
+    /**
+     * @var \DisciplinaBundle\Entity\Disciplina
+     *
+     * @ORM\ManyToOne(targetEntity="DisciplinaBundle\Entity\Disciplina", inversedBy="ofertas")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="disciplina_id", referencedColumnName="id")
+     * })
+     */
+    private $disciplina;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->visitas = 0;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set nombre
+     *
+     * @param string $nombre
+     *
+     * @return Oferta
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+
+        return $this;
+    }
+
+    /**
+     * Get nombre
+     *
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * Set descripcion
+     *
+     * @param string $descripcion
+     *
+     * @return Oferta
+     */
+    public function setDescripcion($descripcion)
+    {
+        $this->descripcion = $descripcion;
+
+        return $this;
+    }
+
+    /**
+     * Get descripcion
+     *
+     * @return string
+     */
+    public function getDescripcion()
+    {
+        return $this->descripcion;
+    }
+
+    /**
+     * Set condiciones
+     *
+     * @param string $condiciones
+     *
+     * @return Oferta
+     */
+    public function setCondiciones($condiciones)
+    {
+        $this->condiciones = $condiciones;
+
+        return $this;
+    }
+
+    /**
+     * Get condiciones
+     *
+     * @return string
+     */
+    public function getCondiciones()
+    {
+        return $this->condiciones;
+    }
+
+    /**
+     * Set fechaInicio
+     *
+     * @param \DateTime $fechaInicio
+     *
+     * @return Oferta
+     */
+    public function setFechaInicio($fechaInicio)
+    {
+        $this->fechaInicio = $fechaInicio;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaInicio
+     *
+     * @return \DateTime
+     */
+    public function getFechaInicio()
+    {
+        return $this->fechaInicio;
+    }
+
+    /**
+     * Set fechaFin
+     *
+     * @param \DateTime $fechaFin
+     *
+     * @return Oferta
+     */
+    public function setFechaFin($fechaFin)
+    {
+        $this->fechaFin = $fechaFin;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaFin
+     *
+     * @return \DateTime
+     */
+    public function getFechaFin()
+    {
+        return $this->fechaFin;
+    }
+
+    /**
+     * Set contacto
+     *
+     * @param string $contacto
+     *
+     * @return Oferta
+     */
+    public function setContacto($contacto)
+    {
+        $this->contacto = $contacto;
+
+        return $this;
+    }
+
+    /**
+     * Get contacto
+     *
+     * @return string
+     */
+    public function getContacto()
+    {
+        return $this->contacto;
+    }
+
+    /**
+     * Set brochure
+     *
+     * @param string $brochure
+     *
+     * @return Oferta
+     */
+    public function setBrochure($brochure)
+    {
+        $this->brochure = $brochure;
+
+        return $this;
+    }
+
+    /**
+     * Get brochure
+     *
+     * @return string
+     */
+    public function getBrochure()
+    {
+        return $this->brochure;
+    }
+
+    /**
+     * Set visitas
+     *
+     * @param integer $visitas
+     *
+     * @return Oferta
+     */
+    public function setVisitas($visitas)
+    {
+        $this->visitas = $visitas;
+
+        return $this;
+    }
+
+    /**
+     * Get visitas
+     *
+     * @return integer
+     */
+    public function getVisitas()
+    {
+        return $this->visitas;
+    }
+
+    /**
+     * Add comentario
+     *
+     * @param \ComentarioBundle\Entity\Comentario $comentario
+     *
+     * @return Oferta
+     */
+    public function addComentario(\ComentarioBundle\Entity\Comentario $comentario)
+    {
+        $this->comentarios[] = $comentario;
+
+        return $this;
+    }
+
+    /**
+     * Remove comentario
+     *
+     * @param \ComentarioBundle\Entity\Comentario $comentario
+     */
+    public function removeComentario(\ComentarioBundle\Entity\Comentario $comentario)
+    {
+        $this->comentarios->removeElement($comentario);
+    }
+
+    /**
+     * Get comentarios
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComentarios()
+    {
+        return $this->comentarios;
+    }
+
+    /**
+     * Set area
+     *
+     * @param \AreaBundle\Entity\Area $area
+     *
+     * @return Oferta
+     */
+    public function setArea($areas = null)
+    {
+        $this->area = $areas->get(0);
+
+        return $this;
+    }
+
+    /**
+     * Get area
+     *
+     * @return \AreaBundle\Entity\Area
+     */
+    public function getArea()
+    {
+        return $this->area;
+        $array=new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Set rama
+     *
+     * @param \RamaBundle\Entity\Rama $rama
+     *
+     * @return Oferta
+     */
+    public function setRama($ramas = null)
+    {
+        $this->rama = $ramas->get(0);
+
+        return $this;
+    }
+
+    /**
+     * Get rama
+     *
+     * @return \RamaBundle\Entity\Rama
+     */
+    public function getRama()
+    {
+        return $this->rama;
+    }
+
+    /**
+     * Set disciplina
+     *
+     * @param \DisciplinaBundle\Entity\Disciplina $disciplina
+     *
+     * @return Oferta
+     */
+    public function setDisciplina($disciplinas = null)
+    {
+        $this->disciplina = $disciplinas->get(0);
+
+        return $this;
+    }
+
+    /**
+     * Get disciplina
+     *
+     * @return \DisciplinaBundle\Entity\Disciplina
+     */
+    public function getDisciplina()
+    {
+        return $this->disciplina;
+    }
+    public function __toString(){
+      return $this->getNombre();
+    }
+
+    /**
+     * Set autor
+     *
+     * @param string $autor
+     *
+     * @return Oferta
+     */
+    public function setAutor($autor)
+    {
+        $this->autor = $autor;
+
+        return $this;
+    }
+
+    /**
+     * Get autor
+     *
+     * @return string
+     */
+    public function getAutor()
+    {
+        return $this->autor;
+    }
+}

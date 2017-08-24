@@ -1,6 +1,16 @@
 Changelog
 =========
 
+### 2.0.1 (2017-05-31)
+
+* Add SwiftMailer 6 compatibility.
+* Inject firewall `user_checker` into `LoginManager`.
+* Updated English translation.
+* Updated Estonian translation.
+* Updated Persian translation.
+* Updated Turkish translation.
+* Updated several docs.
+
 ### 2.0.0 (2017-03-29)
 
 * Removed default `fos_user.from_email` configuration values.

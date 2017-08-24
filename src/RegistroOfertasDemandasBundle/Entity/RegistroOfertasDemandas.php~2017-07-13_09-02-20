@@ -1,0 +1,97 @@
+<?php
+
+namespace RegistroOfertasDemandasBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RegistroOfertasDemandas
+ *
+ * @ORM\Table(name="registro_ofertas_demandas")
+ * @ORM\Entity(repositoryClass="RegistroOfertasDemandasBundle\Repository\RegistroOfertasDemandasRepository")
+ */
+class RegistroOfertasDemandas
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="ofertasResueltas", type="integer", nullable=true)
+     */
+    private $ofertasResueltas;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="demandasResueltas", type="integer", nullable=true)
+     */
+    private $demandasResueltas;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set ofertasResueltas
+     *
+     * @param integer $ofertasResueltas
+     *
+     * @return RegistroOfertasDemandas
+     */
+    public function setOfertasResueltas($ofertasResueltas)
+    {
+        $this->ofertasResueltas = $ofertasResueltas;
+
+        return $this;
+    }
+
+    /**
+     * Get ofertasResueltas
+     *
+     * @return int
+     */
+    public function getOfertasResueltas()
+    {
+        return $this->ofertasResueltas;
+    }
+
+    /**
+     * Set demandasResueltas
+     *
+     * @param integer $demandasResueltas
+     *
+     * @return RegistroOfertasDemandas
+     */
+    public function setDemandasResueltas($demandasResueltas)
+    {
+        $this->demandasResueltas = $demandasResueltas;
+
+        return $this;
+    }
+
+    /**
+     * Get demandasResueltas
+     *
+     * @return int
+     */
+    public function getDemandasResueltas()
+    {
+        return $this->demandasResueltas;
+    }
+}
+

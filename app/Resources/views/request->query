@@ -1,0 +1,72 @@
+{% extends 'base.html.twig.php' %}
+
+{% block cuerpo %}
+
+{% block latDer %}
+    <div class="navigation">
+        {% if chart is defined %}
+            {{ render(controller('OfertaBundle:Default:menu2')) }}
+        {% else %}
+            {{ render(controller('OfertaBundle:Default:menu')) }}
+        {% endif %}
+    </div>
+
+
+{% endblock %}
+
+  <div id="pagina">
+    <h1 id="titulo_pagina">
+      <span class="texto_titulo">
+      </span>
+    </h1>
+    {% block general %}
+
+    {% endblock %}
+    </div>
+  
+
+
+
+{% block latIzq %}
+
+    <div id="banners">
+        <div class="mod-banners">
+            <ul>
+                <li class="banner_container model-resaltado-01 showtext">
+                    <a class="banner" href="{{ path('addOferta') }}">
+                        <h4>Añadir Oferta.</h4>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li class="banner_container model-resaltado-01 showtext">
+                    <a class="banner" href="{{ logout_path('main') }}">
+                    <h4>Logout.</h4>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li class="banner_container model-resaltado-01 showtext">
+                    <a class="banner" href="{{ path('editarMenu') }}">
+                        <h4>Editar Menu.</h4>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+                <li class="banner_container model-resaltado-01 showtext">
+                    <a class="banner" href="{{ path('grafica_ofertas') }}">
+                    <h4>Gráfica Ofertas.</h4>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    {% endblock %}
+
+
+
+
+{% endblock %}

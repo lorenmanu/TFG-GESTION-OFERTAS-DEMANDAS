@@ -1,6 +1,7 @@
 <?php
 
 namespace DemandaBundle\Entity;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -8,12 +9,16 @@ use Doctrine\ORM\Mapping as ORM;
  * Demanda
  *
  * @ORM\Table(name="demanda")
- * @ORM\Entity(repositoryClass="")
+ * @ORM\Entity
+ * @UniqueEntity(
+*     fields={"nombre"},
+*     message="El nombre ya existe."
+* )
  */
 class Demanda
 {
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -24,77 +29,121 @@ class Demanda
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=255, unique=true)
+     * @ORM\Column(name="nombre", type="string", length=255, precision=0, scale=0, nullable=false, unique=true)
      */
     private $nombre;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @ORM\Column(name="autor", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
-    private $slug;
+    private $autor;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="descripcion", type="text")
+     * @ORM\Column(name="descripcion", type="text", precision=0, scale=0, nullable=false, unique=false)
      */
     private $descripcion;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="condiciones", type="text")
+     * @ORM\Column(name="condiciones", type="text", precision=0, scale=0, nullable=false, unique=false)
      */
     private $condiciones;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="ruta_foto", type="string", length=255, unique=true)
-     */
-    private $rutaFoto;
-
-    /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_inicio", type="datetime")
+     * @ORM\Column(name="fechaInicio", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $fechaInicio;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fecha_fin", type="datetime")
+     * @ORM\Column(name="fechaFin", type="datetime", precision=0, scale=0, nullable=false, unique=false)
      */
     private $fechaFin;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="contacto", type="string", length=255)
+     * @ORM\Column(name="contacto", type="string", length=255, precision=0, scale=0, nullable=false, unique=false)
      */
     private $contacto;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="conocimiento", type="string", length=255)
+     * @ORM\Column(name="brochure", type="string", precision=0, scale=0, nullable=false, unique=false)
      */
-    private $conocimiento;
+    private $brochure;
 
     /**
-     * @var string
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\Column(name="palabras_clave", type="string", length=255)
+     * @ORM\ManyToMany(targetEntity="ComentarioBundle\Entity\Comentario", inversedBy="")
+     * @ORM\JoinTable(name="demanda_comentario",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="demanda_id", referencedColumnName="id", onDelete="CASCADE")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="comentario_id", referencedColumnName="id", onDelete="CASCADE")
+     *   }
+     * )
      */
-    private $palabrasClave;
+    private $comentarios;
 
     /**
-     * @ORM\ManyToOne(targetEntity="OfertaBundle\Entity\Oferta")
+     * @var \AreaBundle\Entity\Area
+     *
+     * @ORM\ManyToOne(targetEntity="AreaBundle\Entity\Area")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="area_id", referencedColumnName="id")
+     * })
      */
-    private $oferta;
+    private $area;
+
+    /**
+     * @var \RamaBundle\Entity\Rama
+     *
+     * @ORM\ManyToOne(targetEntity="RamaBundle\Entity\Rama")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="rama_id", referencedColumnName="id")
+     * })
+     */
+    private $rama;
+
+    /**
+     * @var \DisciplinaBundle\Entity\Disciplina
+     *
+     * @ORM\ManyToOne(targetEntity="DisciplinaBundle\Entity\Disciplina")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="disciplina_id", referencedColumnName="id")
+     * })
+     */
+    private $disciplina;
+
+    /**
+     * @var \TipoBundle\Entity\Tipo
+     *
+     * @ORM\ManyToOne(targetEntity="TipoBundle\Entity\Tipo")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="tipo_id", referencedColumnName="id")
+     * })
+     */
+    private $tipo;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->comentarios = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -110,6 +159,7 @@ class Demanda
      * Set nombre
      *
      * @param string $nombre
+     *
      * @return Demanda
      */
     public function setNombre($nombre)
@@ -130,32 +180,34 @@ class Demanda
     }
 
     /**
-     * Set slug
+     * Set autor
      *
-     * @param string $slug
+     * @param string $autor
+     *
      * @return Demanda
      */
-    public function setSlug($slug)
+    public function setAutor($autor)
     {
-        $this->slug = $slug;
+        $this->autor = $autor;
 
         return $this;
     }
 
     /**
-     * Get slug
+     * Get autor
      *
      * @return string
      */
-    public function getSlug()
+    public function getAutor()
     {
-        return $this->slug;
+        return $this->autor;
     }
 
     /**
      * Set descripcion
      *
      * @param string $descripcion
+     *
      * @return Demanda
      */
     public function setDescripcion($descripcion)
@@ -179,6 +231,7 @@ class Demanda
      * Set condiciones
      *
      * @param string $condiciones
+     *
      * @return Demanda
      */
     public function setCondiciones($condiciones)
@@ -199,32 +252,10 @@ class Demanda
     }
 
     /**
-     * Set rutaFoto
-     *
-     * @param string $rutaFoto
-     * @return Demanda
-     */
-    public function setRutaFoto($rutaFoto)
-    {
-        $this->rutaFoto = $rutaFoto;
-
-        return $this;
-    }
-
-    /**
-     * Get rutaFoto
-     *
-     * @return string
-     */
-    public function getRutaFoto()
-    {
-        return $this->rutaFoto;
-    }
-
-    /**
      * Set fechaInicio
      *
      * @param \DateTime $fechaInicio
+     *
      * @return Demanda
      */
     public function setFechaInicio($fechaInicio)
@@ -248,6 +279,7 @@ class Demanda
      * Set fechaFin
      *
      * @param \DateTime $fechaFin
+     *
      * @return Demanda
      */
     public function setFechaFin($fechaFin)
@@ -271,6 +303,7 @@ class Demanda
      * Set contacto
      *
      * @param string $contacto
+     *
      * @return Demanda
      */
     public function setContacto($contacto)
@@ -291,94 +324,172 @@ class Demanda
     }
 
     /**
-     * Set conocimiento
+     * Set brochure
      *
-     * @param string $conocimiento
+     * @param string $brochure
+     *
      * @return Demanda
      */
-    public function setConocimiento($conocimiento)
+    public function setBrochure($brochure)
     {
-        $this->conocimiento = $conocimiento;
+        $this->brochure = $brochure;
 
         return $this;
     }
 
     /**
-     * Get conocimiento
+     * Get brochure
      *
      * @return string
      */
-    public function getConocimiento()
+    public function getBrochure()
     {
-        return $this->conocimiento;
+        return $this->brochure;
     }
 
     /**
-     * Set palabrasClave
+     * Add comentario
      *
-     * @param string $palabrasClave
+     * @param \ComentarioBundle\Entity\Comentario $comentario
+     *
      * @return Demanda
      */
-    public function setPalabrasClave($palabrasClave)
+    public function addComentario(\ComentarioBundle\Entity\Comentario $comentario)
     {
-        $this->palabrasClave = $palabrasClave;
+        $this->comentarios[] = $comentario;
 
         return $this;
     }
 
     /**
-     * Get palabrasClave
+     * Remove comentario
      *
-     * @return string
+     * @param \ComentarioBundle\Entity\Comentario $comentario
      */
-    public function getPalabrasClave()
+    public function removeComentario(\ComentarioBundle\Entity\Comentario $comentario)
     {
-        return $this->palabrasClave;
+        $this->comentarios->removeElement($comentario);
     }
 
     /**
-     * Set visitasDemanda
+     * Get comentarios
      *
-     * @param integer $visitasDemanda
-     * @return Demanda
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function setVisitasDemanda($visitasDemanda)
+    public function getComentarios()
     {
-        $this->visitasDemanda = $visitasDemanda;
+        return $this->comentarios;
+    }
+
+    /**
+     * Set area
+     *
+     * @param \AreaBundle\Entity\Area $area
+     *
+     * @return Oferta
+     */
+    public function setArea($area)
+    {
+        if( !($area instanceof \Doctrine\Common\Collections\ArrayCollection) ){
+            $this->area = $area;
+        }
+        else{
+              $this->area = $area->get(0);
+        }
 
         return $this;
     }
 
     /**
-     * Get visitasDemanda
+     * Get area
      *
-     * @return integer
+     * @return \AreaBundle\Entity\Area
      */
-    public function getVisitasDemanda()
+    public function getArea()
     {
-        return $this->visitasDemanda;
+      return $this->area;
     }
 
     /**
-     * Set oferta
+     * Set rama
      *
-     * @param \OfertaBundle\Entity\Oferta $oferta
-     * @return Demanda
+     * @param \RamaBundle\Entity\Rama $rama
+     *
+     * @return Oferta
      */
-    public function setOferta(\OfertaBundle\Entity\Oferta $oferta = null)
+    public function setRama($rama = null)
     {
-        $this->oferta = $oferta;
+        if( !($rama instanceof \Doctrine\Common\Collections\ArrayCollection) ){
+            $this->rama = $rama;
+        }
+        else{
+              $this->rama = $rama->get(0);
+        }
 
         return $this;
     }
 
     /**
-     * Get oferta
+     * Get rama
      *
-     * @return \OfertaBundle\Entity\Oferta
+     * @return \RamaBundle\Entity\Rama
      */
-    public function getOferta()
+    public function getRama()
     {
-        return $this->oferta;
+      return $this->rama;
+    }
+
+    /**
+     * Set disciplina
+     *
+     * @param \DisciplinaBundle\Entity\Disciplina $disciplina
+     *
+     * @return Oferta
+     */
+    public function setDisciplina($disciplina = null)
+    {
+        if( +
+
+            !($disciplina instanceof\Doctrine\Common\Collections\ArrayCollection) ){
+            $this->disciplina = $disciplina;
+        }
+        else{
+              $this->disciplina = $disciplina->get(0);
+        }
+        return $this;
+    }
+
+    /**
+     * Get disciplina
+     *
+     * @return \DisciplinaBundle\Entity\Disciplina
+     */
+    public function getDisciplina()
+    {
+      return $this->disciplina;
+    }
+
+
+    public function setTipo($tipo = null)
+    {
+        if( +
+
+            !($tipo instanceof\Doctrine\Common\Collections\ArrayCollection) ){
+            $this->tipo = $tipo;
+        }
+        else{
+              $this->tipo = $tipo->get(0);
+        }
+        return $this;
+    }
+
+    /**
+     * Get tipo
+     *
+     * @return \TipoBundle\Entity\Tipo
+     */
+    public function getTipo()
+    {
+      return $this->tipo;
     }
 }

@@ -2,24 +2,37 @@ imports:
     - { resource: security.yml }
     - { resource: services.yml }
     - { resource: "@OfertaBundle/Resources/config/services.yml" }
-    - { resource: "@DemandaBundle/Resources/config/services.yml" }
     - { resource: "@ComentarioBundle/Resources/config/services.yml" }
     - { resource: "@AreaBundle/Resources/config/services.yml" }
     - { resource: "@DisciplinaBundle/Resources/config/services.yml" }
     - { resource: "@RamaBundle/Resources/config/services.yml" }
     - { resource: "@UserBundle/Resources/config/services.yml" }
+    - { resource: "@VisitasDiaBundle/Resources/config/services.yml" }
+    - { resource: "@VisitasMesBundle/Resources/config/services.yml" }
+    - { resource: "@VisitasAnioBundle/Resources/config/services.yml" }
+    - { resource: "@RegistroOfertasDemandasBundle/Resources/config/services.yml" }
+    - { resource: "@RegistroVisitasUsuarioBundle/Resources/config/services.yml" }
+    - { resource: "@RegistroVisitasOfertaBundle/Resources/config/services.yml" }
+    - { resource: "@TipoBundle/Resources/config/services.yml" }
+    - { resource: "@PalabrasClaveOfertaBundle/Resources/config/services.yml" }
+    - { resource: "@DemandaBundle/Resources/config/services.yml" }
+    - { resource: "@RegistroVisitasDemandaBundle/Resources/config/services.yml" }
+    - { resource: "@PalabrasClaveDemandaBundle/Resources/config/services.yml" }
+    - { resource: "@PruebaBundle/Resources/config/services.yml" }
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 #brochures_directory: '%kernel.root_dir%/../web/uploads/brochures'
 
 parameters:
     locale: en
-    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures/oferta/'
+    brochures_directory: '%kernel.root_dir%/../web/uploads/brochures/'
+    debug_toolbar: false
+    debug_redirects: false
 
 framework:
     #esi:             ~
     secret:          "%secret%"
-    translator:      { fallbacks: ["%locale%"] }
+    translator: { fallbacks: es }
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
         strict_requirements: ~
@@ -65,26 +78,23 @@ doctrine:
                 auto_mapping: true
 
 
-    dbal:
-        types:
-            json: Sonata\Doctrine\Types\JsonType
-
 
 # Swiftmailer Configuration
 swiftmailer:
     transport:  gmail
     username:  '%mailer_user%'
     password:  '%mailer_password%'
-    spool:     { type: memory }
 
-knp_menu:
-    # use "twig: false" to disable the Twig extension and the TwigRenderer
-    twig:
-        template: KnpMenuBundle::menu.html.twig
-    #  if true, enables the helper for PHP templates
-    templating: false
-    # the renderer to use, list is also available by default
-    default_renderer: twig
+knp_paginator:
+    page_range: 5                      # rango por defecto de paginas en los controles del paginador
+    default_options:
+        page_name: page                # nombre del parámetro de la URL para la página
+        sort_field_name: sort          # nombre del parámetro de la URL para la ordenación
+        sort_direction_name: direction # nombre del parámetro de la URL para la dirección(ASC o DESC)
+        distinct: true                 # Garantizar resultados distintos
+    template:
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig  # plantilla controles
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # plantilla links ordenación
 
 twig:
     form_themes:
@@ -98,7 +108,7 @@ knp_paginator:
         sort_direction_name: direction # nombre del parámetro de la URL para la dirección(ASC o DESC)
         distinct: true                 # Garantizar resultados distintos
     template:
-        pagination: 'KnpPaginatorBundle:Pagination:sliding.html.twig'     # sliding pagination controls template
+        pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig
         sortable: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_pagination.html.twig' # sort link template
 
 # app/config/config.yml
@@ -113,12 +123,12 @@ fos_user:
         confirmation:
             from_email:
                 address:        lorenrr1@gmail.com
-                sender_name:    Demo Registration 
+                sender_name:    Demo Registration
     resetting:
         email:
             from_email:
                 address:        lorenrr1@gmail.com
-                sender_name:    Demo Resetting       
+                sender_name:    Demo Resetting
     service:
         mailer: fos_user.mailer.twig_swift
     resetting:
@@ -128,11 +138,14 @@ fos_user:
         confirmation:
             template:   UserBundle:Registration:email.txt.twig
 
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
 
-sonata_block:
-    default_contexts: [cms]
-    blocks:
 
-        # enable the SonataAdminBundle block
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
+remg_generator:
+    entity:
+        # available configuration formats are: 'annotation', 'yaml', 'xml' and 'php'.
+        configuration_format: annotation

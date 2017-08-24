@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+{% block cuerpo %}
+    <div class="count">
+        <span class="label label-primary">
+            Numero de Usuarios: {{ pagination.getTotalItemCount -1 }}
+        </span>
+    </div>
+    <br/>
+    <div class="row">
+    	<div class="col-md-12">
+    		<table class="table table-bordered">
+        		<tr>
+            		{# sorting of properties based on query components #}
+            		<th{% if pagination.isSorted('e.username') %} class="sorted"{% endif %}>
+                		{{ knp_pagination_sortable(pagination, 'Usuario', 'e.username') }}
+            		</th>
+        		</tr>
+
+        	{# table body #}
+        		{% for entry in pagination %}
+        			{% if entry.roles|first != 'ROLE_SUPER_ADMIN' %}
+            			<tr {% if loop.index is odd %}class="color"{% endif %}>
+                			<td>
+                				<p class="infoUser"> {{ entry.username }} </p>
+                			</td>
+                			<td>
+                				<a href="{{ path('deleteUser', {'nameUser': entry.username }) }}"><button type="button" class="btn btnOptions btn-primary btn-modal">Eliminar {{ entry.username }} </button> </a>
+                				<a href="{{ path('perfilUser', {'userId': entry.id }) }}"><button type="button" class="btn btnOptions btn-primary btn-modal"> Ver {{ entry.username }} </button> </a>
+
+							</td>
+            			</tr>
+
+
+            		{% endif %}
+        		{% endfor %}
+    		</table>
+    	</div>
+    </div>
+    {# display navigation #}
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}

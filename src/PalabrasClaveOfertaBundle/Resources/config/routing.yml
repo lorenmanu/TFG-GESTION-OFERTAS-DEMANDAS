@@ -1,0 +1,4 @@
+
+eliminarPalabrasClaveOferta:
+    path:     /eliminarPalabrasClaveOferta/
+    defaults: { _controller: PalabrasClaveOfertaBundle:Default:eliminarPalabrasClaveOferta }

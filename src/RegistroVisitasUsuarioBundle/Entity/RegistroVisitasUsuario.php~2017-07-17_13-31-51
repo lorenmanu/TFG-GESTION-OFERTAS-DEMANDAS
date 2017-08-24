@@ -1,0 +1,35 @@
+<?php
+
+namespace RegistroVisitasUsuarioBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * RegistroVisitasUsuario
+ *
+ * @ORM\Table(name="registro_visitas_usuario")
+ * @ORM\Entity(repositoryClass="RegistroVisitasUsuarioBundle\Repository\RegistroVisitasUsuarioRepository")
+ */
+class RegistroVisitasUsuario
+{
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}
+

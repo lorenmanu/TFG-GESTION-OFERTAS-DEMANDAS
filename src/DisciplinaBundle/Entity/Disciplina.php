@@ -35,12 +35,6 @@ class Disciplina
      */
     private $ramas;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\OneToMany(targetEntity="OfertaBundle\Entity\Oferta", mappedBy="disciplina")
-     */
-    private $ofertas;
 
     /**
      * Constructor
@@ -48,7 +42,6 @@ class Disciplina
     public function __construct()
     {
         $this->ramas = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ofertas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -119,39 +112,7 @@ class Disciplina
         return $this->ramas;
     }
 
-    /**
-     * Add oferta
-     *
-     * @param \DisciplinaBundle\Entity\Disciplina $oferta
-     *
-     * @return Disciplina
-     */
-    public function addOferta($oferta)
-    {
-        $this->ofertas[] = $oferta;
 
-        return $this;
-    }
-
-    /**
-     * Remove oferta
-     *
-     * @param \DisciplinaBundle\Entity\Disciplina $oferta
-     */
-    public function removeOferta($oferta)
-    {
-        $this->ofertas->removeElement($oferta);
-    }
-
-    /**
-     * Get ofertas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOfertas()
-    {
-        return $this->ofertas;
-    }
     public function __toString(){
       return $this->getNombre();
     }

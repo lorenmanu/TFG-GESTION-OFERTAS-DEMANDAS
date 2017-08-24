@@ -1,0 +1,25 @@
+{% extends 'base.html.twig.php' %}
+{% block cuerpo %}
+
+{% block latDer %}
+    <div class="navigation">
+    </div>
+{% endblock %}
+
+{% block general %}
+  <div id="pagina">
+    <h1 id="titulo_pagina">
+      <span class="texto_titulo">
+      </span>
+    </h1>
+
+    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+            					<h4 id="divSaludo"> Bienvenido {{ app.user.username }}: </h4>
+    {% else %}
+	     Necesita loguearse 
+    {% endif %}
+    </div>
+
+  {% endblock %}
+
+{% endblock %}

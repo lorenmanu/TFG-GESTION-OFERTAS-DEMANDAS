@@ -43,20 +43,12 @@ class Area
      */
     private $ramas;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\OneToMany(targetEntity="OfertaBundle\Entity\Oferta", mappedBy="area")
-     */
-    private $ofertas;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->ramas = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ofertas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -127,39 +119,7 @@ class Area
         return $this->ramas;
     }
 
-    /**
-     * Add oferta
-     *
-     * @param \OfertaBundle\Entity\Oferta $oferta
-     *
-     * @return Area
-     */
-    public function addOferta(\OfertaBundle\Entity\Oferta $oferta)
-    {
-        $this->ofertas[] = $oferta;
 
-        return $this;
-    }
-
-    /**
-     * Remove oferta
-     *
-     * @param \OfertaBundle\Entity\Oferta $oferta
-     */
-    public function removeOferta(\OfertaBundle\Entity\Oferta $oferta)
-    {
-        $this->ofertas->removeElement($oferta);
-    }
-
-    /**
-     * Get ofertas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOfertas()
-    {
-        return $this->ofertas;
-    }
 
     public function __toString(){
       return $this->getNombre();

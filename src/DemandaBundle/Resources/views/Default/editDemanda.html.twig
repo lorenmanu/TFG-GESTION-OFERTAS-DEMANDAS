@@ -1,0 +1,174 @@
+{% extends 'portadaDemanda.html.twig' %}
+
+{% block cuerpo %}
+
+
+
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h1>
+              Editar Demanda
+            </h1>
+
+            <div class="col-md-12 text-center">
+                <div class="list-group">
+                    <h3><small> Nombre Demanda: {{ demanda.getNombre() }} </small></h3>
+                    {% if app.security.getToken().getUser().roles|first == 'ROLE_SUPER_ADMIN' or app.security.getToken().getUser().getUsername()  == demanda.getAutor() %}
+                        <hr>
+                          <a id="linkAdmin" href="{{ path('mostrarDemanda', {'idDemanda': demanda.id}) }}" class="list-group-item" > Volver a demanda: {{ demanda.getNombre() }} </a>
+                        <hr>
+                    {% endif %}
+                </div>
+            </div>
+
+          </div>
+          <div class="panel-body">
+            {% form_theme formDemanda 'bootstrap_3_layout.html.twig' %}
+
+              {{ form_start(formDemanda, {'action': path('editDemanda'), 'method': 'POST', 'multipart': 'true'}) }}
+
+              <div class="form-group">
+                {{ form_label(formDemanda.nombre) }}
+                {{ form_errors(formDemanda.nombre) }}
+                {{ form_widget(formDemanda.nombre, { 'attr': {'class': 'nombre'} }) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(formDemanda.descripcion) }}
+                {{ form_errors(formDemanda.descripcion) }}
+                {{ form_widget(formDemanda.descripcion, { 'attr': {'class': 'descripcion'} }) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(formDemanda.condiciones) }}
+                {{ form_errors(formDemanda.condiciones) }}
+                {{ form_widget(formDemanda.condiciones, { 'attr': {'class': 'condiciones'} }) }}
+              </div>
+
+              <div class='col-md-6'>
+                <div class="form-group">
+                  {{ form_label(formDemanda.fechaInicio) }}
+                  {{ form_widget(formDemanda.fechaInicio, { 'attr': {'class': 'datepicker'} }) }}
+                </div>
+              </div>
+
+              <div class='col-md-6'>
+                <div class="form-group">
+                  {{ form_label(formDemanda.fechaFin) }}
+                  {{ form_widget(formDemanda.fechaFin, { 'attr': {'class': 'datepicker'} }) }}
+                </div>
+              </div>
+
+              <div class="form-group">
+                {{ form_errors(formDemanda.contacto) }}
+                {{ form_label(formDemanda.contacto) }}
+                {{ form_widget(formDemanda.contacto, { 'attr': {'class': 'contacto'} }) }}
+              </div>
+
+              <div class="form-group">
+                <input type="hidden" name="MAX_FILE_SIZE" value="200000"/>
+                <input name="uploadedfile" type="file" accept="png" />
+                {% if mensaje is defined %}
+                  <span> {{ mensaje }} </span>
+                {% endif %}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(formDemanda.area) }}
+                {{ form_errors(formDemanda.area) }}
+                {{ form_widget(formDemanda.area) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(formDemanda.rama) }}
+                {{ form_errors(formDemanda.rama) }}
+                {{ form_widget(formDemanda.rama) }}
+              </div>
+
+              <div class="form-group">
+                {{ form_label(formDemanda.disciplina) }}
+                {{ form_errors(formDemanda.disciplina) }}
+                {{ form_widget(formDemanda.disciplina) }}
+              </div>
+
+             <div class="form-group">
+                {{ form_label(formDemanda.tipo) }}
+                {{ form_errors(formDemanda.tipo) }}
+                {{ form_widget(formDemanda.tipo) }}
+              </div>
+
+
+              <br>
+              <br>
+
+              {{ form_end(formDemanda) }}
+
+              <br>
+              <br>
+              <br>
+              <br>
+
+
+              <script>
+                $("#form_area").change(function() {
+                  var data = {
+                    area_id: $(this).val()
+                  };
+                  $.ajax({
+                      type: 'post',
+                      url: '{{ path("select_rama") }}',
+                      data: data,
+                      success: function(data,url) {
+                          var $rama_selector = $('#form_rama');
+                          var $disciplina_selector = $('#form_disciplina');
+                          $disciplina_selector.html('<option value= > </option>');
+                          $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
+                          for (var i = 2, total = data.length; i < total;) {
+                              $rama_selector.append('<option value="' + data[i] + '">' + data[i+1] + '</option>');
+                              i=i+2;
+                          }
+
+                      }
+                  });
+                });
+                $("#form_rama").change(function() {
+                var data = {
+                  rama_id: $(this).val()
+                };
+                $.ajax({
+                  type: 'post',
+                  url: '{{ path("select_disciplina") }}',
+                  data: data,
+                  success: function(data,url) {
+                      var $rama_selector = $('#form_disciplina');
+
+                      $rama_selector.html('<option value="' + data[0].toString() + '">' + data[1].toString() + '</option>');
+                      for (var i = 2, total = data.length; i < total;) {
+                          $rama_selector.append('<option value="' + data[i] + '">' + data[i+1] + '</option>');
+                          i=i+2;
+                      }
+                  }
+                });
+              });
+            </script>
+
+            {% if demanda.disciplina is null %}
+              <script>
+                var $disciplina_selector = $('#form_disciplina');
+                $disciplina_selector.html('<option value= > </option>');
+              </script>
+            {% endif %}
+
+
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment-with-locales.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+            <script src="{{ asset('js/selectFecha.js') }}"></script>
+
+        </div>
+      </div>
+  </div>
+
+{% endblock %}

@@ -50,12 +50,6 @@ class Rama
      */
     private $areas;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\OneToMany(targetEntity="OfertaBundle\Entity\Oferta", mappedBy="rama")
-     */
-    private $ofertas;
 
     /**
      * Constructor
@@ -64,7 +58,6 @@ class Rama
     {
         $this->disciplinas = new \Doctrine\Common\Collections\ArrayCollection();
         $this->areas = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->ofertas = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -173,37 +166,4 @@ class Rama
         return $this->areas;
     }
 
-    /**
-     * Add oferta
-     *
-     * @param \OfertaBundle\Entity\Oferta $oferta
-     *
-     * @return Rama
-     */
-    public function addOferta(\OfertaBundle\Entity\Oferta $oferta)
-    {
-        $this->ofertas[] = $oferta;
-
-        return $this;
-    }
-
-    /**
-     * Remove oferta
-     *
-     * @param \OfertaBundle\Entity\Oferta $oferta
-     */
-    public function removeOferta(\OfertaBundle\Entity\Oferta $oferta)
-    {
-        $this->ofertas->removeElement($oferta);
-    }
-
-    /**
-     * Get ofertas
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getOfertas()
-    {
-        return $this->ofertas;
-    }
 }
