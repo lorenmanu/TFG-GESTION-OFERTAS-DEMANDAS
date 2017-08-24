@@ -30,7 +30,6 @@
         "friendsofsymfony/user-bundle": "~2.0",
         "ob/highcharts-bundle": "^1.5",
         "cache/apcu-adapter": "^0.3.0",
-        "remg/generator-bundle": "dev-master",
         "ghunti/highcharts-php": "~2.0",
         "php-http/guzzle6-adapter": "^1.1",
         "php-http/httplug-bundle": "^1.7"
@@ -39,6 +38,7 @@
     "require-dev": {
         "codeclimate/php-test-reporter": "dev-master",
         "symfony/phpunit-bridge": ">=3.2",
+        "remg/generator-bundle": "dev-master",
         "phpunit/phpunit": "5.6.*"
     },
 
