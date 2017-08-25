@@ -172,7 +172,10 @@ class __TwigTemplate_fea974b4c9ccfed6b849e86702bf177eb22885390c94a4333ee08a6bbce
 
                 <div class=\"form-group\">
                     <div class=\"col-sm-offset-2 col-sm-10\">
-                    <a id=\"link_help\" href=\"/app_dev.php/login\">Login</a>
+                    <a id=\"link_help\" href=\"";
+        // line 80
+        echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("fos_user_security_login");
+        echo "\">Login</a>
                 </div>
                 </div>
 
@@ -200,7 +203,7 @@ class __TwigTemplate_fea974b4c9ccfed6b849e86702bf177eb22885390c94a4333ee08a6bbce
 
     public function getDebugInfo()
     {
-        return array (  186 => 86,  182 => 85,  161 => 66,  155 => 63,  152 => 62,  150 => 61,  145 => 59,  137 => 53,  131 => 50,  128 => 49,  126 => 48,  121 => 46,  113 => 40,  107 => 38,  105 => 37,  99 => 34,  92 => 29,  86 => 26,  83 => 25,  81 => 24,  76 => 22,  65 => 17,  62 => 16,  50 => 88,  48 => 16,  36 => 7,  32 => 5,  29 => 3,  11 => 2,);
+        return array (  189 => 86,  185 => 85,  177 => 80,  161 => 66,  155 => 63,  152 => 62,  150 => 61,  145 => 59,  137 => 53,  131 => 50,  128 => 49,  126 => 48,  121 => 46,  113 => 40,  107 => 38,  105 => 37,  99 => 34,  92 => 29,  86 => 26,  83 => 25,  81 => 24,  76 => 22,  65 => 17,  62 => 16,  50 => 88,  48 => 16,  36 => 7,  32 => 5,  29 => 3,  11 => 2,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
