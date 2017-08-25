@@ -386,6 +386,18 @@ public function indexUserAction(Request $request){
     //}
   }
 
+  $registroOfertaDemanda=$this->getDoctrine()->getRepository('RegistroOfertasDemandasBundle:RegistroOfertasDemandas')->findAll();
+
+  if($registroOfertaDemanda==null){
+    $registroOfertaDemanda = new RegistroOfertasDemandas();
+    $registroOfertaDemanda->setOfertasResueltas(0);
+    $registroOfertaDemanda->setOfertasNoResueltas(0);
+    $registroOfertaDemanda->setDemandasResueltas(0);
+    $registroOfertaDemanda->setDemandasNoResueltas(0);
+    $em->persist($registroOfertaDemanda);
+    $em->flush();
+  }
+
   $user = $this->container->get('security.context')->getToken()->getUser();
   $visitas=array();
 
