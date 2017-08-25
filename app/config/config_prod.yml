@@ -62,13 +62,7 @@ twig:
 # Doctrine Configuration
 doctrine:
     dbal:
-        driver:   %database_driver%
-        host:     %database_host%
-        dbname:   %database_name%
-        user:     %database_user%
-        password: %database_password%
-        memory:   %database_memory%
-        charset:  UTF8
+       url: "%env(DATABASE_URL)%"
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
