@@ -207,7 +207,6 @@ class DefaultController extends Controller
 
     $area = $em->getRepository('AreaBundle:Area')->findById($area_id);
 
-    dump($em->getRepository('AreaBundle:Area')->findById($area_id));
 
     $ramas = array();
 
