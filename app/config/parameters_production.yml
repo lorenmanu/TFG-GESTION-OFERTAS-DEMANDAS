@@ -5,8 +5,8 @@ parameters:
     database_port:
     database_name: new
     database_memory: true
-    database_user:
-    database_password: 
+    database_user: root
+    database_password: fermina7
     secret: ThisTokenIsNotSoSecretChangeIt
-    mailer_user:
-    mailer_password:
+    mailer_user: lorenrr1@gmail.com
+    mailer_password: 653057946 75139515Xlr

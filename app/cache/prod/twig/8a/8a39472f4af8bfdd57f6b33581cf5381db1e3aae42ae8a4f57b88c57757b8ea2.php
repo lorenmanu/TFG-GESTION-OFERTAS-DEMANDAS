@@ -285,11 +285,20 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
             // line 195
             echo "          </div>
           <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> Tipo:
-
-          </div>
+          ";
+            // line 197
+            if ($this->getAttribute($this->getAttribute($context["entry"], "tipo", array(), "any", false, true), "nombre", array(), "any", true, true)) {
+                // line 198
+                echo "            ";
+                echo twig_escape_filter($this->env, $this->getAttribute($this->getAttribute($context["entry"], "tipo", array()), "nombre", array()), "html", null, true);
+                echo "
+          ";
+            }
+            // line 200
+            echo "          </div>
           <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\"> Autor:
               ";
-            // line 200
+            // line 202
             echo twig_escape_filter($this->env, $this->getAttribute($context["entry"], "autor", array()), "html", null, true);
             echo "
           </div>
@@ -299,7 +308,7 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
           <div class=\"row rowItem\">
             <div class=\"col-lg-3 col-md-3 col-sm-4 col-xs-6\">
               <img class=\"img_show\" src=\"";
-            // line 207
+            // line 209
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("uploads/brochures/ofertas/"), "html", null, true);
             echo twig_escape_filter($this->env, $this->getAttribute($context["entry"], "getBrochure", array(), "method"), "html", null, true);
             echo "\" alt=\"\" />
@@ -308,7 +317,7 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
               <article class=\"descripcionItems\">
                 <p>
                   ";
-            // line 212
+            // line 214
             echo twig_escape_filter($this->env, $this->getAttribute($context["entry"], "descripcion", array()), "html", null, true);
             echo "
                   </p>
@@ -321,11 +330,11 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
               <div class=\"row\">
                 <ul class=\"list-group ulInfo\">
                   <li class=\"list-group-item list-group-item-success liInfo\">Fecha Inicio: ";
-            // line 222
+            // line 224
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["entry"], "fechaInicio", array()), "Y-m-d"), "html", null, true);
             echo "</li>
                   <li class=\"list-group-item list-group-item-info liInfo\">Fecha Fin: ";
-            // line 223
+            // line 225
             echo twig_escape_filter($this->env, twig_date_format_filter($this->env, $this->getAttribute($context["entry"], "fechaFin", array()), "Y-m-d"), "html", null, true);
             echo "</li>
                 </ul>
@@ -336,18 +345,18 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
               <div class=\"row\">
                 <div class=\"col-lg-3 col-md-3 col-sm-12 col-xs-12 divInfoItem1\">
                   <a class=\"btnItem btn btn-blog pull-right marginBottom10\" href=\"";
-            // line 231
+            // line 233
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("mostrarOferta", array("idOferta" => $this->getAttribute($context["entry"], "id", array()))), "html", null, true);
             echo "\" >Ver</a>
                 </div>
 
                 ";
-            // line 234
+            // line 236
             if (((twig_first($this->env, $this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? null), "security", array()), "getToken", array(), "method"), "getUser", array(), "method"), "roles", array())) == "ROLE_SUPER_ADMIN") || ($this->getAttribute($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? null), "security", array()), "getToken", array(), "method"), "getUser", array(), "method"), "getUsername", array(), "method") == $this->getAttribute($context["entry"], "getAutor", array(), "method")))) {
-                // line 235
+                // line 237
                 echo "                  <div class=\"col-lg-3 col-md-3 col-sm-12 col-xs-12 divInfoItem1\">
                     <a id=\"linkAdmin\" class=\"btnItem btn btn-blog pull-right marginBottom10\" href=\"";
-                // line 236
+                // line 238
                 echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("editOferta", array("idOferta" => $this->getAttribute($context["entry"], "id", array()))), "html", null, true);
                 echo "\"  >Editar</a>
                   </div>
@@ -356,7 +365,7 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
                   </div>
                 ";
             }
-            // line 242
+            // line 244
             echo "              </div>
             </div>
           </div>
@@ -392,7 +401,7 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
                           <div class=\"col-lg-12 col-md-12 col-sm-12 col-xs-12\">
                             <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">
                               <a href=\"";
-            // line 276
+            // line 278
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminarOferta", array("idOferta" => $this->getAttribute($context["entry"], "id", array()), "resolve" => "si")), "html", null, true);
             echo "\">
                                 <button type=\"button\" id=\"submitForm\" class=\"btn btn-success pull-left\">Si</button>
@@ -400,7 +409,7 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
                             </div>
                             <div class=\"col-lg-6 col-md-6 col-sm-6 col-xs-6\">
                               <a href=\"";
-            // line 281
+            // line 283
             echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("eliminarOferta", array("idOferta" => $this->getAttribute($context["entry"], "id", array()), "resolve" => "no")), "html", null, true);
             echo "\">
                                 <button type=\"button\" id=\"submitForm\" class=\"btn btn-danger pull-right\">No</button>
@@ -425,24 +434,24 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['entry'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 300
+        // line 302
         echo "  <div id=\"paginacion\">
     ";
-        // line 301
+        // line 303
         if (array_key_exists("pagination", $context)) {
-            // line 302
+            // line 304
             echo "      ";
             echo $this->env->getExtension('Knp\Bundle\PaginatorBundle\Twig\Extension\PaginationExtension')->render($this->env, ($context["pagination"] ?? null));
             echo "
     ";
         }
-        // line 304
+        // line 306
         echo "  </div>
 
   ";
-        // line 306
+        // line 308
         if ($this->getAttribute($this->getAttribute($this->getAttribute(($context["app"] ?? null), "request", array()), "query", array()), "get", array(0 => "mensaje"), "method")) {
-            // line 307
+            // line 309
             echo "    <div class=\"modal fade\" id=\"mensajeError\" role=\"dialog\">
       <div class=\"modal-dialog\">
         <div class=\"modal-content\">
@@ -461,13 +470,13 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
     </div>
   ";
         }
-        // line 324
+        // line 326
         echo "
   <script type=\"text/javascript\">
     \$(document).ready(function(){
       \$(\"#search\").autocomplete({
         source: '";
-        // line 328
+        // line 330
         echo $this->env->getExtension('Symfony\Bridge\Twig\Extension\RoutingExtension')->getPath("oferta_search");
         echo "',
         focus: function( event, ui ) {
@@ -482,7 +491,7 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
             }
           }).data( \"ui-autocomplete\" )._renderItem = function( ul, item ) {
         var inner_html = '<div class=\"itemContent\"><a id=\"linkElement\" href=\"' + item.path +  '\" ><h4>' + item.title + '</h4><br><div class=\"row\"><div class=\"col-lg-4 col-md-4 col-sm-5 col-xs-5\"><img class=\"img_show\" src=";
-        // line 340
+        // line 342
         echo twig_escape_filter($this->env, $this->env->getExtension('Symfony\Bridge\Twig\Extension\AssetExtension')->getAssetUrl("uploads/brochures/ofertas"), "html", null, true);
         echo "/' + item.image + '/></div><div class=\"col-lg-8 col-md-8 col-sm-7 col-xs-7\"><article class=\"descripcion\"><p>' + item.description + '</p></article></div></a></div><hr id=\"searchSpace\">';
         \$('ui-id-1').attr('id', 'newID');
@@ -511,7 +520,7 @@ class __TwigTemplate_05a24e6a412dc55da6fdd7b8571d54e2915cd6ba4a9a42848928431992d
 
     public function getDebugInfo()
     {
-        return array (  486 => 340,  471 => 328,  465 => 324,  446 => 307,  444 => 306,  440 => 304,  434 => 302,  432 => 301,  429 => 300,  404 => 281,  396 => 276,  360 => 242,  351 => 236,  348 => 235,  346 => 234,  340 => 231,  329 => 223,  325 => 222,  312 => 212,  303 => 207,  293 => 200,  286 => 195,  280 => 193,  277 => 192,  271 => 190,  268 => 189,  262 => 187,  260 => 186,  252 => 181,  247 => 178,  243 => 177,  229 => 166,  218 => 157,  213 => 155,  209 => 154,  204 => 152,  201 => 151,  198 => 150,  196 => 149,  132 => 88,  80 => 38,  70 => 31,  59 => 23,  52 => 18,  50 => 17,  45 => 14,  36 => 7,  34 => 6,  31 => 5,  28 => 4,  11 => 1,);
+        return array (  495 => 342,  480 => 330,  474 => 326,  455 => 309,  453 => 308,  449 => 306,  443 => 304,  441 => 303,  438 => 302,  413 => 283,  405 => 278,  369 => 244,  360 => 238,  357 => 237,  355 => 236,  349 => 233,  338 => 225,  334 => 224,  321 => 214,  312 => 209,  302 => 202,  298 => 200,  292 => 198,  290 => 197,  286 => 195,  280 => 193,  277 => 192,  271 => 190,  268 => 189,  262 => 187,  260 => 186,  252 => 181,  247 => 178,  243 => 177,  229 => 166,  218 => 157,  213 => 155,  209 => 154,  204 => 152,  201 => 151,  198 => 150,  196 => 149,  132 => 88,  80 => 38,  70 => 31,  59 => 23,  52 => 18,  50 => 17,  45 => 14,  36 => 7,  34 => 6,  31 => 5,  28 => 4,  11 => 1,);
     }
 
     /** @deprecated since 1.27 (to be removed in 2.0). Use getSourceContext() instead */
