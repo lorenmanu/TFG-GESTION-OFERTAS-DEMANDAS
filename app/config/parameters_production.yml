@@ -2,7 +2,7 @@
 parameters:
     database_driver: pdo_mysql
     database_host: cdbr-iron-east-05.cleardb.net
-    database_port: 5432
+    database_port: 
     database_name: heroku_ecfdbe62f4eb8fc
     database_memory: true
     database_user: '%database.user%'
