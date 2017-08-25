@@ -50,10 +50,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::prepareDeploymentTarget"
         ],
         "compile": [
-            "rm web/app_dev.php",
-            "composer install --no-dev --optimize-autoloader",
-            "app/console cache:clear --env=prod --no-debug",
-            "app/console assetic:dump --env=prod --no-debug"
+            "rm web/app_dev.php"
 
 
         ],
