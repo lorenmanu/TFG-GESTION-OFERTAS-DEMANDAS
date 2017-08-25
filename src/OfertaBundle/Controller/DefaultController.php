@@ -105,6 +105,8 @@ class DefaultController extends Controller
     $em = $this->getDoctrine()->getManager();
 
 
+    $registroOfertaDemanda=$this->getDoctrine()->getRepository('RegistroOfertasDemandasBundle:RegistroOfertasDemandas')->findAll();
+
     if($resolve=="no"){
       $registroOfertaDemanda[0]->setOfertasNoResueltas($registroOfertaDemanda[0]->getOfertasNoResueltas()+1);
     }
