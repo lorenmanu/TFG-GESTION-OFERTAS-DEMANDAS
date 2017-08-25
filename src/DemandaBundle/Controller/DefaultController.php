@@ -608,7 +608,7 @@ public function sumarVisitasDemanda($demanda,$em,$request,$i){
       'class' => 'DisciplinaBundle:Disciplina',
       'property' => 'nombre',
       'required' => true,
-      'choices' => $oferta[0]->getRama()->getDisciplinas()->toArray()
+      'choices' => $demanda[0]->getRama()->getDisciplinas()->toArray()
       ))
       ->add('tipo', 'entity', array(
       'class' => 'TipoBundle:Tipo',
