@@ -602,7 +602,7 @@ public function sumarVisitasDemanda($demanda,$em,$request,$i){
       'property' => 'nombre',
       'required' => true,
       'data'=>$em->getReference("RamaBundle:Rama",$demanda[0]->getRama()->getId()),
-      'choices' => $oferta[0]->getArea()->getRamas()->toArray()
+      'choices' => $demanda[0]->getArea()->getRamas()->toArray()
       ))
       ->add('disciplina', 'entity', array(
       'class' => 'DisciplinaBundle:Disciplina',
