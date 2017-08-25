@@ -9,3 +9,6 @@
     $container->setParameter('database_password', $db['pass']);
     $container->setParameter('secret', getenv('SECRET'));
     $container->setParameter('locale', 'en');
+    $container->setParameter('mailer_transport', 'gmail');
+    $container->setParameter('mailer_user', 'lorenrr1@gmail.com');
+    $container->setParameter('mailer_password', '75139515Xlrr');
