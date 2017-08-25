@@ -1,6 +1,6 @@
 imports:
     - { resource: security.yml }
-    - { resource: parameters_production.php }
+    - { resource: parameters_production.yml }
     - { resource: services.yml }
     - { resource: "@OfertaBundle/Resources/config/services.yml" }
     - { resource: "@ComentarioBundle/Resources/config/services.yml" }

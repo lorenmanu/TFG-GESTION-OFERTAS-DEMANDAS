@@ -339,7 +339,7 @@
               window.location.href = ui.item.url;;
             }
           }).data( "ui-autocomplete" )._renderItem = function( ul, item ) {
-        var inner_html = '<div class="itemContent"><a id="linkElement" href="' + item.path +  '" ><h4>' + item.title + '</h4><br><div class="row"><div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><img class="img_show" src={{ asset('uploads/brochures/ofertas') }}/' + item.image + '/></div><div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><article class="descripcion"><p>' + item.description + '</p></article></div></a></div><hr id="searchSpace">';
+        var inner_html = '<div class="itemContent"><a id="linkElement" href="' + item.path +  '" ><h4>' + item.title + '</h4><br><div class="row"><div class="col-lg-4 col-md-4 col-sm-5 col-xs-5"><img class="img_show" src={{ asset('uploads/brochures/ofertas') }}/' + item.image + '></div><div class="col-lg-8 col-md-8 col-sm-7 col-xs-7"><article class="descripcion"><p>' + item.description + '</p></article></div></a></div><hr id="searchSpace">';
         $('ui-id-1').attr('id', 'newID');
         return $( "<li></li>" )
         .data( "item.autocomplete", item )

@@ -206,16 +206,16 @@
     <parameter key="kernel.charset">UTF-8</parameter>
     <parameter key="kernel.container_class">appProdDebugProjectContainer</parameter>
     <parameter key="database_driver">pdo_mysql</parameter>
-    <parameter key="database_host">null</parameter>
+    <parameter key="database_host">localhost</parameter>
     <parameter key="database_port">null</parameter>
-    <parameter key="database_name">false</parameter>
-    <parameter key="database_user">null</parameter>
-    <parameter key="database_password">null</parameter>
-    <parameter key="secret">false</parameter>
-    <parameter key="locale">en</parameter>
-    <parameter key="mailer_transport">gmail</parameter>
+    <parameter key="database_name">new</parameter>
+    <parameter key="database_memory">true</parameter>
+    <parameter key="database_user">root</parameter>
+    <parameter key="database_password">fermina7</parameter>
+    <parameter key="secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="mailer_user">lorenrr1@gmail.com</parameter>
-    <parameter key="mailer_password">653057946 75139515Xlrr</parameter>
+    <parameter key="mailer_password">653057946 75139515Xlr</parameter>
+    <parameter key="locale">en</parameter>
     <parameter key="brochures_directory">/home/ubuntu/Escritorio/todo/TFG-LRR2/app/../web/uploads/brochures/</parameter>
     <parameter key="debug_toolbar">true</parameter>
     <parameter key="debug_redirects">false</parameter>
@@ -267,7 +267,7 @@
     <parameter key="translation.extractor.class">Symfony\Component\Translation\Extractor\ChainExtractor</parameter>
     <parameter key="translation.writer.class">Symfony\Component\Translation\Writer\TranslationWriter</parameter>
     <parameter key="property_accessor.class">Symfony\Component\PropertyAccess\PropertyAccessor</parameter>
-    <parameter key="kernel.secret">false</parameter>
+    <parameter key="kernel.secret">ThisTokenIsNotSoSecretChangeIt</parameter>
     <parameter key="kernel.http_method_override">true</parameter>
     <parameter key="kernel.trusted_hosts" type="collection"/>
     <parameter key="kernel.trusted_proxies" type="collection"/>
@@ -490,7 +490,7 @@
     <parameter key="swiftmailer.mailer.default.transport.smtp.port">465</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.host">smtp.gmail.com</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.username">lorenrr1@gmail.com</parameter>
-    <parameter key="swiftmailer.mailer.default.transport.smtp.password">653057946 75139515Xlrr</parameter>
+    <parameter key="swiftmailer.mailer.default.transport.smtp.password">653057946 75139515Xlr</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.auth_mode">login</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.timeout">30</parameter>
     <parameter key="swiftmailer.mailer.default.transport.smtp.source_ip">null</parameter>
@@ -934,7 +934,7 @@
       <argument>/home/ubuntu/Escritorio/todo/TFG-LRR2/app/Resources</argument>
     </service>
     <service id="uri_signer" class="Symfony\Component\HttpKernel\UriSigner">
-      <argument>false</argument>
+      <argument>ThisTokenIsNotSoSecretChangeIt</argument>
     </service>
     <service id="config_cache_factory" class="Symfony\Component\Config\ResourceCheckerConfigCacheFactory">
       <argument type="collection">
@@ -2295,7 +2295,7 @@
         </argument>
         <argument type="service">
           <service class="Symfony\Component\Security\Core\Authentication\Provider\AnonymousAuthenticationProvider" public="false">
-            <argument>59a01d40d8c6d4.15362504</argument>
+            <argument>59a01f01a6b220.08005593</argument>
           </service>
         </argument>
       </argument>
@@ -2595,7 +2595,7 @@
         <argument type="service">
           <service class="Symfony\Component\Security\Http\Firewall\AnonymousAuthenticationListener" public="false">
             <argument type="service" id="security.token_storage"/>
-            <argument>59a01d40d8c6d4.15362504</argument>
+            <argument>59a01f01a6b220.08005593</argument>
             <argument type="service" id="monolog.logger.security" on-invalid="null"/>
             <argument type="service" id="security.authentication.manager"/>
           </service>
@@ -3042,10 +3042,10 @@
     <service id="doctrine.dbal.default_connection" class="Doctrine\DBAL\Connection">
       <argument type="collection">
         <argument key="driver">pdo_mysql</argument>
-        <argument key="host">null</argument>
-        <argument key="dbname">false</argument>
-        <argument key="user">null</argument>
-        <argument key="password">null</argument>
+        <argument key="host">localhost</argument>
+        <argument key="dbname">new</argument>
+        <argument key="user">root</argument>
+        <argument key="password">fermina7</argument>
         <argument key="charset">UTF8</argument>
         <argument key="port">null</argument>
         <argument key="driverOptions" type="collection"/>
@@ -5445,7 +5445,7 @@
               <argument>lorenrr1@gmail.com</argument>
             </call>
             <call method="setPassword">
-              <argument>653057946 75139515Xlrr</argument>
+              <argument>653057946 75139515Xlr</argument>
             </call>
             <call method="setAuthMode">
               <argument>login</argument>
