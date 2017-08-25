@@ -913,11 +913,6 @@ public function searchOfertaAction(Request $request){
   $em = $this->getDoctrine()->getManager();
   $palabrasBusqueda=explode(" ", $searchterm);
 
-  dump("palabras Buscador");
-  dump($searchterm);
-  dump("palabras Buscador Trasformadas");
-  dump($palabrasBusqueda);
-  exit;
 
   $resultados = $this->obtenerOfertasPorDescripcion($session,$palabrasBusqueda,$em);
 
