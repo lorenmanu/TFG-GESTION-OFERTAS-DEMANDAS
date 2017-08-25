@@ -670,8 +670,8 @@ public function sumarVisitasDemanda($demanda,$em,$request,$i){
           }
           $this->smart_resize_image($this->getParameter('brochures_directory')."demandas/".str_replace(' ', '', $demanda[0]->getNombre().$extension),
                                       null,
-                                      $width = 6000,
-                                      $height = 4000,
+                                      $width = 1000,
+                                      $height = 1000,
                                       true,
                                       $this->getParameter('brochures_directory')."demandas/".str_replace(' ', '', $demanda[0]->getNombre().$extension),
                                       true,

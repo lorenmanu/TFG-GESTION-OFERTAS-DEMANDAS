@@ -655,8 +655,8 @@ public function sumarVisitasOferta($oferta,$em,$request,$i){
           }
           $this->smart_resize_image($this->getParameter('brochures_directory')."ofertas/".str_replace(' ', '', $oferta[0]->getNombre().$extension),
                                       null,
-                                      $width = 6000,
-                                      $height = 4000,
+                                      $width = 1000,
+                                      $height = 1000,
                                       true,
                                       $this->getParameter('brochures_directory')."ofertas/".str_replace(' ', '', $oferta[0]->getNombre().$extension),
                                       true,
