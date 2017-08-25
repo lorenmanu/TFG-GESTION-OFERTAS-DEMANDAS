@@ -10,5 +10,5 @@
     $container->setParameter('secret', getenv('SECRET'));
     $container->setParameter('locale', 'en');
     $container->setParameter('mailer_transport', 'gmail');
-    $container->setParameter('mailer_user', 'lorenrr1@gmail.com');
-    $container->setParameter('mailer_password', '653057946 75139515Xlrr');
+    $container->setParameter('mailer_user', null);
+    $container->setParameter('mailer_password', nul);
