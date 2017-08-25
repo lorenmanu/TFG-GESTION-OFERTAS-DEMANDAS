@@ -12,6 +12,7 @@ use VisitasAnioBundle\Entity\VisitasAnio;
 use Ob\HighchartsBundle\Highcharts\Highchart;
 use Ob\HighchartsBundle\Highcharts\Highstock;
 use Doctrine\Common\Collections\ArrayCollection;
+use RegistroOfertasDemandasBundle\Entity\RegistroOfertasDemandas;
 
 class DefaultController extends Controller
 {
