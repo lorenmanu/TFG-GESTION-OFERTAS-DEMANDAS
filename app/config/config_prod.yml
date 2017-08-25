@@ -26,7 +26,7 @@ imports:
 
 parameters:
     locale: en
-    brochures_directory: '%kernel.root_dir%/../../web/uploads/brochures/'
+    brochures_directory: '%kernel.root_dir%/web/uploads/brochures/'
     debug_toolbar: true
     debug_redirects: false
 
