@@ -8,5 +8,5 @@ parameters:
     database_user: root
     database_password: fermina7
     secret: ThisTokenIsNotSoSecretChangeIt
-    mailer_user: lorenrr1@gmail.com
-    mailer_password: 653057946 75139515Xlrr
+    mailer_user: 
+    mailer_password: 
